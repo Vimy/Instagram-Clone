@@ -18,8 +18,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    InstaClient *client = [[InstaClient alloc]init];
-    [client startConnection];
+    InstaClient *client = [InstaClient sharedClient];
+   // [client startConnection];
     // Do any additional setup after loading the view.
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "InstaClient.h"
 
 @interface AppDelegate ()
 
@@ -18,11 +19,63 @@
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     NSLog(@"Deze url krijgen we: %@", url);
+    NSLog(@"Dit is de query url: %@", [url query]);
     
+    //experiment
+   /* curl \-F 'client_id=CLIENT-ID' \
+    -F 'client_secret=CLIENT-SECRET' \
+    -F 'grant_type=authorization_code' \
+    -F 'redirect_uri=YOUR-REDIRECT-URI' \
+    -F 'code=CODE' \https://api.instagram.com/oauth/access_token
+*/
+    
+    //https://gist.github.com/mombrea/8467128
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/access_token/"]];
+    [request setHTTPMethod:@"POST"];
+    [request setValue:@"38ce63e055ce48cd8f37aee2d0fe73f6" forHTTPHeaderField:@"client_id"];
+    [request setValue:@"023772c25df742868e280ac8a1e0e0f4" forHTTPHeaderField:@"client_secret"];
+    [request setValue:[self parseQueryString:[url absoluteString]] forHTTPHeaderField:@"grant_type"];
+    [request setValue:@"instaklone://" forHTTPHeaderField:@"redirect_uri" ];
+    NSURLConnection *instaConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+    NSLog(@"url called");
+    
+    
+    InstaClient *sharedClient = [InstaClient sharedClient];
+    
+    [sharedClient setInstaToken:[self parseQueryString:[url absoluteString]]];
+
     return YES;
     
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
+{
+    NSMutableData *instaData = [[NSMutableData alloc]init];
+    [instaData appendData:data];
+    NSError *error;
+    
+    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:instaData options:NSJSONReadingMutableContainers error:&error];
+    NSLog(@"Json is: %@", json);
+   NSLog(@"Data is: %@", instaData);
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
+{
+    NSLog(@"Connectie fail: %@", [error localizedDescription]);
+}
+- (NSString *)parseQueryString:(NSString *)query
+{
+    NSArray *pairs = [query componentsSeparatedByString:@"="];
+    NSLog(@"Array: %@", pairs);
+    
+    NSString *string = pairs[1];
+    NSLog(@"string: %@", string);
+    return string;
+    
+    
+    
+}
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     return YES;

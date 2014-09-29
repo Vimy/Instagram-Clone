@@ -14,8 +14,10 @@
 #define kREDIRECTURI instaklone://
 
 @interface InstaClient : NSObject
-
+@property (nonatomic, strong) NSString *instaToken;
 - (void)startConnection;
+
++(id)sharedClient;
 
 
 @end
