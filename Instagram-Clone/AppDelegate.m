@@ -32,20 +32,7 @@
     
     //https://gist.github.com/mombrea/8467128
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=38ce63e055ce48cd8f37aee2d0fe73f6"]];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-    {
-        NSLog(@"Json: %@", responseObject);
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-    {
-        NSLog(@"Oopsie: %@", [error localizedDescription]);
-    }];
-    
-    [operation start];
-    
+  
     
     
     /*
@@ -65,6 +52,11 @@
     
     [sharedClient setInstaToken:[self parseQueryString:[url absoluteString]]];
 
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:[self parseQueryString:[url absoluteString]] forKey:@"auth_code"];
+    [defaults synchronize];
+    
+    
     return YES;
     
 }

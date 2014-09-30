@@ -7,23 +7,91 @@
 //
 
 #import "VerkennenViewController.h"
+#import "InstaClient.h"
 
 @interface VerkennenViewController ()
-
+{
+    __block NSDictionary *jsonPopulairImages;
+    NSArray *imagesArray;
+    InstaClient *client;
+}
 @end
 
 @implementation VerkennenViewController
 
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
+    self.collectionView.bounds = self.view.bounds;
     
+    client = [InstaClient sharedClient];
+    
+    [client searchForKeyWords:@"booty"];
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
     // Register cell classes
 
+    [client addObserver:self forKeyPath:@"imagesDict" options:0 context:NULL];
+    [client addObserver:self forKeyPath:@"searchImagesArray" options:0 context:NULL];
+    
     // Do any additional setup after loading the view.
+    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityView.center = self.view.center;
+    [activityView startAnimating];
+    [self.collectionView addSubview:activityView];
+    
+    
+    dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", 0);
+    
+    dispatch_sync(backGroundQue, ^{
+       
+         [client startConnectionPopulairFeed];
+      //  NSLog(@"[VKViewController]imagesArray: %@", jsonPopulairImages);
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+        //    NSLog(@"[VKViewController]imagesArray: %@", jsonPopulairImages);
+
+            [activityView stopAnimating];
+        //stop spinning & disaspear
+           
+        });
+    });
+   
+   // jsonPopulairImages = [client startConnectionPopulairFeed];
+
+    //imagesArray =[jsonPopulairImages allValues];
+   // NSLog(@"[VKViewController]imagesArray: %@", jsonPopulairImages);
+    
+    
+}
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+    NSString *keyword = self.searchBar.text;
+    [client searchForKeyWords:keyword];
+    NSLog(@"Werkt!");
+}
+
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    
+    //KVO checken per property & juiste actie nemen
+    
+    
+    NSLog(@"KVO CALLED8");
+    
+    NSLog(@"Object: %@", object);
+    NSLog(@"Dictionary Change: %@", change);
+    
+   //
+    jsonPopulairImages = client.imagesDict;
+    imagesArray = client.imagesArray;
+  //  NSLog(@"[VKViewController]imagesArray: %@", client.imagesArray);
+   // NSLog(@"[VKViewController]imagesDict: %@", client.imagesDict);
+    [self.collectionView reloadData];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -51,14 +119,33 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return 10;
+    if (imagesArray)
+    {
+        return [imagesArray count];
+    }
+    else
+    {
+        return 40;
+    }
+    
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
-    cell.backgroundColor = [UIColor yellowColor];
-    // Configure the cell
+    UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:100];
+    NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
+    if (imageData)
+    {
+        cellImageView.image = [UIImage imageWithData:imageData];
+        // NSLog(@"[VKViewController]met url");
+    }
+    else
+    {
+        cellImageView.image = [UIImage imageNamed:@"buf.png"];
+       // NSLog(@"[VKViewController]Buf geladen!");
+    }
+ 
     
     return cell;
 }

@@ -15,8 +15,14 @@
 
 @interface InstaClient : NSObject
 @property (nonatomic, strong) NSString *instaToken;
-- (void)startConnection;
+@property   __block NSDictionary *imagesDict;
+@property NSMutableArray *imagesArray;
+@property NSMutableArray *searchImagesArray;
 
+
+- (void)searchForKeyWords:(NSString *)keywords;
+- (void)startConnection;
+- (NSDictionary *)startConnectionPopulairFeed;
 +(id)sharedClient;
 
 

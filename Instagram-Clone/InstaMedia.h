@@ -10,5 +10,6 @@
 
 @interface InstaMedia : NSObject
 @property (strong, nonatomic) UIImage *instaImage;
+@property (strong, nonatomic) NSURL *instaImageURL;
 
 @end
