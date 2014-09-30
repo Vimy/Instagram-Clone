@@ -19,7 +19,7 @@
 {
     [super viewDidLoad];
     InstaClient *client = [InstaClient sharedClient];
-   // [client startConnection];
+   [client startConnection];
     // Do any additional setup after loading the view.
 }
 

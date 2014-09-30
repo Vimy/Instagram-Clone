@@ -8,6 +8,7 @@
 
 #import "AppDelegate.h"
 #import "InstaClient.h"
+#import "AFNetworking.h"
 
 @interface AppDelegate ()
 
@@ -31,6 +32,24 @@
     
     //https://gist.github.com/mombrea/8467128
     
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=38ce63e055ce48cd8f37aee2d0fe73f6"]];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+    {
+        NSLog(@"Json: %@", responseObject);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+    {
+        NSLog(@"Oopsie: %@", [error localizedDescription]);
+    }];
+    
+    [operation start];
+    
+    
+    
+    /*
+    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/access_token/"]];
     [request setHTTPMethod:@"POST"];
     [request setValue:@"38ce63e055ce48cd8f37aee2d0fe73f6" forHTTPHeaderField:@"client_id"];
@@ -40,6 +59,7 @@
     NSURLConnection *instaConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
     NSLog(@"url called");
     
+    */
     
     InstaClient *sharedClient = [InstaClient sharedClient];
     
@@ -49,21 +69,8 @@
     
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data
-{
-    NSMutableData *instaData = [[NSMutableData alloc]init];
-    [instaData appendData:data];
-    NSError *error;
-    
-    NSDictionary *json = [NSJSONSerialization JSONObjectWithData:instaData options:NSJSONReadingMutableContainers error:&error];
-    NSLog(@"Json is: %@", json);
-   NSLog(@"Data is: %@", instaData);
-}
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error
-{
-    NSLog(@"Connectie fail: %@", [error localizedDescription]);
-}
+
 - (NSString *)parseQueryString:(NSString *)query
 {
     NSArray *pairs = [query componentsSeparatedByString:@"="];
