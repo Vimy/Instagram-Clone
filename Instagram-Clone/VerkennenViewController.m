@@ -33,7 +33,7 @@
     
     // Register cell classes
 
-    [client addObserver:self forKeyPath:@"imagesDict" options:0 context:NULL];
+    [client addObserver:self forKeyPath:@"imagesArray" options:0 context:NULL];
     [client addObserver:self forKeyPath:@"searchImagesArray" options:0 context:NULL];
     
     // Do any additional setup after loading the view.
@@ -79,19 +79,27 @@
 {
     
     //KVO checken per property & juiste actie nemen
+    if ([keyPath isEqual:@"searchImagesArray"])
+    {
+        NSLog(@"Keypath is: %@", keyPath);
+        NSLog(@"[VKViewController]searchImagesArray called");
+        imagesArray = client.searchImagesArray;
+        [self.collectionView reloadData];
+    }
+    else
+    {
+        NSLog(@"Keypath is: %@", keyPath);
+        NSLog(@"[VKViewController]imagesArray called");
+        imagesArray = client.imagesArray;
+        
+        [self.collectionView reloadData];
+    }
     
     
-    NSLog(@"KVO CALLED8");
+   
     
-    NSLog(@"Object: %@", object);
-    NSLog(@"Dictionary Change: %@", change);
-    
-   //
-    jsonPopulairImages = client.imagesDict;
-    imagesArray = client.imagesArray;
-  //  NSLog(@"[VKViewController]imagesArray: %@", client.imagesArray);
-   // NSLog(@"[VKViewController]imagesDict: %@", client.imagesDict);
-    [self.collectionView reloadData];
+
+ 
 }
 
 - (void)didReceiveMemoryWarning {

@@ -15,9 +15,9 @@
 
 @interface InstaClient : NSObject
 @property (nonatomic, strong) NSString *instaToken;
-@property   __block NSDictionary *imagesDict;
-@property NSMutableArray *imagesArray;
-@property NSMutableArray *searchImagesArray;
+@property  (nonatomic, strong) __block NSDictionary *imagesDict;
+@property (nonatomic, strong) __block NSMutableArray *imagesArray;
+@property (nonatomic, strong) __block NSMutableArray *searchImagesArray;
 
 
 - (void)searchForKeyWords:(NSString *)keywords;

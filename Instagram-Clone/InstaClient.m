@@ -26,9 +26,11 @@
 - (id)init
 {
     self.imagesArray = [[NSMutableArray alloc]init];
+    self.searchImagesArray = [[NSMutableArray alloc]init];
     return self;
     
 }
+
 
 - (void)setinstaToken:(NSString *)tokenString
 {
@@ -99,24 +101,28 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
-         NSLog(@"[InstaClient]Arr: %@", arr);
+       //  NSLog(@"[InstaClient]Arr: %@", arr);
          InstaMedia *media = [[InstaMedia alloc]init];
-
+         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
          for (NSString *str in arr)
          {
              NSURL *url = [NSURL URLWithString:str];
-             NSLog(@"[InstaClient]URL: %@", str);
+           //  NSLog(@"[InstaClient]URL: %@", str);
              media.instaImageURL = url;
-             [self.imagesArray addObject:url];
+             [tempArray addObject:url];
          }
          
       
     //     NSLog(@"[InstaClient]self.imagesArray: %@", self.imagesArray);
          
+         self.imagesArray = tempArray;
          
         NSDictionary *tempDict3 = [jsonResults valueForKey:@"url"];
         self.imagesDict = tempDict3;
-  
+        
+         
+         
+         
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Oopsie: %@", [error localizedDescription]);
@@ -140,20 +146,23 @@
        //  NSLog (@"[InstaClient]SearchJSON: %@", responseObject);
          
          NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
-         NSLog(@"[InstaClient]Arr: %@", arr);
+        // NSLog(@"[InstaClient]Arr: %@", arr);
          InstaMedia *media = [[InstaMedia alloc]init];
+         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
          
          for (NSString *str in arr)
          {
              NSURL *url = [NSURL URLWithString:str];
-             NSLog(@"[InstaClient]URL: %@", str);
+          //   NSLog(@"[InstaClient]URL: %@", str);
              media.instaImageURL = url;
-             [self.searchImagesArray addObject:url];
+             [tempArray addObject:url];
          }
          
+          NSLog(@"[InstaClient]self.searchImagesArray: %@", self.searchImagesArray);
+         self.searchImagesArray = tempArray;
          
-         
-           } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     
      {
          NSLog(@"Oopsie: %@", [error localizedDescription]);
      }];
