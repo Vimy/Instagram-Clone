@@ -13,4 +13,5 @@
 @property (strong, nonatomic) NSURL *instaImageURLFull;
 @property (strong, nonatomic) NSURL *instaImageURLThumbnail;
 
+
 @end

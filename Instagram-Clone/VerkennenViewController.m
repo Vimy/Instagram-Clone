@@ -10,6 +10,7 @@
 #import "InstaClient.h"
 #import "InstaMedia.h"
 #import "ImageDetailViewController.h"
+#import "InstaUser.h"
 
 
 @interface VerkennenViewController ()
@@ -18,7 +19,8 @@
     NSArray *imagesArray;
     InstaClient *client;
     UIActivityIndicatorView *activityView;
-    InstaMedia  *media;
+    InstaUser *user;
+    
 }
 @end
 
@@ -153,15 +155,15 @@
     UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:100];
     if (imagesArray)
     {
-           media = [imagesArray objectAtIndex:indexPath.row];
-            NSLog(@"[VKViewController]media.InstaIMageUrl: %@", media.instaImageURLThumbnail);
+           user.media = [imagesArray objectAtIndex:indexPath.row];
+            NSLog(@"[VKViewController]media.InstaIMageUrl: %@", user.media.instaImageURLThumbnail);
     }
  
     
     //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
-    if (media.instaImage)
+    if (user.media.instaImage)
     {
-        cellImageView.image = media.instaImage; //[UIImage imageWithData:imageData];
+        cellImageView.image = user.media.instaImage; //[UIImage imageWithData:imageData];
         // NSLog(@"[VKViewController]met url");
     }
     else
@@ -186,9 +188,9 @@
         InstaMedia *segueMedia = [[InstaMedia alloc]init];
         segueMedia = [imagesArray objectAtIndex:indexPath.row];
         vc.tiet.text = @"hoi";
-        vc.titleLabel.text = @"hoi";
+        vc.titleLabel.text = @"Buffy the vampire slayer";
         
-       vc.profileImage.image = segueMedia.instaImage;
+       vc.imagevar = segueMedia.instaImage;
       
         
     }

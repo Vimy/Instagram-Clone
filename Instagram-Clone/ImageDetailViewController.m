@@ -17,6 +17,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     NSLog(@"[IDVC]Tietel: %@", self.titleLabel.text);
+    self.mainImage.image = self.imagevar;
+    self.titleLabel.text = self.titleLabelvar;
+    
     // Do any additional setup after loading the view.
 }
 

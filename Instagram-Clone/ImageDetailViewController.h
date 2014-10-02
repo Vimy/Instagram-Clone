@@ -12,8 +12,10 @@
 
 @property  UILabel *tiet;
 
-@property (nonatomic, weak) IBOutlet UILabel *titleLabel;
-@property (strong, nonatomic) IBOutlet UIImageView *image;
-@property (strong, nonatomic) IBOutlet UIImageView *profileImage;
+@property (nonatomic, weak) NSString *titleLabelvar;
+@property (strong, nonatomic)  UIImage *imagevar;
+@property (strong, nonatomic)  UIImage *profileImagevar;
+@property (strong, nonatomic) IBOutlet UIImageView *mainImage;
+@property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 
 @end

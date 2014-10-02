@@ -8,6 +8,7 @@
 
 #import "InstaClient.h"
 #import "InstaMedia.h"
+#import "InstaUser.h"
 
 @implementation InstaClient
 
@@ -82,15 +83,17 @@
          NSMutableArray *tempArray = [[NSMutableArray alloc]init];
          for (NSString *str in arr)
          {
-              InstaMedia *media = [[InstaMedia alloc]init];
+             InstaUser *user = [[InstaUser alloc]init];
+            
+             InstaMedia *media = [[InstaMedia alloc]init];
              NSURL *url = [NSURL URLWithString:str];
-             media.instaImageURLThumbnail = url;
-             media.instaImageURLFull = url;
+             user.media.instaImageURLThumbnail = url;
+             user.media.instaImageURLFull = url;
              
              NSData *imageData = [NSData dataWithContentsOfURL:url];
-             media.instaImage = [UIImage imageWithData:imageData];
-             [tempArray addObject:media];
-           NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", media.instaImageURLThumbnail);
+             user.media.instaImage = [UIImage imageWithData:imageData];
+             [tempArray addObject:user];
+           NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", user.media.instaImageURLThumbnail);
              
          }
          
@@ -133,6 +136,7 @@
          
          for (NSString *str in arr)
          {
+             
              InstaMedia *media = [[InstaMedia alloc]init];
 
              NSURL *url = [NSURL URLWithString:str];
