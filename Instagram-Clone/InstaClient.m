@@ -44,36 +44,10 @@
 // http://stackoverflow.com/questions/13281084/whats-a-redirect-uri-how-does-it-apply-to-ios-app-for-oauth2-0
 - (void)startConnection
 {
-    /*
-    NSString *fullURl = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=38ce63e055ce48cd8f37aee2d0fe73f6&redirect_uri=instaklone://&response_type=code"];
-    NSURL *url = [NSURL URLWithString:fullURl];
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+   // NSString *fullURl = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=38ce63e055ce48cd8f37aee2d0fe73f6&redirect_uri=instaklone://&response_type=code"];
 
-    NSURLResponse *response;
-    NSError *error = nil;
-    
-    NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-    //[[NSURLConnection alloc]initWithRequest:request delegate:nil startImmediately:YES];
-    
-    
-    if (data)
-    {
-        NSLog(@"Connectie gestart");
-        NSError *Jerror = nil;
-        
-        NSDictionary* json =[NSJSONSerialization
-                             JSONObjectWithData:data
-                             options:kNilOptions
-                             error:&Jerror];
-        
-        NSLog(@"Data: %@",json);
-    }
-    else
-    {
-        NSLog(@"Fail!");
-    }
-     */
-    NSLog(@"Test");
+  
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *authCode = [defaults stringForKey:@"auth_code"];
@@ -101,15 +75,23 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
+         NSMutableArray *arr2 = [responseObject valueForKeyPath:@"data.images.standard_resolution"];
+         
        //  NSLog(@"[InstaClient]Arr: %@", arr);
-         InstaMedia *media = [[InstaMedia alloc]init];
+        
          NSMutableArray *tempArray = [[NSMutableArray alloc]init];
          for (NSString *str in arr)
          {
+              InstaMedia *media = [[InstaMedia alloc]init];
              NSURL *url = [NSURL URLWithString:str];
-           //  NSLog(@"[InstaClient]URL: %@", str);
-             media.instaImageURL = url;
-             [tempArray addObject:url];
+             media.instaImageURLThumbnail = url;
+             media.instaImageURLFull = url;
+             
+             NSData *imageData = [NSData dataWithContentsOfURL:url];
+             media.instaImage = [UIImage imageWithData:imageData];
+             [tempArray addObject:media];
+           NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", media.instaImageURLThumbnail);
+             
          }
          
       
@@ -147,15 +129,17 @@
          
          NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
         // NSLog(@"[InstaClient]Arr: %@", arr);
-         InstaMedia *media = [[InstaMedia alloc]init];
          NSMutableArray *tempArray = [[NSMutableArray alloc]init];
          
          for (NSString *str in arr)
          {
+             InstaMedia *media = [[InstaMedia alloc]init];
+
              NSURL *url = [NSURL URLWithString:str];
-          //   NSLog(@"[InstaClient]URL: %@", str);
-             media.instaImageURL = url;
-             [tempArray addObject:url];
+             media.instaImageURLThumbnail = url;
+             NSData *imageData = [NSData dataWithContentsOfURL:url];
+             media.instaImage = [UIImage imageWithData:imageData];
+             [tempArray addObject:media];
          }
          
           NSLog(@"[InstaClient]self.searchImagesArray: %@", self.searchImagesArray);
@@ -170,4 +154,6 @@
     [operation start];
 
 }
+
+
 @end

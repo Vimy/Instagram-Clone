@@ -10,6 +10,7 @@
 		39BC07D719D6D3460090E20E /* InstaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07D619D6D3460090E20E /* InstaClient.m */; };
 		39BC07DA19D735320090E20E /* InstaMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07D919D735320090E20E /* InstaMedia.m */; };
 		39BC07DD19D73A450090E20E /* InstaUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07DC19D73A450090E20E /* InstaUser.m */; };
+		39C6FD5619DC9BFF000B6676 /* ImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */; };
 		39C85A7D19D574D8007295D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85A7C19D574D8007295D9 /* main.m */; };
 		39C85A8019D574D8007295D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85A7F19D574D8007295D9 /* AppDelegate.m */; };
 		39C85A8919D574D8007295D9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 39C85A8719D574D8007295D9 /* Main.storyboard */; };
@@ -40,6 +41,8 @@
 		39BC07D919D735320090E20E /* InstaMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstaMedia.m; sourceTree = "<group>"; };
 		39BC07DB19D73A450090E20E /* InstaUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstaUser.h; sourceTree = "<group>"; };
 		39BC07DC19D73A450090E20E /* InstaUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstaUser.m; sourceTree = "<group>"; };
+		39C6FD5419DC9BFF000B6676 /* ImageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDetailViewController.h; sourceTree = "<group>"; };
+		39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDetailViewController.m; sourceTree = "<group>"; };
 		39C85A7719D574D8007295D9 /* Instagram-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagram-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39C85A7B19D574D8007295D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39C85A7C19D574D8007295D9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -112,6 +115,8 @@
 				39E314DB19D9F258009141C5 /* VerkennenViewController.m */,
 				39E314DD19D9F508009141C5 /* CameraViewController.h */,
 				39E314DE19D9F508009141C5 /* CameraViewController.m */,
+				39C6FD5419DC9BFF000B6676 /* ImageDetailViewController.h */,
+				39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */,
 				39C85A8719D574D8007295D9 /* Main.storyboard */,
 				39BC07DB19D73A450090E20E /* InstaUser.h */,
 				39BC07DC19D73A450090E20E /* InstaUser.m */,
@@ -305,6 +310,7 @@
 				39BC07D719D6D3460090E20E /* InstaClient.m in Sources */,
 				39C85A7D19D574D8007295D9 /* main.m in Sources */,
 				39BC07DA19D735320090E20E /* InstaMedia.m in Sources */,
+				39C6FD5619DC9BFF000B6676 /* ImageDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,6 +436,7 @@
 				INFOPLIST_FILE = "Instagram-Clone/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -441,6 +448,7 @@
 				INFOPLIST_FILE = "Instagram-Clone/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

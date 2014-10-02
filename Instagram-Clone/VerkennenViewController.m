@@ -8,12 +8,17 @@
 
 #import "VerkennenViewController.h"
 #import "InstaClient.h"
+#import "InstaMedia.h"
+#import "ImageDetailViewController.h"
+
 
 @interface VerkennenViewController ()
 {
     __block NSDictionary *jsonPopulairImages;
     NSArray *imagesArray;
     InstaClient *client;
+    UIActivityIndicatorView *activityView;
+    InstaMedia  *media;
 }
 @end
 
@@ -22,6 +27,9 @@
 
 - (void)viewDidLoad
 {
+    
+    //http://canvaspod.io/
+    
     [super viewDidLoad];
     self.collectionView.bounds = self.view.bounds;
     
@@ -37,13 +45,13 @@
     [client addObserver:self forKeyPath:@"searchImagesArray" options:0 context:NULL];
     
     // Do any additional setup after loading the view.
-    UIActivityIndicatorView *activityView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+    activityView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
     activityView.center = self.view.center;
     [activityView startAnimating];
     [self.collectionView addSubview:activityView];
     
     
-    dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", 0);
+    dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
     
     dispatch_sync(backGroundQue, ^{
        
@@ -53,7 +61,7 @@
         dispatch_async(dispatch_get_main_queue(), ^{
         //    NSLog(@"[VKViewController]imagesArray: %@", jsonPopulairImages);
 
-            [activityView stopAnimating];
+          //  [activityView stopAnimating];
         //stop spinning & disaspear
            
         });
@@ -71,13 +79,14 @@
 {
     [searchBar resignFirstResponder];
     NSString *keyword = self.searchBar.text;
+     [activityView startAnimating];
     [client searchForKeyWords:keyword];
     NSLog(@"Werkt!");
 }
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    
+    [activityView stopAnimating];
     //KVO checken per property & juiste actie nemen
     if ([keyPath isEqual:@"searchImagesArray"])
     {
@@ -142,10 +151,17 @@
 {
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"cell" forIndexPath:indexPath];
     UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:100];
-    NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
-    if (imageData)
+    if (imagesArray)
     {
-        cellImageView.image = [UIImage imageWithData:imageData];
+           media = [imagesArray objectAtIndex:indexPath.row];
+            NSLog(@"[VKViewController]media.InstaIMageUrl: %@", media.instaImageURLThumbnail);
+    }
+ 
+    
+    //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
+    if (media.instaImage)
+    {
+        cellImageView.image = media.instaImage; //[UIImage imageWithData:imageData];
         // NSLog(@"[VKViewController]met url");
     }
     else
@@ -159,6 +175,26 @@
 }
 
 #pragma mark <UICollectionViewDelegate>
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"tiet"])
+    {
+        
+      
+        NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
+        ImageDetailViewController *vc = (ImageDetailViewController *)segue.destinationViewController;
+        InstaMedia *segueMedia = [[InstaMedia alloc]init];
+        segueMedia = [imagesArray objectAtIndex:indexPath.row];
+        vc.tiet.text = @"hoi";
+        vc.titleLabel.text = @"hoi";
+        
+       vc.profileImage.image = segueMedia.instaImage;
+      
+        
+    }
+}
+
+
 
 /*
 // Uncomment this method to specify if the specified item should be highlighted during tracking
