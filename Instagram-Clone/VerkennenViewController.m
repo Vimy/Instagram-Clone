@@ -27,7 +27,7 @@
 
 - (void)viewDidLoad
 {
-    
+    false
     //http://canvaspod.io/
     
     [super viewDidLoad];
