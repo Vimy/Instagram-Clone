@@ -9,9 +9,9 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
-#define kCLIENTID 38ce63e055ce48cd8f37aee2d0fe73f6
-#define kCLIENTSECRET 023772c25df742868e280ac8a1e0e0f4
-#define kREDIRECTURI instaklone://
+#define kCLIENTID @"38ce63e055ce48cd8f37aee2d0fe73f6"
+#define kCLIENTSECRET @"023772c25df742868e280ac8a1e0e0f4"
+#define kREDIRECTURI @"instaklone://"
 
 @interface InstaClient : NSObject
 @property (nonatomic, strong) NSString *instaToken;
