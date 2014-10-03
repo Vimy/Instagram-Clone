@@ -10,8 +10,6 @@
 #import "InstaClient.h"
 #import "InstaMedia.h"
 #import "ImageDetailViewController.h"
-#import "InstaUser.h"
-
 
 @interface VerkennenViewController ()
 {
@@ -19,7 +17,7 @@
     NSArray *imagesArray;
     InstaClient *client;
     UIActivityIndicatorView *activityView;
-    InstaUser *user;
+    InstaMedia  *media;
     
 }
 @end
@@ -155,15 +153,15 @@
     UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:100];
     if (imagesArray)
     {
-           user.media = [imagesArray objectAtIndex:indexPath.row];
-            NSLog(@"[VKViewController]media.InstaIMageUrl: %@", user.media.instaImageURLThumbnail);
+           media = [imagesArray objectAtIndex:indexPath.row];
+            NSLog(@"[VKViewController]media.InstaIMageUrl: %@", media.instaImageURLThumbnail);
     }
  
     
     //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
-    if (user.media.instaImage)
+    if (media.instaImage)
     {
-        cellImageView.image = user.media.instaImage; //[UIImage imageWithData:imageData];
+        cellImageView.image = media.instaImage; //[UIImage imageWithData:imageData];
         // NSLog(@"[VKViewController]met url");
     }
     else

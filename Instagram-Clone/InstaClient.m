@@ -49,30 +49,88 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *authCode = [defaults stringForKey:@"auth_code"];
    // NSString *fullURl = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=38ce63e055ce48cd8f37aee2d0fe73f6&redirect_uri=instaklone://&response_type=code"];
+    /*
+    NSString *parameterData = [NSString stringWithFormat:@"client_id=38ce63e055ce48cd8f37aee2d0fe73f6&client_secret=023772c25df742868e280ac8a1e0e0f4&grant_type=authorization_code&redirect_uri=instaklone://&code=%@",authCode];
+    NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+    [request setHTTPMethod:@"POST"];
+    [request setHTTPBody:[parameterData dataUsingEncoding:NSUTF8StringEncoding]];
+    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id result)
+     {
+         NSLog(@"JSON response: %@", result);
+     }
+                                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
+     {
+         NSLog(@"Error: %@", [error localizedDescription]);
+     }];
+    id response;
+    NSError *error;
     
+    NSMutableData* result = [[NSURLConnection sendSynchronousRequest:request   returningResponse:&response error:&error] mutableCopy];
+    NSLog(@"Data: %@", result);
+    NSError *localError;
+    NSString* newStr = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+    NSLog(@"Data!!!!: %@", newStr);
+    NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:result options:0 error:&localError];
     
-  
+    NSLog(@"ParsedObject: %@", parsedObject);
+*/
     
-
     
    // if (![[NSUserDefaults standardUserDefaults] valueForKey:@"auth_code"])
     if (authCode)
     {
-        NSLog(@"Key exists");
+        /*NSLog(@"Key exists");
         NSLog(@"Key:%@", authCode);
-        NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/authorize/"];
+        NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/"];
         AFOAuth2Client *oauthClient = [AFOAuth2Client clientWithBaseURL:url clientID:kCLIENTID secret:kCLIENTSECRET];
-        [oauthClient authenticateUsingOAuthWithPath:@"oauth/authorize" code:authCode redirectURI:kREDIRECTURI success:^(AFOAuthCredential *credential)
+        [oauthClient authenticateUsingOAuthWithURLString:@"access_token/" code:authCode redirectURI:kREDIRECTURI success:^(AFOAuthCredential *credential)
          {
              NSLog(@"Credential: %@", credential);
          }failure:^(NSError *error){
-             
+             NSLog(@"Error: %@", [error localizedDescription]);
          }];
+         */
+        
+        
+        
+        NSString *parameterData = [NSString stringWithFormat:@"client_id=6a88d49716fd4e0ba375cb784b9d9915&client_secret=ed816557f3874e5aaec633e2535e4c88&grant_type=authorization_code&redirect_uri=instaklone://&code=%@",authCode];
+        NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"];
+        NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+        [request setHTTPMethod:@"POST"];
+        [request setHTTPBody:[parameterData dataUsingEncoding:NSUTF8StringEncoding]];
+        [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
+        AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
+        operation.responseSerializer = [AFJSONResponseSerializer serializer];
+        [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id result)
+         {
+             NSLog(@"JSON response: %@", result);
+         }
+        failure:^(AFHTTPRequestOperation *operation, NSError *error)
+         {
+             NSLog(@"Error: %@", [error localizedDescription]);
+         }];
+        id response;
+        NSError *error;
+        
+        NSMutableData* result = [[NSURLConnection sendSynchronousRequest:request   returningResponse:&response error:&error] mutableCopy];
+        NSLog(@"Data: %@", result);
+        NSError *localError;
+        NSString* newStr = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+        NSLog(@"Data!!!!: %@", newStr);
+        NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:result options:0 error:&localError];
+        
+        NSLog(@"ParsedObject: %@", parsedObject);
 
+        
+        
     }
     else
     {
-        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/authorize/?client_id=38ce63e055ce48cd8f37aee2d0fe73f6&redirect_uri=instaklone://&response_type=code"]];
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/authorize/?client_id=6a88d49716fd4e0ba375cb784b9d9915&redirect_uri=instaklone://&response_type=code"]];
         NSLog(@"Key doesn't exists");
     }
 }
@@ -81,7 +139,9 @@
 {
     __block NSDictionary *jsonResults;
 
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=38ce63e055ce48cd8f37aee2d0fe73f6"]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae"]];
+   // https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae
+  //  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=38ce63e055ce48cd8f37aee2d0fe73f6"]];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -94,17 +154,16 @@
          NSMutableArray *tempArray = [[NSMutableArray alloc]init];
          for (NSString *str in arr)
          {
-             InstaUser *user = [[InstaUser alloc]init];
             
              InstaMedia *media = [[InstaMedia alloc]init];
              NSURL *url = [NSURL URLWithString:str];
-             user.media.instaImageURLThumbnail = url;
-             user.media.instaImageURLFull = url;
+             media.instaImageURLThumbnail = url;
+             media.instaImageURLFull = url;
              
              NSData *imageData = [NSData dataWithContentsOfURL:url];
-             user.media.instaImage = [UIImage imageWithData:imageData];
-             [tempArray addObject:user];
-           NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", user.media.instaImageURLThumbnail);
+             media.instaImage = [UIImage imageWithData:imageData];
+             [tempArray addObject:media];
+           NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", media.instaImageURLThumbnail);
              
          }
          
