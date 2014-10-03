@@ -9,6 +9,7 @@
 #import "InstaClient.h"
 #import "InstaMedia.h"
 #import "InstaUser.h"
+#import "AFOAuth2Client.h"
 
 @implementation InstaClient
 
@@ -45,19 +46,29 @@
 // http://stackoverflow.com/questions/13281084/whats-a-redirect-uri-how-does-it-apply-to-ios-app-for-oauth2-0
 - (void)startConnection
 {
-    
-   // NSString *fullURl = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=38ce63e055ce48cd8f37aee2d0fe73f6&redirect_uri=instaklone://&response_type=code"];
-
-  
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *authCode = [defaults stringForKey:@"auth_code"];
+   // NSString *fullURl = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=38ce63e055ce48cd8f37aee2d0fe73f6&redirect_uri=instaklone://&response_type=code"];
+    
+    
+  
+    
+
     
    // if (![[NSUserDefaults standardUserDefaults] valueForKey:@"auth_code"])
     if (authCode)
     {
         NSLog(@"Key exists");
         NSLog(@"Key:%@", authCode);
+        NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/authorize/"];
+        AFOAuth2Client *oauthClient = [AFOAuth2Client clientWithBaseURL:url clientID:kCLIENTID secret:kCLIENTSECRET];
+        [oauthClient authenticateUsingOAuthWithPath:@"oauth/authorize" code:authCode redirectURI:kREDIRECTURI success:^(AFOAuthCredential *credential)
+         {
+             NSLog(@"Credential: %@", credential);
+         }failure:^(NSError *error){
+             
+         }];
+
     }
     else
     {

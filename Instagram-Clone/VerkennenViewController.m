@@ -191,7 +191,7 @@
         vc.titleLabel.text = @"Buffy the vampire slayer";
         
        vc.imagevar = segueMedia.instaImage;
-      Dit zuigt
+     
         
         
     }
