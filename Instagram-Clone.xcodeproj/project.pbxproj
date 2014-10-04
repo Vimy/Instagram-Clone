@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3955102F19DF43CF00023955 /* billabong-1361543483.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3955102E19DF43A700023955 /* billabong-1361543483.ttf */; };
 		39BC07D719D6D3460090E20E /* InstaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07D619D6D3460090E20E /* InstaClient.m */; };
 		39BC07DA19D735320090E20E /* InstaMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07D919D735320090E20E /* InstaMedia.m */; };
 		39BC07DD19D73A450090E20E /* InstaUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07DC19D73A450090E20E /* InstaUser.m */; };
@@ -35,6 +36,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3955102E19DF43A700023955 /* billabong-1361543483.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "billabong-1361543483.ttf"; sourceTree = "<group>"; };
 		39BC07D519D6D3460090E20E /* InstaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstaClient.h; sourceTree = "<group>"; };
 		39BC07D619D6D3460090E20E /* InstaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstaClient.m; sourceTree = "<group>"; };
 		39BC07D819D735320090E20E /* InstaMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstaMedia.h; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 		39C85A7A19D574D8007295D9 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				3955102E19DF43A700023955 /* billabong-1361543483.ttf */,
 				39C85A7B19D574D8007295D9 /* Info.plist */,
 				39C85A7C19D574D8007295D9 /* main.m */,
 			);
@@ -248,6 +251,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3955102F19DF43CF00023955 /* billabong-1361543483.ttf in Resources */,
 				39C85A8919D574D8007295D9 /* Main.storyboard in Resources */,
 				39CE39F119DB19840079AA55 /* buf.png in Resources */,
 				39C85A8E19D574D8007295D9 /* LaunchScreen.xib in Resources */,

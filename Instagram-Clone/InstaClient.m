@@ -147,24 +147,35 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
-         NSMutableArray *arr2 = [responseObject valueForKeyPath:@"data.images.standard_resolution"];
-         
+         NSMutableArray *arr2 = [responseObject valueForKeyPath:@"data.images.standard_resolution.url"];
+         NSMutableArray *arr3 = [responseObject valueForKeyPath:@"data.likes"];
+         NSMutableArray *arr4 = [responseObject valueForKeyPath:@"data.caption.from.profile_picture"];
+          NSMutableArray *arr5 = [responseObject valueForKeyPath:@"data.caption.from.username"];
        //  NSLog(@"[InstaClient]Arr: %@", arr);
         
          NSMutableArray *tempArray = [[NSMutableArray alloc]init];
-         for (NSString *str in arr)
+         for (int i = 0;[arr count]>=1;i++)
          {
-            
+             NSString *str = [arr objectAtIndex:i];
              InstaMedia *media = [[InstaMedia alloc]init];
              NSURL *url = [NSURL URLWithString:str];
+             NSURL *urlFullImage = [NSURL URLWithString:[arr2 objectAtIndex:i]];
+             NSURL *profileURL = [NSURL URLWithString:[arr4 objectAtIndex:i]];
+             media.profilePictureUrl = profileURL;
+             NSLog(@"[InstaClient]profileURL: %@", profileURL);
              media.instaImageURLThumbnail = url;
-             media.instaImageURLFull = url;
-             
+             media.instaImageURLFull = urlFullImage;
+             NSData *profileImageData = [NSData dataWithContentsOfURL:profileURL];
+             media.username = [arr5 objectAtIndex:i];
+             media.profileImage = [UIImage imageWithData:profileImageData];
              NSData *imageData = [NSData dataWithContentsOfURL:url];
              media.instaImage = [UIImage imageWithData:imageData];
              [tempArray addObject:media];
-           NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", media.instaImageURLThumbnail);
-             
+         //  NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", media.instaImageURLThumbnail);
+             if (i == 19)
+             {
+                 break;
+             }
          }
          
       

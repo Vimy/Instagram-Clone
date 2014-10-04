@@ -23,6 +23,8 @@
     
     self.feedCollectionView.bounds = self.view.bounds;
     
+
+    
     // Do any additional setup after loading the view.
 }
 

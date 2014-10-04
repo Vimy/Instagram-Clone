@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "InstaClient.h"
 #import "AFNetworking.h"
+#define UIColorFromRGB(rgbValue) [UIColor colorWithRed:((float)((rgbValue & 0xFF0000) >> 16))/255.0 green:((float)((rgbValue & 0xFF00) >> 8))/255.0 blue:((float)(rgbValue & 0xFF))/255.0 alpha:1.0]
 
 @interface AppDelegate ()
 
@@ -76,7 +77,19 @@
     
 }
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    // Override point for customization after application launch.
+    [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x0517fa4)];
+    
+    [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
+
+    [[UINavigationBar appearance] setTitleTextAttributes:@{
+                                                           UITextAttributeTextColor: [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
+                                                           UITextAttributeTextShadowColor: [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],
+                                                           UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
+                                                           UITextAttributeFont: [UIFont fontWithName:@"Billabong" size:40.0],
+                                                           }];    // Override point for customization after application launch.
+    
+    [[UITabBar appearance] setBarTintColor:UIColorFromRGB(0x0515151)];
+    [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
     return YES;
 }
 

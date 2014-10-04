@@ -17,5 +17,7 @@
 @property (strong, nonatomic)  UIImage *profileImagevar;
 @property (strong, nonatomic) IBOutlet UIImageView *mainImage;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
+@property (strong, nonatomic) IBOutlet UIImageView *profileImage;
+@property (strong, nonatomic) NSURL *fullImageURL;
 
 @end

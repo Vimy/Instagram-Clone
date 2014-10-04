@@ -27,7 +27,6 @@
 
 - (void)viewDidLoad
 {
-    false
     //http://canvaspod.io/
     
     [super viewDidLoad];
@@ -186,10 +185,12 @@
         InstaMedia *segueMedia = [[InstaMedia alloc]init];
         segueMedia = [imagesArray objectAtIndex:indexPath.row];
         vc.tiet.text = @"hoi";
-        vc.titleLabel.text = @"Buffy the vampire slayer";
+        vc.profileImagevar = segueMedia.profileImage;
+       // vc.imagevar = segueMedia.instaImage;
+        vc.titleLabelvar = segueMedia.username;
+        vc.fullImageURL = segueMedia.instaImageURLFull;
+        NSLog(@"ProfileURL ------ : %@", segueMedia.profilePictureUrl);
         
-       vc.imagevar = segueMedia.instaImage;
-     
         
         
     }
