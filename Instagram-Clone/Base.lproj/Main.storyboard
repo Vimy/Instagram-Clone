@@ -284,19 +284,19 @@
         <scene sceneID="VLe-gJ-Fad">
             <objects>
                 <tableViewController id="Wy0-HL-SLT" customClass="MainFeedViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="hmF-RG-9Sd">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="411" sectionHeaderHeight="1" sectionFooterHeight="1" id="hmF-RG-9Sd">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="320" id="Mi4-7a-7ai">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="335" id="Mi4-7a-7ai">
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mi4-7a-7ai" id="QhR-Tp-BmI">
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Kh8-58-PYg">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Buffy.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kh8-58-PYg">
                                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="0.0" y="-8" width="375" height="328"/>
+                                                <rect key="frame" x="0.0" y="-8" width="375" height="335"/>
                                             </variation>
                                         </imageView>
                                     </subviews>
@@ -314,8 +314,8 @@
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="Wy0-HL-SLT" id="PCB-ly-Tx6"/>
-                            <outlet property="delegate" destination="Wy0-HL-SLT" id="3XT-yg-k0L"/>
+                            <outlet property="dataSource" destination="Wy0-HL-SLT" id="b3D-qM-T7N"/>
+                            <outlet property="delegate" destination="Wy0-HL-SLT" id="9dD-Ua-FV5"/>
                         </connections>
                     </tableView>
                     <tabBarItem key="tabBarItem" title="Feed" id="tLM-wK-z9O"/>
@@ -324,7 +324,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="78g-fe-hkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="493.5" y="-645.5"/>
+            <point key="canvasLocation" x="492.75" y="-646.125"/>
         </scene>
         <!--Foto-->
         <scene sceneID="iQ0-Kn-En0">
@@ -347,6 +347,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Buffy.png" width="312" height="311"/>
         <image name="first" width="30" height="30"/>
     </resources>
 </document>

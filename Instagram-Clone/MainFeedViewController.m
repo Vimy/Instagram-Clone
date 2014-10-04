@@ -22,7 +22,6 @@
     InstaClient *client = [InstaClient sharedClient];
     [client startConnection];
     [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"headerCell"];
-    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -41,7 +40,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 20;
+    return 3;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -50,14 +49,33 @@
     return 1;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
+{
+    return 20;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
+{
+    UIImage *myImage = [UIImage imageNamed:@"buf.png"];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:myImage];
+    imageView.frame = CGRectMake(10,10,1,30);
+    
+    return imageView;
+}
+
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
-        cell = [[CustomHeaderViewCell alloc]initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"headerCell"];
-        
+        cell = [[CustomHeaderViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"headerCell"];
+        NSLog(@"Cell is nil");
     }
-    
+    NSLog(@"We zijn er mee bezig!");
     cell.username.text = @"hoi";
     return cell;
     
