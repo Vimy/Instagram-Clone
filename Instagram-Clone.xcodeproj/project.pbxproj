@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		3955102F19DF43CF00023955 /* billabong-1361543483.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3955102E19DF43A700023955 /* billabong-1361543483.ttf */; };
+		3955106919E078FC00023955 /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3955106819E078FC00023955 /* MainFeedViewController.m */; };
+		3955106C19E080D400023955 /* CustomHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3955106B19E080D400023955 /* CustomHeaderViewCell.m */; };
+		3955106E19E0849800023955 /* headerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3955106D19E0849800023955 /* headerCell.xib */; };
 		39BC07D719D6D3460090E20E /* InstaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07D619D6D3460090E20E /* InstaClient.m */; };
 		39BC07DA19D735320090E20E /* InstaMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07D919D735320090E20E /* InstaMedia.m */; };
 		39BC07DD19D73A450090E20E /* InstaUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07DC19D73A450090E20E /* InstaUser.m */; };
@@ -18,7 +21,6 @@
 		39C85A8B19D574D8007295D9 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 39C85A8A19D574D8007295D9 /* Images.xcassets */; };
 		39C85A8E19D574D8007295D9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C85A8C19D574D8007295D9 /* LaunchScreen.xib */; };
 		39C85A9A19D574D8007295D9 /* Instagram_CloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85A9919D574D8007295D9 /* Instagram_CloneTests.m */; };
-		39C85AA519D59C82007295D9 /* FeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85AA419D59C82007295D9 /* FeedViewController.m */; };
 		39CE39F119DB19840079AA55 /* buf.png in Resources */ = {isa = PBXBuildFile; fileRef = 39CE39F019DB19840079AA55 /* buf.png */; };
 		39E314DC19D9F258009141C5 /* VerkennenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E314DB19D9F258009141C5 /* VerkennenViewController.m */; };
 		39E314DF19D9F508009141C5 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E314DE19D9F508009141C5 /* CameraViewController.m */; };
@@ -37,6 +39,11 @@
 
 /* Begin PBXFileReference section */
 		3955102E19DF43A700023955 /* billabong-1361543483.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "billabong-1361543483.ttf"; sourceTree = "<group>"; };
+		3955106719E078FC00023955 /* MainFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
+		3955106819E078FC00023955 /* MainFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
+		3955106A19E080D400023955 /* CustomHeaderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomHeaderViewCell.h; sourceTree = "<group>"; };
+		3955106B19E080D400023955 /* CustomHeaderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHeaderViewCell.m; sourceTree = "<group>"; };
+		3955106D19E0849800023955 /* headerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = headerCell.xib; sourceTree = "<group>"; };
 		39BC07D519D6D3460090E20E /* InstaClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstaClient.h; sourceTree = "<group>"; };
 		39BC07D619D6D3460090E20E /* InstaClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstaClient.m; sourceTree = "<group>"; };
 		39BC07D819D735320090E20E /* InstaMedia.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstaMedia.h; sourceTree = "<group>"; };
@@ -56,8 +63,6 @@
 		39C85A9319D574D8007295D9 /* Instagram-CloneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Instagram-CloneTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		39C85A9819D574D8007295D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39C85A9919D574D8007295D9 /* Instagram_CloneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Instagram_CloneTests.m; sourceTree = "<group>"; };
-		39C85AA319D59C82007295D9 /* FeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FeedViewController.h; path = ../FeedViewController.h; sourceTree = "<group>"; };
-		39C85AA419D59C82007295D9 /* FeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FeedViewController.m; path = ../FeedViewController.m; sourceTree = "<group>"; };
 		39CE39F019DB19840079AA55 /* buf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buf.png; sourceTree = "<group>"; };
 		39E314DA19D9F258009141C5 /* VerkennenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerkennenViewController.h; sourceTree = "<group>"; };
 		39E314DB19D9F258009141C5 /* VerkennenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerkennenViewController.m; sourceTree = "<group>"; };
@@ -111,8 +116,10 @@
 			children = (
 				39C85A7E19D574D8007295D9 /* AppDelegate.h */,
 				39C85A7F19D574D8007295D9 /* AppDelegate.m */,
-				39C85AA319D59C82007295D9 /* FeedViewController.h */,
-				39C85AA419D59C82007295D9 /* FeedViewController.m */,
+				3955106A19E080D400023955 /* CustomHeaderViewCell.h */,
+				3955106B19E080D400023955 /* CustomHeaderViewCell.m */,
+				3955106719E078FC00023955 /* MainFeedViewController.h */,
+				3955106819E078FC00023955 /* MainFeedViewController.m */,
 				39E314DA19D9F258009141C5 /* VerkennenViewController.h */,
 				39E314DB19D9F258009141C5 /* VerkennenViewController.m */,
 				39E314DD19D9F508009141C5 /* CameraViewController.h */,
@@ -120,6 +127,7 @@
 				39C6FD5419DC9BFF000B6676 /* ImageDetailViewController.h */,
 				39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */,
 				39C85A8719D574D8007295D9 /* Main.storyboard */,
+				3955106D19E0849800023955 /* headerCell.xib */,
 				39BC07DB19D73A450090E20E /* InstaUser.h */,
 				39BC07DC19D73A450090E20E /* InstaUser.m */,
 				39BC07D819D735320090E20E /* InstaMedia.h */,
@@ -251,6 +259,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3955106E19E0849800023955 /* headerCell.xib in Resources */,
 				3955102F19DF43CF00023955 /* billabong-1361543483.ttf in Resources */,
 				39C85A8919D574D8007295D9 /* Main.storyboard in Resources */,
 				39CE39F119DB19840079AA55 /* buf.png in Resources */,
@@ -306,15 +315,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3955106C19E080D400023955 /* CustomHeaderViewCell.m in Sources */,
 				39C85A8019D574D8007295D9 /* AppDelegate.m in Sources */,
 				39E314DF19D9F508009141C5 /* CameraViewController.m in Sources */,
-				39C85AA519D59C82007295D9 /* FeedViewController.m in Sources */,
 				39BC07DD19D73A450090E20E /* InstaUser.m in Sources */,
 				39E314DC19D9F258009141C5 /* VerkennenViewController.m in Sources */,
 				39BC07D719D6D3460090E20E /* InstaClient.m in Sources */,
 				39C85A7D19D574D8007295D9 /* main.m in Sources */,
 				39BC07DA19D735320090E20E /* InstaMedia.m in Sources */,
 				39C6FD5619DC9BFF000B6676 /* ImageDetailViewController.m in Sources */,
+				3955106919E078FC00023955 /* MainFeedViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
