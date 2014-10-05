@@ -18,7 +18,7 @@
     InstaClient *client;
     UIActivityIndicatorView *activityView;
     InstaMedia  *media;
-    
+    NSMutableArray *testArray;
 }
 @end
 
@@ -31,10 +31,11 @@
     
     [super viewDidLoad];
     self.collectionView.bounds = self.view.bounds;
+ 
     
     client = [InstaClient sharedClient];
     
-    [client searchForKeyWords:@"booty"];
+    //[client searchForKeyWords:@"booty"];
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -54,22 +55,13 @@
     
     dispatch_sync(backGroundQue, ^{
        
-         [client startConnectionPopulairFeed];
-      //  NSLog(@"[VKViewController]imagesArray: %@", jsonPopulairImages);
-
+        testArray = [[NSMutableArray alloc]initWithArray:[client startConnectionPopulairFeed]];
+        NSLog(@"[VKViewController]TestArray: %@", testArray);
         dispatch_async(dispatch_get_main_queue(), ^{
-        //    NSLog(@"[VKViewController]imagesArray: %@", jsonPopulairImages);
-
-          //  [activityView stopAnimating];
-        //stop spinning & disaspear
-           
+            
         });
     });
    
-   // jsonPopulairImages = [client startConnectionPopulairFeed];
-
-    //imagesArray =[jsonPopulairImages allValues];
-   // NSLog(@"[VKViewController]imagesArray: %@", jsonPopulairImages);
     
     
 }
@@ -189,6 +181,7 @@
        // vc.imagevar = segueMedia.instaImage;
         vc.titleLabelvar = segueMedia.username;
         vc.fullImageURL = segueMedia.instaImageURLFull;
+        vc.likesCount.text = [NSString stringWithFormat:@"%ld%d", (long)segueMedia.likes];
         NSLog(@"ProfileURL ------ : %@", segueMedia.profilePictureUrl);
         
         

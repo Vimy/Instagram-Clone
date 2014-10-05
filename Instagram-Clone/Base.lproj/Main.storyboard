@@ -194,6 +194,24 @@
                                     <rect key="frame" x="62" y="72" width="200" height="21"/>
                                 </variation>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60b-Fd-8NM">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.4156863093" green="0.57254904510000004" blue="0.69411766529999996" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="446" width="47" height="21"/>
+                                </variation>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likeNumber" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uo-71-PBL">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.4156863093" green="0.57254904510000004" blue="0.69411766529999996" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="71" y="446" width="88" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -201,6 +219,8 @@
                                 <exclude reference="Jka-0a-cUW"/>
                                 <exclude reference="25F-L9-Vfy"/>
                                 <exclude reference="z5S-aL-ZDE"/>
+                                <exclude reference="60b-Fd-8NM"/>
+                                <exclude reference="5uo-71-PBL"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -208,11 +228,14 @@
                                 <include reference="Jka-0a-cUW"/>
                                 <include reference="25F-L9-Vfy"/>
                                 <include reference="z5S-aL-ZDE"/>
+                                <include reference="60b-Fd-8NM"/>
+                                <include reference="5uo-71-PBL"/>
                             </mask>
                         </variation>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="likesCount" destination="5uo-71-PBL" id="uLD-oU-goi"/>
                         <outlet property="mainImage" destination="Jka-0a-cUW" id="DmE-4z-RoQ"/>
                         <outlet property="profileImage" destination="25F-L9-Vfy" id="y5P-P5-LwC"/>
                         <outlet property="titleLabel" destination="z5S-aL-ZDE" id="bxh-2x-aC8"/>
@@ -280,11 +303,11 @@
             </objects>
             <point key="canvasLocation" x="-106.5" y="-606"/>
         </scene>
-        <!--Main Feed View Controller-->
+        <!--Instaclone-->
         <scene sceneID="X9L-nR-Ost">
             <objects>
                 <tableViewController id="ueg-h7-lEp" customClass="MainFeedViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="yAy-Le-QRN">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="22" sectionFooterHeight="22" id="yAy-Le-QRN">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
@@ -292,6 +315,25 @@
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FlK-kh-0Gv" id="aLi-dX-o4g">
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Vpa-Yp-4ry">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <color key="backgroundColor" red="0.33561621341696413" green="0.35206074617346939" blue="0.34847798697912225" alpha="1" colorSpace="calibratedRGB"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
+                                            </variation>
+                                        </imageView>
+                                    </subviews>
+                                    <variation key="default">
+                                        <mask key="subviews">
+                                            <exclude reference="Vpa-Yp-4ry"/>
+                                        </mask>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact">
+                                        <mask key="subviews">
+                                            <include reference="Vpa-Yp-4ry"/>
+                                        </mask>
+                                    </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
@@ -300,12 +342,12 @@
                             <outlet property="delegate" destination="ueg-h7-lEp" id="qvJ-bx-UK7"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="izY-jJ-qh9"/>
+                    <navigationItem key="navigationItem" title="Instaclone" id="izY-jJ-qh9"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wv-Fh-bRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="660.75" y="-655.875"/>
+            <point key="canvasLocation" x="660.75" y="-656.625"/>
         </scene>
         <!--Foto-->
         <scene sceneID="iQ0-Kn-En0">

@@ -8,10 +8,16 @@
 
 #import "MainFeedViewController.h"
 #import "InstaClient.h"
+#import "InstaMedia.h"
 #import "CustomHeaderViewCell.h"
+#import "CustomFooterViewCell.h"
 
 @interface MainFeedViewController ()
-
+{
+    NSArray *feedArray;
+    InstaClient *client;
+    InstaMedia  *media;
+}
 @end
 
 @implementation MainFeedViewController
@@ -19,9 +25,28 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    InstaClient *client = [InstaClient sharedClient];
+    client = [InstaClient sharedClient];
     [client startConnection];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forCellReuseIdentifier:@"headerCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"footerCell" bundle:nil] forCellReuseIdentifier:@"footerCell"];
+   // [client startPersonalFeed];
+    [client addObserver:self forKeyPath:@"personalImagesArray" options:0 context:NULL];
+   
+    
+    
+    dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
+    
+    dispatch_sync(backGroundQue, ^{
+        
+        [client startPersonalFeed];
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+        });
+    });
+
+    
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -35,51 +60,97 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+{
+    
+    
+    //KVO checken per property & juiste actie nemen
+    if ([keyPath isEqual:@"personalImagesArray"])
+    {
+        NSLog(@"Keypath is: %@", keyPath);
+        NSLog(@"[VKViewController]personalImagesArray called");
+     //   feedArray = [[NSMutableArray alloc]init];
+        feedArray = client.personalImagesArray;
+        NSLog(@"FeedArray: %@", feedArray);
+        [self.tableView reloadData];
+    }
+    
+    
+    
+    
+    
+}
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 10;
+    if (feedArray)
+    {
+        return [feedArray count];
+    }
+    else
+    {
+        return 10;
+    }
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     // Return the number of rows in the section.
-    return 1;
+ 
+        return 1 ;
+    
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
     return 50;
 }
-/*
+
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
-    return 20;
+    return 80;
 }
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-    UIImage *myImage = [UIImage imageNamed:@"buf.png"];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:myImage];
-    imageView.frame = CGRectMake(20,20,1,30);
+
     
-    return imageView;
+    CustomFooterViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"footerCell"];
+    if (cell==nil) {
+        cell = [[CustomFooterViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"footerCell"];
+    //    NSLog(@"Footercell is nil");
+    }
+  //  NSLog(@"We zijn er mee bezig! -- FooterCell");
+
+    return cell;
 }
-*/
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
         cell = [[CustomHeaderViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"headerCell"];
-        NSLog(@"Cell is nil");
+        //NSLog(@"Cell is nil");
     }
-    NSLog(@"We zijn er mee bezig!");
-    cell.username.text = @"hoi";
-    return cell;
-    
+  //  NSLog(@"We zijn er mee bezig!");
+    cell.username.text = @"user_name";
+    cell.profileImage.image = [UIImage imageNamed:@"buf.png"];
+   
+    cell.profileImage.clipsToBounds = YES;
+    cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2;
+    cell.profileImage.layer.borderWidth = 2.0f;
+    cell.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+     return cell;
+    //self.profileImage.clipsToBounds = YES;
+    //self.profileImage.layer.borderWidth = 0.5f;
+    //self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
     /*
     UIImage *myImage = [UIImage imageNamed:@"Buffy.png"];
     UIView *myView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, 1, 50)];
@@ -102,9 +173,27 @@
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"feedCell" forIndexPath:indexPath];
     
-    // Configure the cell...
+    UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:200];
+    if (feedArray)
+    {
+        media = [feedArray objectAtIndex:indexPath.row];
+        NSLog(@"[MFViewController]media.InstaIMageUrl: %@", media.instaImageURLThumbnail);
+        //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
+        if (media.instaImage)
+        {
+            cellImageView.image = media.instaImage; //[UIImage imageWithData:imageData];
+            // NSLog(@"[VKViewController]met url");
+        }
+        else
+        {
+            cellImageView.image = [UIImage imageNamed:@"buf.png"];
+            // NSLog(@"[VKViewController]Buf geladen!");
+        }
+
+    }
     
-    return cell;
+    
+       return cell;
 }
 
 

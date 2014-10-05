@@ -11,6 +11,8 @@
 #import "InstaUser.h"
 #import "AFOAuth2Client.h"
 
+
+
 @implementation InstaClient
 
 
@@ -48,57 +50,15 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *authCode = [defaults stringForKey:@"auth_code"];
-   // NSString *fullURl = [NSString stringWithFormat:@"https://api.instagram.com/oauth/authorize/?client_id=38ce63e055ce48cd8f37aee2d0fe73f6&redirect_uri=instaklone://&response_type=code"];
-    /*
-    NSString *parameterData = [NSString stringWithFormat:@"client_id=38ce63e055ce48cd8f37aee2d0fe73f6&client_secret=023772c25df742868e280ac8a1e0e0f4&grant_type=authorization_code&redirect_uri=instaklone://&code=%@",authCode];
-    NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"];
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-    [request setHTTPMethod:@"POST"];
-    [request setHTTPBody:[parameterData dataUsingEncoding:NSUTF8StringEncoding]];
-    [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id result)
-     {
-         NSLog(@"JSON response: %@", result);
-     }
-                                     failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Error: %@", [error localizedDescription]);
-     }];
-    id response;
-    NSError *error;
-    
-    NSMutableData* result = [[NSURLConnection sendSynchronousRequest:request   returningResponse:&response error:&error] mutableCopy];
-    NSLog(@"Data: %@", result);
-    NSError *localError;
-    NSString* newStr = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
-    NSLog(@"Data!!!!: %@", newStr);
-    NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:result options:0 error:&localError];
-    
-    NSLog(@"ParsedObject: %@", parsedObject);
-*/
-    
-    
-   // if (![[NSUserDefaults standardUserDefaults] valueForKey:@"auth_code"])
-    if (authCode)
+       if (authCode)
     {
-        /*NSLog(@"Key exists");
-        NSLog(@"Key:%@", authCode);
-        NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/"];
-        AFOAuth2Client *oauthClient = [AFOAuth2Client clientWithBaseURL:url clientID:kCLIENTID secret:kCLIENTSECRET];
-        [oauthClient authenticateUsingOAuthWithURLString:@"access_token/" code:authCode redirectURI:kREDIRECTURI success:^(AFOAuthCredential *credential)
-         {
-             NSLog(@"Credential: %@", credential);
-         }failure:^(NSError *error){
-             NSLog(@"Error: %@", [error localizedDescription]);
-         }];
-         */
+    
         
         
-        
-        NSString *parameterData = [NSString stringWithFormat:@"client_id=6a88d49716fd4e0ba375cb784b9d9915&client_secret=ed816557f3874e5aaec633e2535e4c88&grant_type=authorization_code&redirect_uri=instaklone://&code=%@",authCode];
+        NSString *parameterData = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&redirect_uri=%@&code=%@",kCLIENTID,kCLIENTSECRET,kREDIRECTURI,authCode];
+       
         NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"];
+         NSLog(@"Dit is de url :%@", url);
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[parameterData dataUsingEncoding:NSUTF8StringEncoding]];
@@ -113,19 +73,7 @@
          {
              NSLog(@"Error: %@", [error localizedDescription]);
          }];
-        id response;
-        NSError *error;
-        
-        NSMutableData* result = [[NSURLConnection sendSynchronousRequest:request   returningResponse:&response error:&error] mutableCopy];
-        NSLog(@"Data: %@", result);
-        NSError *localError;
-        NSString* newStr = [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
-        NSLog(@"Data!!!!: %@", newStr);
-        NSDictionary *parsedObject = [NSJSONSerialization JSONObjectWithData:result options:0 error:&localError];
-        
-        NSLog(@"ParsedObject: %@", parsedObject);
-
-        
+    
         
     }
     else
@@ -141,16 +89,19 @@
 
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae"]];
    // https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae
-  //  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=38ce63e055ce48cd8f37aee2d0fe73f6"]];
+   // NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=6a88d49716fd4e0ba375cb784b9d9915"]];
+    
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
          NSMutableArray *arr2 = [responseObject valueForKeyPath:@"data.images.standard_resolution.url"];
-         NSMutableArray *arr3 = [responseObject valueForKeyPath:@"data.likes"];
+         NSMutableArray *arr3 = [responseObject valueForKeyPath:@"data.likes.count"];
          NSMutableArray *arr4 = [responseObject valueForKeyPath:@"data.caption.from.profile_picture"];
           NSMutableArray *arr5 = [responseObject valueForKeyPath:@"data.caption.from.username"];
+         NSMutableArray *arr6 = [responseObject valueForKeyPath:@"data.created_time"];
+         
        //  NSLog(@"[InstaClient]Arr: %@", arr);
         
          NSMutableArray *tempArray = [[NSMutableArray alloc]init];
@@ -165,6 +116,9 @@
              NSLog(@"[InstaClient]profileURL: %@", profileURL);
              media.instaImageURLThumbnail = url;
              media.instaImageURLFull = urlFullImage;
+             media.likes = [arr3 objectAtIndex:i];
+             NSLog(@"MEDIA-LIKES: %@", media.likes);
+            // media.createdTime = [NSNumber num][arr6 objectAtIndex:i];
              NSData *profileImageData = [NSData dataWithContentsOfURL:profileURL];
              media.username = [arr5 objectAtIndex:i];
              media.profileImage = [UIImage imageWithData:profileImageData];
@@ -181,7 +135,7 @@
       
     //     NSLog(@"[InstaClient]self.imagesArray: %@", self.imagesArray);
          
-         self.imagesArray = tempArray;
+         self.imagesArray = [[NSMutableArray alloc]initWithArray: tempArray];
          
         NSDictionary *tempDict3 = [jsonResults valueForKey:@"url"];
         self.imagesDict = tempDict3;
@@ -200,38 +154,131 @@
     
 }
 
-- (void)searchForKeyWords:(NSString *)keywords
+- (NSArray *)startPersonalFeed
 {
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"https://api.instagram.com/v1/tags/%@/media/recent?client_id=38ce63e055ce48cd8f37aee2d0fe73f6", keywords]]];
+   
+    __block NSDictionary *jsonResults;
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae"]];
+    // https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae
+    //  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=38ce63e055ce48cd8f37aee2d0fe73f6"]];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         
-         
-       //  NSLog (@"[InstaClient]SearchJSON: %@", responseObject);
-         
          NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
-        // NSLog(@"[InstaClient]Arr: %@", arr);
-         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
+         NSMutableArray *arr2 = [responseObject valueForKeyPath:@"data.images.standard_resolution.url"];
+         NSMutableArray *arr3 = [responseObject valueForKeyPath:@"data.likes.count"];
+         NSMutableArray *arr4 = [responseObject valueForKeyPath:@"data.caption.from.profile_picture"];
+         NSMutableArray *arr5 = [responseObject valueForKeyPath:@"data.caption.from.username"];
+         NSMutableArray *arr6 = [responseObject valueForKeyPath:@"data.created_time"];
+          NSLog(@"PersonalFeed started");
+         //  NSLog(@"[InstaClient]Arr: %@", arr);
          
-         for (NSString *str in arr)
+         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
+         for (int i = 0;[arr count]>=1;i++)
          {
-             
+             NSString *str = [arr objectAtIndex:i];
              InstaMedia *media = [[InstaMedia alloc]init];
-
              NSURL *url = [NSURL URLWithString:str];
+             NSURL *urlFullImage = [NSURL URLWithString:[arr2 objectAtIndex:i]];
+             NSURL *profileURL = [NSURL URLWithString:[arr4 objectAtIndex:i]];
+             media.profilePictureUrl = profileURL;
+          //   NSLog(@"[InstaClient]profileURL: %@", profileURL);
              media.instaImageURLThumbnail = url;
+             media.instaImageURLFull = urlFullImage;
+             media.likes = [arr3 objectAtIndex:i];
+          //   NSLog(@"MEDIA-LIKES: %@", media.likes);
+             // media.createdTime = [NSNumber num][arr6 objectAtIndex:i];
+             NSData *profileImageData = [NSData dataWithContentsOfURL:profileURL];
+             media.username = [arr5 objectAtIndex:i];
+             media.profileImage = [UIImage imageWithData:profileImageData];
              NSData *imageData = [NSData dataWithContentsOfURL:url];
              media.instaImage = [UIImage imageWithData:imageData];
              [tempArray addObject:media];
+             //  NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", media.instaImageURLThumbnail);
+             if (i == 19)
+             {
+                 break;
+             }
          }
          
-          NSLog(@"[InstaClient]self.searchImagesArray: %@", self.searchImagesArray);
-         self.searchImagesArray = tempArray;
+         NSLog(@"TEmpArray: %@", tempArray);
+         //     NSLog(@"[InstaClient]self.imagesArray: %@", self.imagesArray);
+         self.personalImagesArray = [[NSMutableArray alloc]init];
+         self.personalImagesArray = tempArray;
+         NSLog(@"PersonalArray: %@", self.personalImagesArray);
+         NSDictionary *tempDict3 = [jsonResults valueForKey:@"url"];
+         self.imagesDict = tempDict3;
+         
+         
+         
          
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     
+     {
+         NSLog(@"Oopsie: %@", [error localizedDescription]);
+     }];
+    
+    [operation start];
+    
+    return self.personalImagesArray;
+    
+}
+
+
+- (void)searchForKeyWords:(NSString *)keywords
+{
+    __block NSDictionary *jsonResults;
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"https://api.instagram.com/v1/tags/%@/media/recent?client_id=%@", keywords, kCLIENTID]]];
+    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
+    operation.responseSerializer = [AFJSONResponseSerializer serializer];
+    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
+     {
+         NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
+         NSMutableArray *arr2 = [responseObject valueForKeyPath:@"data.images.standard_resolution.url"];
+         NSMutableArray *arr3 = [responseObject valueForKeyPath:@"data.likes"];
+         NSMutableArray *arr4 = [responseObject valueForKeyPath:@"data.caption.from.profile_picture"];
+         NSMutableArray *arr5 = [responseObject valueForKeyPath:@"data.caption.from.username"];
+         //  NSLog(@"[InstaClient]Arr: %@", arr);
+         
+         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
+         for (int i = 0;[arr count]>=1;i++)
+         {
+             NSString *str = [arr objectAtIndex:i];
+             InstaMedia *media = [[InstaMedia alloc]init];
+             NSURL *url = [NSURL URLWithString:str];
+             NSURL *urlFullImage = [NSURL URLWithString:[arr2 objectAtIndex:i]];
+             NSURL *profileURL = [NSURL URLWithString:[arr4 objectAtIndex:i]];
+             media.profilePictureUrl = profileURL;
+             NSLog(@"[InstaClient]profileURL: %@", profileURL);
+             media.instaImageURLThumbnail = url;
+             media.instaImageURLFull = urlFullImage;
+             NSData *profileImageData = [NSData dataWithContentsOfURL:profileURL];
+             media.username = [arr5 objectAtIndex:i];
+             media.profileImage = [UIImage imageWithData:profileImageData];
+             NSData *imageData = [NSData dataWithContentsOfURL:url];
+             media.instaImage = [UIImage imageWithData:imageData];
+             [tempArray addObject:media];
+             //  NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", media.instaImageURLThumbnail);
+             if (i == 19)
+             {
+                 break;
+             }
+         }
+         
+         
+         //     NSLog(@"[InstaClient]self.imagesArray: %@", self.imagesArray);
+         
+         self.imagesArray = tempArray;
+         
+         NSDictionary *tempDict3 = [jsonResults valueForKey:@"url"];
+         self.imagesDict = tempDict3;
+         
+         
+         
+         
+     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
          NSLog(@"Oopsie: %@", [error localizedDescription]);
      }];

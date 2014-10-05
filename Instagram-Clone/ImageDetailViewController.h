@@ -19,5 +19,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
 @property (strong, nonatomic) NSURL *fullImageURL;
+@property (strong, nonatomic) IBOutlet UILabel *likesCount;
 
 @end

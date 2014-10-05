@@ -15,6 +15,8 @@
 		39BC07D719D6D3460090E20E /* InstaClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07D619D6D3460090E20E /* InstaClient.m */; };
 		39BC07DA19D735320090E20E /* InstaMedia.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07D919D735320090E20E /* InstaMedia.m */; };
 		39BC07DD19D73A450090E20E /* InstaUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BC07DC19D73A450090E20E /* InstaUser.m */; };
+		39BEDC9019E1BD2400506B3C /* footerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39BEDC8F19E1BD2400506B3C /* footerCell.xib */; };
+		39BEDC9319E1BD3500506B3C /* CustomFooterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BEDC9219E1BD3500506B3C /* CustomFooterViewCell.m */; };
 		39C6FD5619DC9BFF000B6676 /* ImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */; };
 		39C85A7D19D574D8007295D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85A7C19D574D8007295D9 /* main.m */; };
 		39C85A8019D574D8007295D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85A7F19D574D8007295D9 /* AppDelegate.m */; };
@@ -52,6 +54,9 @@
 		39BC07D919D735320090E20E /* InstaMedia.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstaMedia.m; sourceTree = "<group>"; };
 		39BC07DB19D73A450090E20E /* InstaUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InstaUser.h; sourceTree = "<group>"; };
 		39BC07DC19D73A450090E20E /* InstaUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InstaUser.m; sourceTree = "<group>"; };
+		39BEDC8F19E1BD2400506B3C /* footerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = footerCell.xib; sourceTree = "<group>"; };
+		39BEDC9119E1BD3500506B3C /* CustomFooterViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFooterViewCell.h; sourceTree = "<group>"; };
+		39BEDC9219E1BD3500506B3C /* CustomFooterViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFooterViewCell.m; sourceTree = "<group>"; };
 		39C6FD5419DC9BFF000B6676 /* ImageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDetailViewController.h; sourceTree = "<group>"; };
 		39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDetailViewController.m; sourceTree = "<group>"; };
 		39C85A7719D574D8007295D9 /* Instagram-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagram-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -130,6 +135,9 @@
 				39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */,
 				39C85A8719D574D8007295D9 /* Main.storyboard */,
 				3955106D19E0849800023955 /* headerCell.xib */,
+				39BEDC8F19E1BD2400506B3C /* footerCell.xib */,
+				39BEDC9119E1BD3500506B3C /* CustomFooterViewCell.h */,
+				39BEDC9219E1BD3500506B3C /* CustomFooterViewCell.m */,
 				39BC07DB19D73A450090E20E /* InstaUser.h */,
 				39BC07DC19D73A450090E20E /* InstaUser.m */,
 				39BC07D819D735320090E20E /* InstaMedia.h */,
@@ -268,6 +276,7 @@
 				39CE39F119DB19840079AA55 /* buf.png in Resources */,
 				39C85A8E19D574D8007295D9 /* LaunchScreen.xib in Resources */,
 				3955107019E0895B00023955 /* Buffy.png in Resources */,
+				39BEDC9019E1BD2400506B3C /* footerCell.xib in Resources */,
 				39C85A8B19D574D8007295D9 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -327,6 +336,7 @@
 				39BC07D719D6D3460090E20E /* InstaClient.m in Sources */,
 				39C85A7D19D574D8007295D9 /* main.m in Sources */,
 				39BC07DA19D735320090E20E /* InstaMedia.m in Sources */,
+				39BEDC9319E1BD3500506B3C /* CustomFooterViewCell.m in Sources */,
 				39C6FD5619DC9BFF000B6676 /* ImageDetailViewController.m in Sources */,
 				3955106919E078FC00023955 /* MainFeedViewController.m in Sources */,
 			);

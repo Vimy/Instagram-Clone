@@ -20,4 +20,5 @@
 @property (strong, nonatomic) NSURL *profilePictureUrl;
 @property (strong, nonatomic) NSString *username;
 
+
 @end
