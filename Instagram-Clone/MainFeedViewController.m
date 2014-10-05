@@ -21,7 +21,7 @@
     [super viewDidLoad];
     InstaClient *client = [InstaClient sharedClient];
     [client startConnection];
-    [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forHeaderFooterViewReuseIdentifier:@"headerCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forCellReuseIdentifier:@"headerCell"];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
@@ -40,7 +40,7 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
     // Return the number of sections.
-    return 3;
+    return 10;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
@@ -51,9 +51,9 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
 {
-    return 20;
+    return 50;
 }
-
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 20;
@@ -63,10 +63,11 @@
 {
     UIImage *myImage = [UIImage imageNamed:@"buf.png"];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:myImage];
-    imageView.frame = CGRectMake(10,10,1,30);
+    imageView.frame = CGRectMake(20,20,1,30);
     
     return imageView;
 }
+*/
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -78,6 +79,19 @@
     NSLog(@"We zijn er mee bezig!");
     cell.username.text = @"hoi";
     return cell;
+    
+    /*
+    UIImage *myImage = [UIImage imageNamed:@"Buffy.png"];
+    UIView *myView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, 1, 50)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 30, 30)];
+    label.text = @"hoi";
+    label.textColor = [UIColor whiteColor];
+    [myView addSubview:label];
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:myImage];
+    imageView.frame = CGRectMake(20,20,1,30);
+    
+    return myView;
+    */
     
 }
 

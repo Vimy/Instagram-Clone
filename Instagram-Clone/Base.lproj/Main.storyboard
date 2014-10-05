@@ -225,7 +225,6 @@
         <!--Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
                 <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
@@ -239,6 +238,7 @@
                         <segue destination="mIf-so-ZSJ" kind="relationship" relationship="viewControllers" id="HkF-Tc-JlD"/>
                     </connections>
                 </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-843" y="-13.5"/>
         </scene>
@@ -273,58 +273,39 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="Wy0-HL-SLT" kind="relationship" relationship="rootViewController" id="hcn-OY-n86"/>
+                        <segue destination="ueg-h7-lEp" kind="relationship" relationship="rootViewController" id="gkr-2H-F0e"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n5j-bL-i1K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-106.5" y="-606"/>
         </scene>
-        <!--Instaclone-->
-        <scene sceneID="VLe-gJ-Fad">
+        <!--Main Feed View Controller-->
+        <scene sceneID="X9L-nR-Ost">
             <objects>
-                <tableViewController id="Wy0-HL-SLT" customClass="MainFeedViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="411" sectionHeaderHeight="1" sectionFooterHeight="1" id="hmF-RG-9Sd">
+                <tableViewController id="ueg-h7-lEp" customClass="MainFeedViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="yAy-Le-QRN">
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedCell" rowHeight="335" id="Mi4-7a-7ai">
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="feedCell" id="FlK-kh-0Gv">
                                 <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Mi4-7a-7ai" id="QhR-Tp-BmI">
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="FlK-kh-0Gv" id="aLi-dX-o4g">
                                     <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Buffy.png" translatesAutoresizingMaskIntoConstraints="NO" id="Kh8-58-PYg">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="0.0" y="-8" width="375" height="335"/>
-                                            </variation>
-                                        </imageView>
-                                    </subviews>
-                                    <variation key="default">
-                                        <mask key="subviews">
-                                            <exclude reference="Kh8-58-PYg"/>
-                                        </mask>
-                                    </variation>
-                                    <variation key="heightClass=regular-widthClass=compact">
-                                        <mask key="subviews">
-                                            <include reference="Kh8-58-PYg"/>
-                                        </mask>
-                                    </variation>
                                 </tableViewCellContentView>
                             </tableViewCell>
                         </prototypes>
                         <connections>
-                            <outlet property="dataSource" destination="Wy0-HL-SLT" id="b3D-qM-T7N"/>
-                            <outlet property="delegate" destination="Wy0-HL-SLT" id="9dD-Ua-FV5"/>
+                            <outlet property="dataSource" destination="ueg-h7-lEp" id="LSt-9X-ABw"/>
+                            <outlet property="delegate" destination="ueg-h7-lEp" id="qvJ-bx-UK7"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Feed" id="tLM-wK-z9O"/>
-                    <navigationItem key="navigationItem" title="Instaclone" id="ND7-Kj-vtV"/>
+                    <navigationItem key="navigationItem" id="izY-jJ-qh9"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                 </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="78g-fe-hkh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7wv-Fh-bRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="492.75" y="-646.125"/>
+            <point key="canvasLocation" x="660.75" y="-655.875"/>
         </scene>
         <!--Foto-->
         <scene sceneID="iQ0-Kn-En0">
@@ -347,7 +328,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Buffy.png" width="312" height="311"/>
         <image name="first" width="30" height="30"/>
     </resources>
 </document>
