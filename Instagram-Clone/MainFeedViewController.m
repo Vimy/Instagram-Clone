@@ -17,6 +17,8 @@
     NSArray *feedArray;
     InstaClient *client;
     InstaMedia  *media;
+    InstaMedia *mediaHeader;
+    
 }
 @end
 
@@ -62,8 +64,7 @@
 
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
-    
-    
+
     //KVO checken per property & juiste actie nemen
     if ([keyPath isEqual:@"personalImagesArray"])
     {
@@ -74,11 +75,7 @@
         NSLog(@"FeedArray: %@", feedArray);
         [self.tableView reloadData];
     }
-    
-    
-    
-    
-    
+   
 }
 
 
@@ -110,13 +107,13 @@
 {
     return 50;
 }
-
+/*
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 80;
 }
-
-
+*/
+/*
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
 
@@ -130,17 +127,21 @@
 
     return cell;
 }
-
+*/
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSIndexPath *selectedIndexPath = [tableView indexPathForSelectedRow];
+    
+    mediaHeader = [feedArray objectAtIndex:selectedIndexPath.row];
+    
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
         cell = [[CustomHeaderViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"headerCell"];
         //NSLog(@"Cell is nil");
     }
   //  NSLog(@"We zijn er mee bezig!");
-    cell.username.text = @"user_name";
+    cell.username.text = mediaHeader.username;//@"user_name";
     cell.profileImage.image = [UIImage imageNamed:@"buf.png"];
    
     cell.profileImage.clipsToBounds = YES;
@@ -176,7 +177,7 @@
     UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:200];
     if (feedArray)
     {
-        media = [feedArray objectAtIndex:indexPath.row];
+        media = [feedArray objectAtIndex:indexPath.section];
         NSLog(@"[MFViewController]media.InstaIMageUrl: %@", media.instaImageURLThumbnail);
         //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
         if (media.instaImage)
