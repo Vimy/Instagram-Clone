@@ -133,7 +133,7 @@
 {
     NSIndexPath *selectedIndexPath = [tableView indexPathForSelectedRow];
     
-    mediaHeader = [feedArray objectAtIndex:selectedIndexPath.row];
+    mediaHeader = [feedArray objectAtIndex:selectedIndexPath.section];
     
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {

@@ -18,6 +18,9 @@
 		39BEDC9019E1BD2400506B3C /* footerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39BEDC8F19E1BD2400506B3C /* footerCell.xib */; };
 		39BEDC9319E1BD3500506B3C /* CustomFooterViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BEDC9219E1BD3500506B3C /* CustomFooterViewCell.m */; };
 		39BEDC9519E32B5700506B3C /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39BEDC9419E32B5700506B3C /* AVFoundation.framework */; };
+		39BEDCD519E4455900506B3C /* icon_balloon_20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BEDCD219E4455900506B3C /* icon_balloon_20x20.png */; };
+		39BEDCD619E4455900506B3C /* icon_clock_20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BEDCD319E4455900506B3C /* icon_clock_20x20.png */; };
+		39BEDCD719E4455900506B3C /* icon_heart_20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BEDCD419E4455900506B3C /* icon_heart_20x20.png */; };
 		39C6FD5619DC9BFF000B6676 /* ImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */; };
 		39C85A7D19D574D8007295D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85A7C19D574D8007295D9 /* main.m */; };
 		39C85A8019D574D8007295D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85A7F19D574D8007295D9 /* AppDelegate.m */; };
@@ -59,6 +62,9 @@
 		39BEDC9119E1BD3500506B3C /* CustomFooterViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomFooterViewCell.h; sourceTree = "<group>"; };
 		39BEDC9219E1BD3500506B3C /* CustomFooterViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomFooterViewCell.m; sourceTree = "<group>"; };
 		39BEDC9419E32B5700506B3C /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		39BEDCD219E4455900506B3C /* icon_balloon_20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_balloon_20x20.png; sourceTree = "<group>"; };
+		39BEDCD319E4455900506B3C /* icon_clock_20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_clock_20x20.png; sourceTree = "<group>"; };
+		39BEDCD419E4455900506B3C /* icon_heart_20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_heart_20x20.png; sourceTree = "<group>"; };
 		39C6FD5419DC9BFF000B6676 /* ImageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDetailViewController.h; sourceTree = "<group>"; };
 		39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDetailViewController.m; sourceTree = "<group>"; };
 		39C85A7719D574D8007295D9 /* Instagram-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagram-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -151,6 +157,9 @@
 				39C85A8C19D574D8007295D9 /* LaunchScreen.xib */,
 				39CE39F019DB19840079AA55 /* buf.png */,
 				3955106F19E0895A00023955 /* Buffy.png */,
+				39BEDCD219E4455900506B3C /* icon_balloon_20x20.png */,
+				39BEDCD319E4455900506B3C /* icon_clock_20x20.png */,
+				39BEDCD419E4455900506B3C /* icon_heart_20x20.png */,
 				39C85A7A19D574D8007295D9 /* Supporting Files */,
 			);
 			path = "Instagram-Clone";
@@ -274,11 +283,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39BEDCD619E4455900506B3C /* icon_clock_20x20.png in Resources */,
 				3955106E19E0849800023955 /* headerCell.xib in Resources */,
 				3955102F19DF43CF00023955 /* billabong-1361543483.ttf in Resources */,
 				39C85A8919D574D8007295D9 /* Main.storyboard in Resources */,
 				39CE39F119DB19840079AA55 /* buf.png in Resources */,
+				39BEDCD519E4455900506B3C /* icon_balloon_20x20.png in Resources */,
 				39C85A8E19D574D8007295D9 /* LaunchScreen.xib in Resources */,
+				39BEDCD719E4455900506B3C /* icon_heart_20x20.png in Resources */,
 				3955107019E0895B00023955 /* Buffy.png in Resources */,
 				39BEDC9019E1BD2400506B3C /* footerCell.xib in Resources */,
 				39C85A8B19D574D8007295D9 /* Images.xcassets in Resources */,
