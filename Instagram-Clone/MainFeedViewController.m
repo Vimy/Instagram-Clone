@@ -148,7 +148,7 @@
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2;
     cell.profileImage.layer.borderWidth = 2.0f;
     cell.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
-     return cell;
+    return cell;
     //self.profileImage.clipsToBounds = YES;
     //self.profileImage.layer.borderWidth = 0.5f;
     //self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
@@ -161,11 +161,10 @@
     [myView addSubview:label];
     UIImageView *imageView = [[UIImageView alloc] initWithImage:myImage];
     imageView.frame = CGRectMake(20,20,1,30);
-    
     return myView;
     */
-    
 }
+
 
 
 

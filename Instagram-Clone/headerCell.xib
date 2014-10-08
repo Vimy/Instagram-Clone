@@ -15,8 +15,8 @@
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="yBF-K6-izJ">
                         <rect key="frame" x="0.0" y="-1" width="375" height="52"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sUx-eo-hSS">
-                                <rect key="frame" x="194" y="4" width="20" height="20"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_clock_20x20.png" translatesAutoresizingMaskIntoConstraints="NO" id="sUx-eo-hSS">
+                                <rect key="frame" x="333" y="13" width="10" height="10"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -48,7 +48,10 @@
                 <outlet property="profileImage" destination="whn-sg-yfa" id="fpb-Dd-lus"/>
                 <outlet property="username" destination="lLx-AJ-YDp" id="06r-XO-vBc"/>
             </connections>
-            <point key="canvasLocation" x="89.5" y="243"/>
+            <point key="canvasLocation" x="44.5" y="302"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="icon_clock_20x20.png" width="20" height="20"/>
+    </resources>
 </document>

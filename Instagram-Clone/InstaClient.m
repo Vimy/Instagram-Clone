@@ -95,6 +95,29 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
+         
+         NSMutableArray *images = [[NSMutableArray alloc]init];
+         
+         
+         NSArray *results = [responseObject valueForKey:@"data"];
+         
+         for (NSDictionary *imagesDic in results)
+         {
+             InstaMedia *media = [[InstaMedia alloc]init];
+             
+             for (NSString *key in imagesDic)
+             {
+                 if([media respondsToSelector:NSSelectorFromString(key)])
+                 {
+                     [media setValue:[imagesDic valueForKey:key forKey:key]];
+                 }
+             }
+             
+             [images addObject:media];
+         }
+         
+         /*
+         
          NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
          NSMutableArray *arr2 = [responseObject valueForKeyPath:@"data.images.standard_resolution.url"];
          NSMutableArray *arr3 = [responseObject valueForKeyPath:@"data.likes.count"];
@@ -132,10 +155,11 @@
              }
          }
          
-      
+      */
+         
     //     NSLog(@"[InstaClient]self.imagesArray: %@", self.imagesArray);
          
-         self.imagesArray = [[NSMutableArray alloc]initWithArray: tempArray];
+        // self.imagesArray = [[NSMutableArray alloc]initWithArray: tempArray];
          
         NSDictionary *tempDict3 = [jsonResults valueForKey:@"url"];
         self.imagesDict = tempDict3;
