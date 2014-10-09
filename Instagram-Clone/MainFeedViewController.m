@@ -131,9 +131,15 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    NSIndexPath *selectedIndexPath = [tableView indexPathForSelectedRow];
+    UITableViewCell *cellZ;
     
-    mediaHeader = [feedArray objectAtIndex:selectedIndexPath.section];
+    NSIndexPath *indexPath = [tableView indexPathForCell:cellZ];
+
+
+    NSIndexPath *selectedIndexPath = [tableView indexPathForSelectedRow];
+    //[tableView indexPathsForSelectedRows]
+    NSLog(@"[[MFViewC]IndexPath: %ld", (long)indexPath.section);
+    mediaHeader = [feedArray objectAtIndex:section];
     
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
@@ -142,27 +148,14 @@
     }
   //  NSLog(@"We zijn er mee bezig!");
     cell.username.text = mediaHeader.username;//@"user_name";
-    cell.profileImage.image = [UIImage imageNamed:@"buf.png"];
+    cell.profileImage.image = mediaHeader.profileImage;
    
     cell.profileImage.clipsToBounds = YES;
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2;
     cell.profileImage.layer.borderWidth = 2.0f;
     cell.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
     return cell;
-    //self.profileImage.clipsToBounds = YES;
-    //self.profileImage.layer.borderWidth = 0.5f;
-    //self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
-    /*
-    UIImage *myImage = [UIImage imageNamed:@"Buffy.png"];
-    UIView *myView = [[UIView alloc]initWithFrame:CGRectMake(10, 10, 1, 50)];
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 30, 30)];
-    label.text = @"hoi";
-    label.textColor = [UIColor whiteColor];
-    [myView addSubview:label];
-    UIImageView *imageView = [[UIImageView alloc] initWithImage:myImage];
-    imageView.frame = CGRectMake(20,20,1,30);
-    return myView;
-    */
+ 
 }
 
 
@@ -176,6 +169,7 @@
     UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:200];
     if (feedArray)
     {
+        NSLog(@"[[MFViewC]IndexPath-mainCells: %ld", (long)indexPath.section );
         media = [feedArray objectAtIndex:indexPath.section];
         NSLog(@"[MFViewController]media.InstaIMageUrl: %@", media.instaImageURLThumbnail);
         //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
