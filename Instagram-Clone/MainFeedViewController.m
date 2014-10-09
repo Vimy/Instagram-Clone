@@ -18,7 +18,10 @@
     InstaClient *client;
     InstaMedia  *media;
     InstaMedia *mediaHeader;
+    InstaMedia *mediaFooter;
     
+  
+    IBOutlet UILabel *likesLabel;
 }
 @end
 
@@ -26,6 +29,10 @@
 
 - (void)viewDidLoad
 {
+   [[NSNotificationCenter defaultCenter] addObserver:self
+                                            selector:@selector(downloadFinished)
+                                              name:@"downloadFinished" object:nil];
+    
     [super viewDidLoad];
     client = [InstaClient sharedClient];
     [client startConnection];
@@ -33,7 +40,7 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forCellReuseIdentifier:@"headerCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"footerCell" bundle:nil] forCellReuseIdentifier:@"footerCell"];
    // [client startPersonalFeed];
-    [client addObserver:self forKeyPath:@"personalImagesArray" options:0 context:NULL];
+  //  [client addObserver:self forKeyPath:@"personalImagesArray" options:0 context:NULL];
    
     
     
@@ -56,13 +63,18 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
+- (void)downloadFinished
+{
+    feedArray = client.personalImagesArray;
+    [self.tableView reloadData];
+}
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
+/*- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
 
     //KVO checken per property & juiste actie nemen
@@ -77,7 +89,7 @@
     }
    
 }
-
+*/
 
 
 #pragma mark - Table view data source
@@ -107,16 +119,18 @@
 {
     return 50;
 }
+
 /*
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 80;
 }
-*/
-/*
+
+
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
-
+    mediaFooter = [feedArray objectAtIndex:section];
+    
     
     CustomFooterViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"footerCell"];
     if (cell==nil) {
@@ -131,14 +145,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
-    UITableViewCell *cellZ;
-    
-    NSIndexPath *indexPath = [tableView indexPathForCell:cellZ];
-
-
-    NSIndexPath *selectedIndexPath = [tableView indexPathForSelectedRow];
-    //[tableView indexPathsForSelectedRows]
-    NSLog(@"[[MFViewC]IndexPath: %ld", (long)indexPath.section);
+   
     mediaHeader = [feedArray objectAtIndex:section];
     
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
@@ -149,7 +156,13 @@
   //  NSLog(@"We zijn er mee bezig!");
     cell.username.text = mediaHeader.username;//@"user_name";
     cell.profileImage.image = mediaHeader.profileImage;
+//
    
+    NSDateFormatter *df = [[NSDateFormatter alloc]init];
+    [df setDateFormat:@"HH"];
+   cell.time.text = [df stringFromDate:mediaHeader.createdTime];
+    NSLog(@"Date: %@", mediaHeader.createdTime);
+    
     cell.profileImage.clipsToBounds = YES;
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2;
     cell.profileImage.layer.borderWidth = 2.0f;
@@ -176,6 +189,8 @@
         if (media.instaImage)
         {
             cellImageView.image = media.instaImage; //[UIImage imageWithData:imageData];
+            likesLabel.text = [NSString stringWithFormat:@"%ld",(long)media.likes];
+            
             // NSLog(@"[VKViewController]met url");
         }
         else

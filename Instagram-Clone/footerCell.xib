@@ -13,10 +13,10 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Xxc-Vl-uhE">
-                        <rect key="frame" x="0.0" y="1" width="375" height="79"/>
+                        <rect key="frame" x="0.0" y="2" width="375" height="79"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="likes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eew-WC-dRR">
-                                <rect key="frame" x="8" y="8" width="161" height="21"/>
+                                <rect key="frame" x="8" y="9" width="65" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.4156863093" green="0.57254904510000004" blue="0.69411766529999996" alpha="1" colorSpace="deviceRGB"/>
                                 <nil key="highlightedColor"/>
@@ -51,7 +51,7 @@
                 <outlet property="onderschriftLabel" destination="mUa-tJ-YCu" id="EG8-sh-V4e"/>
                 <outlet property="usernameLabel" destination="eew-WC-dRR" id="yWE-up-c1i"/>
             </connections>
-            <point key="canvasLocation" x="168.5" y="83"/>
+            <point key="canvasLocation" x="168.5" y="81"/>
         </tableViewCell>
     </objects>
 </document>

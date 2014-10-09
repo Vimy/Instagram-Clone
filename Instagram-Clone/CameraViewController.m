@@ -21,7 +21,7 @@
     [session setSessionPreset:AVCaptureSessionPresetPhoto];
     
     AVCaptureDevice *inputDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-    
+  
     NSError *error;
     
     AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:inputDevice error:&error];
@@ -34,14 +34,34 @@
     AVCaptureVideoPreviewLayer *previewLayer = [[AVCaptureVideoPreviewLayer alloc] initWithSession:session];
     [previewLayer setVideoGravity:AVLayerVideoGravityResizeAspectFill];
     
-    CALayer *rootLayer = [[self view] layer];
+    CALayer *rootLayer = self.view.layer;
     [rootLayer setMasksToBounds:YES];
-    [previewLayer setFrame:CGRectMake(-70, 0, rootLayer.bounds.size.height, rootLayer.bounds.size.height)];
-    [rootLayer insertSublayer:previewLayer atIndex:0];
+    CGRect frame =self.cameraFrame.frame;
+    [previewLayer setFrame:frame];
+    
+    //[previewLayer setFrame:CGRectMake(-70, 0, rootLayer.bounds.size.height, rootLayer.bounds.size.height)];
+    [rootLayer insertSublayer:previewLayer atIndex:1];
+    
+    
+    AVCaptureStillImageOutput *stillImageOutput = [[AVCaptureStillImageOutput alloc]init];
+    NSDictionary *outputSettings = [[NSDictionary alloc] initWithObjectsAndKeys:AVVideoCodecJPEG, AVVideoCodecKey, nil];
+    [stillImageOutput setOutputSettings:outputSettings];
+    
+    [session addOutput:stillImageOutput];
+    
+    
+    
+    
     [session startRunning];
     
     // Do any additional setup after loading the view.
 }
+- (IBAction)takePicture:(UIButton *)sender
+{
+    
+}
+
+
 
 - (void)didReceiveMemoryWarning
 {

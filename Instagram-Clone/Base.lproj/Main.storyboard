@@ -153,9 +153,45 @@
                     <view key="view" contentMode="scaleToFill" id="rew-gB-3yk">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dSG-Kj-AbM">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                                <color key="backgroundColor" red="1" green="0.38143521071003028" blue="0.25001495286909148" alpha="1" colorSpace="calibratedRGB"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="64" width="400" height="617"/>
+                                </variation>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qRs-xs-aVg">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" title="Picture">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="177" y="689" width="48" height="30"/>
+                                </variation>
+                                <connections>
+                                    <action selector="takePicture:" destination="iIV-ej-UKY" eventType="touchUpInside" id="pP7-kp-4rQ"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="dSG-Kj-AbM"/>
+                                <exclude reference="qRs-xs-aVg"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="dSG-Kj-AbM"/>
+                                <include reference="qRs-xs-aVg"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="Instaclone" id="VpU-y5-6qc"/>
+                    <connections>
+                        <outlet property="cameraFrame" destination="dSG-Kj-AbM" id="X0k-4V-DWJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUc-hl-KkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -307,7 +343,7 @@
         <scene sceneID="X9L-nR-Ost">
             <objects>
                 <tableViewController id="ueg-h7-lEp" customClass="MainFeedViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="22" sectionFooterHeight="22" id="yAy-Le-QRN">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="350" sectionHeaderHeight="22" sectionFooterHeight="22" id="yAy-Le-QRN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -324,15 +360,31 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
                                             </variation>
                                         </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_heart_20x20.png" translatesAutoresizingMaskIntoConstraints="NO" id="zBU-75-cDn">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="8" y="307" width="10" height="10"/>
+                                            </variation>
+                                        </imageView>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_balloon_20x20.png" translatesAutoresizingMaskIntoConstraints="NO" id="glF-Sh-WCS">
+                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                                <rect key="frame" x="8" y="325" width="10" height="10"/>
+                                            </variation>
+                                        </imageView>
                                     </subviews>
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="Vpa-Yp-4ry"/>
+                                            <exclude reference="zBU-75-cDn"/>
+                                            <exclude reference="glF-Sh-WCS"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
                                             <include reference="Vpa-Yp-4ry"/>
+                                            <include reference="zBU-75-cDn"/>
+                                            <include reference="glF-Sh-WCS"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -348,7 +400,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wv-Fh-bRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="660.75" y="-656.625"/>
+            <point key="canvasLocation" x="660.75" y="-657.375"/>
         </scene>
         <!--Foto-->
         <scene sceneID="iQ0-Kn-En0">
@@ -372,5 +424,7 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
+        <image name="icon_balloon_20x20.png" width="20" height="20"/>
+        <image name="icon_heart_20x20.png" width="20" height="20"/>
     </resources>
 </document>

@@ -36,9 +36,9 @@
     [operation start];
     
    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
-   // self.profileImage.clipsToBounds = YES;
-    //self.profileImage.layer.borderWidth = 0.5f;
-    //self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.profileImage.clipsToBounds = YES;
+    self.profileImage.layer.borderWidth = 0.5f;
+    self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
     
     // Do any additional setup after loading the view.
 }

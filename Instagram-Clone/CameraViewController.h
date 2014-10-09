@@ -10,6 +10,7 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface CameraViewController : UIViewController
+@property (strong, nonatomic) IBOutlet UIView *cameraFrame;
 
 
 @end

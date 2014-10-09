@@ -10,7 +10,7 @@
 #import "InstaMedia.h"
 #import "InstaUser.h"
 #import "AFOAuth2Client.h"
-
+#import "NSNull+JSON.h"
 
 
 @implementation InstaClient
@@ -85,109 +85,12 @@
 
 - (NSArray *)startConnectionPopulairFeed
 {
-    __block NSDictionary *jsonResults;
 
    // NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae"]];
    // https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=6a88d49716fd4e0ba375cb784b9d9915"]];
     
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         
-         NSMutableArray *images = [[NSMutableArray alloc]init];
-         
-         
-         NSArray *results = [responseObject valueForKey:@"data"];
-         
-         for (NSDictionary *imagesDic in results)
-         {
-            // NSLog(@"IMagesDIct: %@", imagesDic);
-             InstaMedia *media = [[InstaMedia alloc]init];
-            
-                // NSLog(@"Key:%@", key);
-           // media.profileImage = [imagesDic valueForKey:<#(NSString *)#>]
-             NSURL *standardResURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"images.standard_resolution.url"]];
-             NSURL *thumbResURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"images.thumbnail.url"]];
-             NSURL *profilePictureURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"caption.from.profile_picture"]];
-             media.likes = [imagesDic valueForKeyPath:@"likes.count"];
-             media.createdTime = [imagesDic valueForKeyPath:@"data.created_time"];
-             //media.instaImageURLFull = standardResURL;
-             NSData *imageData = [NSData dataWithContentsOfURL:thumbResURL];
-             media.instaImageThumb = [UIImage imageWithData:imageData];
-             imageData = [NSData dataWithContentsOfURL:standardResURL];
-             media.instaImage = [UIImage imageWithData:imageData];
-             imageData = [NSData dataWithContentsOfURL:profilePictureURL];
-             media.profileImage = [UIImage imageWithData:imageData];
-             media.username = [imagesDic valueForKeyPath:@"caption.from.username"];
-             media.instaImageURLFull = standardResURL;//[NSURL URLWithString:[imagesDic valueForKeyPath:@"images.standard_resolution.url"]];
-                 
-                 
-                 
-          
-             
-             [images addObject:media];
-         }
-         
-         
-         /*
-         
-         NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
-         NSMutableArray *arr2 = [responseObject valueForKeyPath:@"data.images.standard_resolution.url"];
-         NSMutableArray *arr3 = [responseObject valueForKeyPath:@"data.likes.count"];
-         NSMutableArray *arr4 = [responseObject valueForKeyPath:@"data.caption.from.profile_picture"];
-          NSMutableArray *arr5 = [responseObject valueForKeyPath:@"data.caption.from.username"];
-         NSMutableArray *arr6 = [responseObject valueForKeyPath:@"data.created_time"];
-         
-       //  NSLog(@"[InstaClient]Arr: %@", arr);
-        
-         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
-         for (int i = 0;[arr count]>=1;i++)
-         {
-             NSString *str = [arr objectAtIndex:i];
-             InstaMedia *media = [[InstaMedia alloc]init];
-             NSURL *url = [NSURL URLWithString:str];
-             NSURL *urlFullImage = [NSURL URLWithString:[arr2 objectAtIndex:i]];
-             NSURL *profileURL = [NSURL URLWithString:[arr4 objectAtIndex:i]];
-             media.profilePictureUrl = profileURL;
-             NSLog(@"[InstaClient]profileURL: %@", profileURL);
-             media.instaImageURLThumbnail = url;
-             media.instaImageURLFull = urlFullImage;
-          //   media.likes = [arr3 objectAtIndex:i];
-           //  NSLog(@"MEDIA-LIKES: %@", media.likes);
-            // media.createdTime = [NSNumber num][arr6 objectAtIndex:i];
-             NSData *profileImageData = [NSData dataWithContentsOfURL:profileURL];
-             media.username = [arr5 objectAtIndex:i];
-             media.profileImage = [UIImage imageWithData:profileImageData];
-             NSData *imageData = [NSData dataWithContentsOfURL:url];
-             media.instaImage = [UIImage imageWithData:imageData];
-             [tempArray addObject:media];
-             NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", media.instaImageURLThumbnail);
-            if (i == 18)
-             {
-                 break;
-             }
-         }
-         
-      */
-         
-    //     NSLog(@"[InstaClient]self.imagesArray: %@", self.imagesArray);
-         
-        // self.imagesArray = [[NSMutableArray alloc]initWithArray: tempArray];
-         
-        NSDictionary *tempDict3 = [jsonResults valueForKey:@"url"];
-        self.imagesDict = tempDict3;
-        
-         
-         self.imagesArray = images;
-         
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Oopsie: %@", [error localizedDescription]);
-     }];
-    
-    [operation start];
+        self.imagesArray = [self startDownload:request];
     
        return self.imagesArray;
     
@@ -196,70 +99,14 @@
 - (NSArray *)startPersonalFeed
 {
    
-    __block NSDictionary *jsonResults;
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae"]];
     // https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae
     //  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=38ce63e055ce48cd8f37aee2d0fe73f6"]];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
-         NSMutableArray *arr2 = [responseObject valueForKeyPath:@"data.images.standard_resolution.url"];
-         NSMutableArray *arr3 = [responseObject valueForKeyPath:@"data.likes.count"];
-         NSMutableArray *arr4 = [responseObject valueForKeyPath:@"data.caption.from.profile_picture"];
-         NSMutableArray *arr5 = [responseObject valueForKeyPath:@"data.caption.from.username"];
-         NSMutableArray *arr6 = [responseObject valueForKeyPath:@"data.created_time"];
-          NSLog(@"PersonalFeed started");
-         //  NSLog(@"[InstaClient]Arr: %@", arr);
-         
-         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
-         for (int i = 0;[arr count]>=1;i++)
-         {
-             NSString *str = [arr objectAtIndex:i];
-             InstaMedia *media = [[InstaMedia alloc]init];
-             NSURL *url = [NSURL URLWithString:str];
-             NSURL *urlFullImage = [NSURL URLWithString:[arr2 objectAtIndex:i]];
-             NSURL *profileURL = [NSURL URLWithString:[arr4 objectAtIndex:i]];
-             media.profilePictureUrl = profileURL;
-          //   NSLog(@"[InstaClient]profileURL: %@", profileURL);
-             media.instaImageURLThumbnail = url;
-             media.instaImageURLFull = urlFullImage;
-             media.likes = [arr3 objectAtIndex:i];
-          //   NSLog(@"MEDIA-LIKES: %@", media.likes);
-             // media.createdTime = [NSNumber num][arr6 objectAtIndex:i];
-             NSData *profileImageData = [NSData dataWithContentsOfURL:profileURL];
-             media.username = [arr5 objectAtIndex:i];
-             media.profileImage = [UIImage imageWithData:profileImageData];
-             NSData *imageData = [NSData dataWithContentsOfURL:urlFullImage];
-             media.instaImage = [UIImage imageWithData:imageData];
-             [tempArray addObject:media];
-             //  NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", media.instaImageURLThumbnail);
-             if (i == 19)
-             {
-                 break;
-             }
-         }
-         
-         NSLog(@"TEmpArray: %@", tempArray);
-         //     NSLog(@"[InstaClient]self.imagesArray: %@", self.imagesArray);
-         self.personalImagesArray = [[NSMutableArray alloc]init];
-         self.personalImagesArray = tempArray;
-         NSLog(@"PersonalArray: %@", self.personalImagesArray);
-         NSDictionary *tempDict3 = [jsonResults valueForKey:@"url"];
-         self.imagesDict = tempDict3;
-         
-         
-         
-         
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Oopsie: %@", [error localizedDescription]);
-     }];
+   
     
-    [operation start];
-    
+   self.personalImagesArray = [self startDownload:request];
+    NSLog(@"PersonalFeed: %@", self.personalImagesArray);
     return self.personalImagesArray;
     
 }
@@ -267,62 +114,13 @@
 
 - (void)searchForKeyWords:(NSString *)keywords
 {
-    __block NSDictionary *jsonResults;
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"https://api.instagram.com/v1/tags/%@/media/recent?client_id=%@", keywords, kCLIENTID]]];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFJSONResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
-     {
-         NSMutableArray *arr = [responseObject valueForKeyPath:@"data.images.thumbnail.url"];
-         NSMutableArray *arr2 = [responseObject valueForKeyPath:@"data.images.standard_resolution.url"];
-         NSMutableArray *arr3 = [responseObject valueForKeyPath:@"data.likes"];
-         NSMutableArray *arr4 = [responseObject valueForKeyPath:@"data.caption.from.profile_picture"];
-         NSMutableArray *arr5 = [responseObject valueForKeyPath:@"data.caption.from.username"];
-         //  NSLog(@"[InstaClient]Arr: %@", arr);
-         
-         NSMutableArray *tempArray = [[NSMutableArray alloc]init];
-         for (int i = 0;[arr count]>=1;i++)
-         {
-             NSString *str = [arr objectAtIndex:i];
-             InstaMedia *media = [[InstaMedia alloc]init];
-             NSURL *url = [NSURL URLWithString:str];
-             NSURL *urlFullImage = [NSURL URLWithString:[arr2 objectAtIndex:i]];
-             NSURL *profileURL = [NSURL URLWithString:[arr4 objectAtIndex:i]];
-             media.profilePictureUrl = profileURL;
-             NSLog(@"[InstaClient]profileURL: %@", profileURL);
-             media.instaImageURLThumbnail = url;
-             media.instaImageURLFull = urlFullImage;
-             NSData *profileImageData = [NSData dataWithContentsOfURL:profileURL];
-             media.username = [arr5 objectAtIndex:i];
-             media.profileImage = [UIImage imageWithData:profileImageData];
-             NSData *imageData = [NSData dataWithContentsOfURL:url];
-             media.instaImage = [UIImage imageWithData:imageData];
-             [tempArray addObject:media];
-             //  NSLog(@"[InstaClient]media.InstaIMageUrlThumbnail: %@", media.instaImageURLThumbnail);
-             if (i == 19)
-             {
-                 break;
-             }
-         }
-         
-         
-         //     NSLog(@"[InstaClient]self.imagesArray: %@", self.imagesArray);
-         
-         self.imagesArray = tempArray;
-         
-         NSDictionary *tempDict3 = [jsonResults valueForKey:@"url"];
-         self.imagesDict = tempDict3;
-         
-         
-         
-         
-     } failure:^(AFHTTPRequestOperation *operation, NSError *error)
-     {
-         NSLog(@"Oopsie: %@", [error localizedDescription]);
-     }];
+   
+    self.searchImagesArray = [self startDownload:request];
+
     
-    [operation start];
+    
 
 }
 
@@ -335,23 +133,45 @@
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
          
-        
+        // NSDictionary *dic = [self nullFreeDictionaryWithDictionary:responseObject];
          
-         
+        // NSArray *results = [dic valueForKey:@"data"];
          NSArray *results = [responseObject valueForKey:@"data"];
+         //NSArray *results = responseObject;
+        
+         /*
+         
+         for (NSDictionary *imagesDic in results)
+                 {
+                           InstaMedia *media = [[InstaMedia alloc]init];
+                
+                          for (NSString *key in imagesDic)
+                                 {
+                                     if([media respondsToSelector:NSSelectorFromString(key)])
+                                            {
+                                                    [media setValue:[imagesDic valueForKey:key ] forKey:key];
+                                              }
+                                   }
+                     
+                            [images addObject:media];
+                        }
+         
+         */
+         
          
          for (NSDictionary *imagesDic in results)
          {
-             // NSLog(@"IMagesDIct: %@", imagesDic);
+            NSLog(@"[INSTACLIENT]imagesDic: %@", imagesDic);
              InstaMedia *media = [[InstaMedia alloc]init];
              
              // NSLog(@"Key:%@", key);
-             // media.profileImage = [imagesDic valueForKey:<#(NSString *)#>]
              NSURL *standardResURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"images.standard_resolution.url"]];
              NSURL *thumbResURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"images.thumbnail.url"]];
              NSURL *profilePictureURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"caption.from.profile_picture"]];
              media.likes = [imagesDic valueForKeyPath:@"likes.count"];
-             media.createdTime = [imagesDic valueForKeyPath:@"data.created_time"];
+             NSTimeInterval interval = [[imagesDic valueForKeyPath:@"created_time"]doubleValue];
+             media.createdTime = [NSDate dateWithTimeIntervalSince1970:interval];
+             NSLog(@"[INSTACLIENT]Date: %@", media.createdTime);
              //media.instaImageURLFull = standardResURL;
              NSData *imageData = [NSData dataWithContentsOfURL:thumbResURL];
              media.instaImageThumb = [UIImage imageWithData:imageData];
@@ -360,18 +180,23 @@
              imageData = [NSData dataWithContentsOfURL:profilePictureURL];
              media.profileImage = [UIImage imageWithData:imageData];
              media.username = [imagesDic valueForKeyPath:@"caption.from.username"];
-             media.instaImageURLFull = standardResURL;//[NSURL URLWithString:[imagesDic valueForKeyPath:@"images.standard_resolution.url"]];
-             
+             media.instaImageURLFull = standardResURL;
+             media.instaImageURLThumbnail = thumbResURL;
+             //[NSURL URLWithString:[imagesDic valueForKeyPath:@"images.standard_resolution.url"]];
              
              
              
              
              [images addObject:media];
+             
+             
+             
          }
          
          
          
-         
+         [[NSNotificationCenter defaultCenter] postNotification:
+          [NSNotification notificationWithName:@"downloadFinished" object:nil]];
         // self.imagesDict = tempDict3;
          
          
@@ -384,9 +209,53 @@
     
     [operation start];
     
+    
+    
+    
     return images;
    // return self.imagesArray;
 
+}
+
+- (NSDictionary *)nullFreeDictionaryWithDictionary:(NSDictionary *)dictionary
+{
+    NSMutableDictionary *replaced = [NSMutableDictionary dictionaryWithDictionary:dictionary];
+    // Iterate through each key-object pair.
+    [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
+        // If object is a dictionary, recursively remove NSNull from dictionary.
+        if ([object isKindOfClass:[NSDictionary class]]) {
+            NSDictionary *innerDict = object;
+            replaced[key] = [self nullFreeDictionaryWithDictionary:innerDict];
+        }
+        // If object is an array, enumerate through array.
+        else if ([object isKindOfClass:[NSArray class]]) {
+            NSMutableArray *nullFreeRecords = [NSMutableArray array];
+            for (id record in object) {
+                // If object is a dictionary, recursively remove NSNull from dictionary.
+                if ([record isKindOfClass:[NSDictionary class]]) {
+                    NSDictionary *nullFreeRecord = [self nullFreeDictionaryWithDictionary:record];
+                    [nullFreeRecords addObject:nullFreeRecord];
+                }
+                else {
+                    if (object == [NSNull null]) {
+                        [nullFreeRecords addObject:@""];
+                    }
+                    else {
+                        [nullFreeRecords addObject:record];
+                    }
+                }
+            }
+            replaced[key] = nullFreeRecords;
+        }
+        else {
+            // Replace [NSNull null] with nil string "" to avoid having to perform null comparisons while parsing.
+            if (object == [NSNull null]) {
+                replaced[key] = @"";
+            }
+        }
+    }];
+    
+    return [NSDictionary dictionaryWithDictionary:replaced];
 }
 
 @end

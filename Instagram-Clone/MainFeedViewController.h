@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface MainFeedViewController : UITableViewController
+@property (strong, nonatomic) IBOutlet UILabel *likesLabel;
 
 @end

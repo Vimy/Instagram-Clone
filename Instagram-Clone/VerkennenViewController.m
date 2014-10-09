@@ -31,8 +31,11 @@
     
     [super viewDidLoad];
     self.collectionView.bounds = self.view.bounds;
- 
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished)
+                                                 name:@"downloadFinished" object:nil];
     
+
     client = [InstaClient sharedClient];
     
     //[client searchForKeyWords:@"booty"];
@@ -66,6 +69,11 @@
     
 }
 
+- (void)downloadFinished
+{
+    imagesArray = client.imagesArray;
+    [self.collectionView reloadData];
+}
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];

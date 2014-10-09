@@ -13,7 +13,7 @@
 @property (strong, nonatomic) UIImage *instaImageThumb;
 @property (strong, nonatomic) NSURL *instaImageURLFull;
 @property (strong, nonatomic) NSURL *instaImageURLThumbnail;
-@property  NSInteger createdTime;
+@property  NSDate *createdTime;
 @property NSInteger comments;
 @property NSInteger likes;
 @property (strong, nonatomic ) NSString *text;

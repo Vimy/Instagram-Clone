@@ -22,7 +22,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="7d" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ph2-Hr-SAa">
-                        <rect key="frame" x="345" y="5" width="22" height="21"/>
+                        <rect key="frame" x="345" y="6" width="22" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.4156863093" green="0.57254904510000004" blue="0.69411766529999996" alpha="1" colorSpace="deviceRGB"/>
                         <nil key="highlightedColor"/>
@@ -46,9 +46,10 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="profileImage" destination="whn-sg-yfa" id="fpb-Dd-lus"/>
+                <outlet property="time" destination="ph2-Hr-SAa" id="93o-cp-g91"/>
                 <outlet property="username" destination="lLx-AJ-YDp" id="06r-XO-vBc"/>
             </connections>
-            <point key="canvasLocation" x="44.5" y="302"/>
+            <point key="canvasLocation" x="44.5" y="301"/>
         </tableViewCell>
     </objects>
     <resources>
