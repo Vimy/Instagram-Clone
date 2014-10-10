@@ -139,7 +139,7 @@
          NSArray *results = [responseObject valueForKey:@"data"];
          //NSArray *results = responseObject;
         
-         /*
+         
          
          for (NSDictionary *imagesDic in results)
                  {
@@ -154,10 +154,10 @@
                                    }
                      
                             [images addObject:media];
+                     NSLog(@"Media: %@", media);
                         }
-         
-         */
-         
+        
+         /*
          
          for (NSDictionary *imagesDic in results)
          {
@@ -168,7 +168,7 @@
              NSURL *standardResURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"images.standard_resolution.url"]];
              NSURL *thumbResURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"images.thumbnail.url"]];
              NSURL *profilePictureURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"caption.from.profile_picture"]];
-             media.likes = [imagesDic valueForKeyPath:@"likes.count"];
+             media.likesCount = [imagesDic valueForKeyPath:@"likes.count"];
              NSTimeInterval interval = [[imagesDic valueForKeyPath:@"created_time"]doubleValue];
              media.createdTime = [NSDate dateWithTimeIntervalSince1970:interval];
              NSLog(@"[INSTACLIENT]Date: %@", media.createdTime);
@@ -192,7 +192,7 @@
              
              
          }
-         
+         */
          
          
          [[NSNotificationCenter defaultCenter] postNotification:

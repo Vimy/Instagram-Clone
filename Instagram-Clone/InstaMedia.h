@@ -14,8 +14,13 @@
 @property (strong, nonatomic) NSURL *instaImageURLFull;
 @property (strong, nonatomic) NSURL *instaImageURLThumbnail;
 @property  NSDate *createdTime;
-@property NSInteger comments;
-@property NSInteger likes;
+
+@property NSInteger likesCount;
+@property NSArray *likes;
+@property  NSInteger *commentCount;
+@property (strong, nonatomic) NSArray *comments;
+@property (strong, nonatomic) NSArray *tags;
+@property (strong, nonatomic) NSString *filter;
 @property (strong, nonatomic ) NSString *text;
 @property (strong, nonatomic) UIImage *profileImage;
 @property (strong, nonatomic) NSURL *profilePictureUrl;
