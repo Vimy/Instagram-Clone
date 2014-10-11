@@ -98,8 +98,6 @@
 
 - (NSArray *)startPersonalFeed
 {
-   
-    
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae"]];
     // https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae
     //  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=38ce63e055ce48cd8f37aee2d0fe73f6"]];
@@ -116,12 +114,9 @@
 {
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"https://api.instagram.com/v1/tags/%@/media/recent?client_id=%@", keywords, kCLIENTID]]];
-   
     self.searchImagesArray = [self startDownload:request];
-
+    NSLog(@"[INSTACLIENT]searchImagesArray: %@",self.searchImagesArray);
     
-    
-
 }
 
 - (NSArray *)startDownload:(NSURLRequest  *)request
@@ -132,15 +127,9 @@
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
      {
-         
-        // NSDictionary *dic = [self nullFreeDictionaryWithDictionary:responseObject];
-         
-        // NSArray *results = [dic valueForKey:@"data"];
+
          NSArray *results = [responseObject valueForKey:@"data"];
-         //NSArray *results = responseObject;
-        
-         
-         
+
          for (NSDictionary *imagesDic in results)
                  {
                            InstaMedia *media = [[InstaMedia alloc]init];
@@ -155,57 +144,16 @@
                                               }
                                    }
                      
+                                
+                     
                             [images addObject:media];
                //      NSLog(@"Media: %@", media);
                         }
         
          //json null check
-         
-         
-         /*
-         
-         for (NSDictionary *imagesDic in results)
-         {
-            NSLog(@"[INSTACLIENT]imagesDic: %@", imagesDic);
-             InstaMedia *media = [[InstaMedia alloc]init];
-             
-             // NSLog(@"Key:%@", key);
-             NSURL *standardResURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"images.standard_resolution.url"]];
-             NSURL *thumbResURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"images.thumbnail.url"]];
-             NSURL *profilePictureURL = [NSURL URLWithString:[imagesDic valueForKeyPath:@"caption.from.profile_picture"]];
-             media.likesCount = [imagesDic valueForKeyPath:@"likes.count"];
-             NSTimeInterval interval = [[imagesDic valueForKeyPath:@"created_time"]doubleValue];
-             media.createdTime = [NSDate dateWithTimeIntervalSince1970:interval];
-             NSLog(@"[INSTACLIENT]Date: %@", media.createdTime);
-             //media.instaImageURLFull = standardResURL;
-             NSData *imageData = [NSData dataWithContentsOfURL:thumbResURL];
-             media.instaImageThumb = [UIImage imageWithData:imageData];
-             imageData = [NSData dataWithContentsOfURL:standardResURL];
-             media.instaImage = [UIImage imageWithData:imageData];
-             imageData = [NSData dataWithContentsOfURL:profilePictureURL];
-             media.profileImage = [UIImage imageWithData:imageData];
-             media.username = [imagesDic valueForKeyPath:@"caption.from.username"];
-             media.instaImageURLFull = standardResURL;
-             media.instaImageURLThumbnail = thumbResURL;
-             //[NSURL URLWithString:[imagesDic valueForKeyPath:@"images.standard_resolution.url"]];
-             
-             
-             
-             
-             [images addObject:media];
-             
-          
-             
-         }
-         */
-         
-         
          [[NSNotificationCenter defaultCenter] postNotification:
           [NSNotification notificationWithName:@"downloadFinished" object:nil]];
-        // self.imagesDict = tempDict3;
-         
-         
-         //self.imagesArray = images;
+      
          
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)
      {
@@ -213,10 +161,7 @@
      }];
     
     [operation start];
-    
-    
     return images;
-   // return self.imagesArray;
 
 }
 

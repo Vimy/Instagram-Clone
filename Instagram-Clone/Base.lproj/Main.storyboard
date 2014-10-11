@@ -248,6 +248,12 @@
                                     <rect key="frame" x="71" y="446" width="88" height="21"/>
                                 </variation>
                             </label>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FKW-oR-n6t">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="321" y="72" width="38" height="38"/>
+                                </variation>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
@@ -257,6 +263,7 @@
                                 <exclude reference="z5S-aL-ZDE"/>
                                 <exclude reference="60b-Fd-8NM"/>
                                 <exclude reference="5uo-71-PBL"/>
+                                <exclude reference="FKW-oR-n6t"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -266,6 +273,7 @@
                                 <include reference="z5S-aL-ZDE"/>
                                 <include reference="60b-Fd-8NM"/>
                                 <include reference="5uo-71-PBL"/>
+                                <include reference="FKW-oR-n6t"/>
                             </mask>
                         </variation>
                     </view>
@@ -274,6 +282,7 @@
                         <outlet property="likesCount" destination="5uo-71-PBL" id="uLD-oU-goi"/>
                         <outlet property="mainImage" destination="Jka-0a-cUW" id="DmE-4z-RoQ"/>
                         <outlet property="profileImage" destination="25F-L9-Vfy" id="y5P-P5-LwC"/>
+                        <outlet property="profileOmage" destination="FKW-oR-n6t" id="7ck-8Q-PLw"/>
                         <outlet property="titleLabel" destination="z5S-aL-ZDE" id="bxh-2x-aC8"/>
                     </connections>
                 </viewController>

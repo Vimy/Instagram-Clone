@@ -21,13 +21,21 @@
     NSLog(@"[IDVC]Tietel: %@", self.titleLabel.text);
   //  self.mainImage.image = self.imagevar;
     self.titleLabel.text = self.titleLabelvar;
-    self.profileImage.image = self.profileImagevar;
-    
-    NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:self.fullImageURL];
+   //  self.profileOmage.image = [UIImage imageNamed:@"buf.png"];
+    NSLog(@"[IDVC]profileIMAGEURL: %@", self.profileImageURL);
+    if (!self.profileImagevar)
+    {
+        NSLog(@"Images is leeg??!??!!");
+    }
+    NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:self.profileImageURL];
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFImageResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
        self.mainImage.image = responseObject;
+        self.profileOmage.image = responseObject;
+        self.profileImage.image = responseObject;
+        NSLog(@"Omage: %@", self.profileOmage.image);
+         NSLog(@"Image: %@", self.profileImage.image);
         NSLog(@"ResponseObject: %@", responseObject);
     } failure:^(AFHTTPRequestOperation *operation, NSError *error){
         NSLog(@"Error: %@", error);

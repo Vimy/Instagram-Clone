@@ -14,7 +14,7 @@
 @property (strong, nonatomic) NSURL *instaImageURLFull;
 @property (strong, nonatomic) NSURL *instaImageURLThumbnail;
 @property  NSDate *created_time;
-@property (strong, nonatomic) NSArray *caption;
+@property (strong, nonatomic) NSDictionary *caption;
 @property NSInteger likesCount;
 @property NSArray *likes;
 @property  NSInteger *commentCount;

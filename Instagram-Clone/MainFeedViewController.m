@@ -154,8 +154,17 @@
         //NSLog(@"Cell is nil");
     }
   //  NSLog(@"We zijn er mee bezig!");
-    cell.username.text = mediaHeader.username;//@"user_name";
-    cell.profileImage.image = mediaHeader.profileImage;
+    
+    NSDictionary *tiet = [mediaHeader.caption objectForKey:@"from"];
+    NSString *username = [tiet objectForKey:@"username"];
+    
+    
+    NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"profile_picture"]];
+    NSLog(@"[MFVC]url: %@", url);
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithData:data];
+    cell.username.text =username;//@"user_name";
+    cell.profileImage.image = image;
 //
    
     NSDateFormatter *df = [[NSDateFormatter alloc]init];

@@ -153,14 +153,19 @@
     if (imagesArray)
     {
            media = [imagesArray objectAtIndex:indexPath.row];
-            NSLog(@"[VKViewController]media.InstaIMageUrl: %@", media.instaImageURLThumbnail);
+         //   NSLog(@"[VKViewController]media.InstaIMageUrl: %@", media.instaImageURLThumbnail);
     }
- 
+    NSDictionary *tiet = [media.images objectForKey:@"thumbnail"];
+   // NSLog(@"FDSLKFJD : %@", tiet);
+    
+    NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"url"]];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [UIImage imageWithData:data];
     
     //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
-    if (media.instaImage)
+    if (image)
     {
-        cellImageView.image = media.instaImage; //[UIImage imageWithData:imageData];
+        cellImageView.image = image; //[UIImage imageWithData:imageData];
         // NSLog(@"[VKViewController]met url");
     }
     else
@@ -184,13 +189,31 @@
         ImageDetailViewController *vc = (ImageDetailViewController *)segue.destinationViewController;
         InstaMedia *segueMedia = [[InstaMedia alloc]init];
         segueMedia = [imagesArray objectAtIndex:indexPath.row];
+        
+        NSDictionary *tiet = [segueMedia.images objectForKey:@"standard_resolution"];
+        // NSLog(@"FDSLKFJD : %@", tiet);
+        
+        NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"url"]];
+        
+        NSDictionary *userDict = [segueMedia.caption objectForKey:@"from"];
+        NSString *username = [userDict  objectForKey:@"username"];
+        NSLog(@"[VKVC]userDict: %@", userDict);
+        
+        NSURL *urlProfilePic = [NSURL URLWithString:[userDict objectForKey:@"profile_picture"]];
+        NSLog(@"[VKVC]profileURL: %@", urlProfilePic);
+        NSData *dataProfilePic = [NSData dataWithContentsOfURL:urlProfilePic];
+        UIImage *imageProfilePic = [UIImage imageWithData:dataProfilePic];
+        
+        
         vc.tiet.text = @"hoi";
-        vc.profileImagevar = segueMedia.profileImage;
+        vc.profileImagevar = imageProfilePic;//segueMedia.profileImage;
+        vc.profileOmage.image = imageProfilePic;
        // vc.imagevar = segueMedia.instaImage;
-        vc.titleLabelvar = segueMedia.username;
-        vc.fullImageURL = segueMedia.instaImageURLFull;
+        vc.titleLabelvar = username;//segueMedia.username;
+        vc.fullImageURL = url;//segueMedia.instaImageURLFull;
         vc.likesCount.text = [NSString stringWithFormat:@"%ld%d", (long)segueMedia.likes];
-        NSLog(@"ProfileURL ------ : %@", segueMedia.profilePictureUrl);
+        vc.profileImageURL = urlProfilePic;
+       // NSLog(@"ProfileURL ------ : %@", segueMedia.profilePictureUrl);
         
         
         
