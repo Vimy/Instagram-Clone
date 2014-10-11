@@ -160,8 +160,8 @@
    
     NSDateFormatter *df = [[NSDateFormatter alloc]init];
     [df setDateFormat:@"HH"];
-   cell.time.text = [df stringFromDate:mediaHeader.createdTime];
-    NSLog(@"Date: %@", mediaHeader.createdTime);
+   cell.time.text = [df stringFromDate:mediaHeader.created_time];
+    NSLog(@"Date: %@", mediaHeader.created_time);
     
     cell.profileImage.clipsToBounds = YES;
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2;
@@ -184,9 +184,18 @@
     {
         NSLog(@"[[MFViewC]IndexPath-mainCells: %ld", (long)indexPath.section );
         media = [feedArray objectAtIndex:indexPath.section];
-        NSLog(@"[MFViewController]media.InstaIMageUrl: %@", media.instaImageURLThumbnail);
+        NSLog(@"[MFViewController]media.InstaIMageUrl: %@", media.images);
+        NSDictionary *tiet = [media.images objectForKey:@"standard_resolution"];
+        NSLog(@"FDSLKFJD : %@", tiet);
+        
+         NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"url"]];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [UIImage imageWithData:data];
+        NSLog(@"[MFVC]media.images: %@", media.images);
+        
+        cellImageView.image = image;
         //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
-        if (media.instaImage)
+       /* if (media.instaImage)
         {
             cellImageView.image = media.instaImage; //[UIImage imageWithData:imageData];
             likesLabel.text = [NSString stringWithFormat:@"%ld",(long)media.likes];
@@ -198,7 +207,8 @@
             cellImageView.image = [UIImage imageNamed:@"buf.png"];
             // NSLog(@"[VKViewController]Buf geladen!");
         }
-
+*/
+        
     }
     
     

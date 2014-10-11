@@ -150,13 +150,18 @@
                                      if([media respondsToSelector:NSSelectorFromString(key)])
                                             {
                                                     [media setValue:[imagesDic valueForKey:key ] forKey:key];
+                                         //       NSLog(@"Key: %@", key);
+                                       //         NSLog(@"VALUE FOR KEY: %@",[imagesDic valueForKey:key ] );
                                               }
                                    }
                      
                             [images addObject:media];
-                     NSLog(@"Media: %@", media);
+               //      NSLog(@"Media: %@", media);
                         }
         
+         //json null check
+         
+         
          /*
          
          for (NSDictionary *imagesDic in results)
@@ -189,7 +194,7 @@
              
              [images addObject:media];
              
-             
+          
              
          }
          */
@@ -208,8 +213,6 @@
      }];
     
     [operation start];
-    
-    
     
     
     return images;
