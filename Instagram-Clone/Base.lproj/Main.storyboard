@@ -215,12 +215,6 @@
                                     <rect key="frame" x="0.0" y="118" width="375" height="320"/>
                                 </variation>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="25F-L9-Vfy">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="72" width="38" height="38"/>
-                                </variation>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="user_name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="z5S-aL-ZDE">
                                 <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -230,50 +224,45 @@
                                     <rect key="frame" x="62" y="72" width="200" height="21"/>
                                 </variation>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Likes:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="60b-Fd-8NM">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.4156863093" green="0.57254904510000004" blue="0.69411766529999996" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="446" width="47" height="21"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likeNumber" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uo-71-PBL">
-                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.4156863093" green="0.57254904510000004" blue="0.69411766529999996" alpha="1" colorSpace="deviceRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="71" y="446" width="88" height="21"/>
-                                </variation>
-                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="FKW-oR-n6t">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="321" y="72" width="38" height="38"/>
+                                    <rect key="frame" x="16" y="72" width="38" height="38"/>
                                 </variation>
                             </imageView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_heart_20x20.png" translatesAutoresizingMaskIntoConstraints="NO" id="gSa-3o-aeJ">
+                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="16" y="446" width="15" height="15"/>
+                                </variation>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="likeNumber" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5uo-71-PBL">
+                                <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
+                                <color key="textColor" red="0.4156863093" green="0.57254904510000004" blue="0.69411766529999996" alpha="1" colorSpace="deviceRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="39" y="443" width="235" height="21"/>
+                                </variation>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="Jka-0a-cUW"/>
-                                <exclude reference="25F-L9-Vfy"/>
                                 <exclude reference="z5S-aL-ZDE"/>
-                                <exclude reference="60b-Fd-8NM"/>
-                                <exclude reference="5uo-71-PBL"/>
                                 <exclude reference="FKW-oR-n6t"/>
+                                <exclude reference="gSa-3o-aeJ"/>
+                                <exclude reference="5uo-71-PBL"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="Jka-0a-cUW"/>
-                                <include reference="25F-L9-Vfy"/>
                                 <include reference="z5S-aL-ZDE"/>
-                                <include reference="60b-Fd-8NM"/>
-                                <include reference="5uo-71-PBL"/>
                                 <include reference="FKW-oR-n6t"/>
+                                <include reference="gSa-3o-aeJ"/>
+                                <include reference="5uo-71-PBL"/>
                             </mask>
                         </variation>
                     </view>
@@ -281,8 +270,7 @@
                     <connections>
                         <outlet property="likesCount" destination="5uo-71-PBL" id="uLD-oU-goi"/>
                         <outlet property="mainImage" destination="Jka-0a-cUW" id="DmE-4z-RoQ"/>
-                        <outlet property="profileImage" destination="25F-L9-Vfy" id="y5P-P5-LwC"/>
-                        <outlet property="profileOmage" destination="FKW-oR-n6t" id="7ck-8Q-PLw"/>
+                        <outlet property="profileImage" destination="FKW-oR-n6t" id="JhI-yj-nyS"/>
                         <outlet property="titleLabel" destination="z5S-aL-ZDE" id="bxh-2x-aC8"/>
                     </connections>
                 </viewController>
@@ -352,7 +340,7 @@
         <scene sceneID="X9L-nR-Ost">
             <objects>
                 <tableViewController id="ueg-h7-lEp" customClass="MainFeedViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="350" sectionHeaderHeight="22" sectionFooterHeight="22" id="yAy-Le-QRN">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="300" sectionHeaderHeight="22" sectionFooterHeight="22" id="yAy-Le-QRN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -369,31 +357,26 @@
                                                 <rect key="frame" x="0.0" y="0.0" width="375" height="299"/>
                                             </variation>
                                         </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_heart_20x20.png" translatesAutoresizingMaskIntoConstraints="NO" id="zBU-75-cDn">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="10" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GnZ-C7-Xjj">
+                                            <rect key="frame" x="0.0" y="-21" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
                                             <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="8" y="307" width="10" height="10"/>
+                                                <rect key="frame" x="166" y="212" width="42" height="21"/>
                                             </variation>
-                                        </imageView>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon_balloon_20x20.png" translatesAutoresizingMaskIntoConstraints="NO" id="glF-Sh-WCS">
-                                            <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
-                                            <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                                <rect key="frame" x="8" y="325" width="10" height="10"/>
-                                            </variation>
-                                        </imageView>
+                                        </label>
                                     </subviews>
                                     <variation key="default">
                                         <mask key="subviews">
                                             <exclude reference="Vpa-Yp-4ry"/>
-                                            <exclude reference="zBU-75-cDn"/>
-                                            <exclude reference="glF-Sh-WCS"/>
+                                            <exclude reference="GnZ-C7-Xjj"/>
                                         </mask>
                                     </variation>
                                     <variation key="heightClass=regular-widthClass=compact">
                                         <mask key="subviews">
                                             <include reference="Vpa-Yp-4ry"/>
-                                            <include reference="zBU-75-cDn"/>
-                                            <include reference="glF-Sh-WCS"/>
+                                            <include reference="GnZ-C7-Xjj"/>
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
@@ -433,7 +416,6 @@
     </scenes>
     <resources>
         <image name="first" width="30" height="30"/>
-        <image name="icon_balloon_20x20.png" width="20" height="20"/>
         <image name="icon_heart_20x20.png" width="20" height="20"/>
     </resources>
 </document>

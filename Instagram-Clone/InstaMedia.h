@@ -16,7 +16,7 @@
 @property  NSDate *created_time;
 @property (strong, nonatomic) NSDictionary *caption;
 @property NSInteger likesCount;
-@property NSArray *likes;
+@property (strong, nonatomic) NSDictionary *likes;
 @property  NSInteger *commentCount;
 @property (strong, nonatomic) NSDictionary *images;
 @property (strong, nonatomic) NSArray *comments;

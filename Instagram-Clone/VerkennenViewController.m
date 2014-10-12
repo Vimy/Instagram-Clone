@@ -31,10 +31,13 @@
     
     [super viewDidLoad];
     self.collectionView.bounds = self.view.bounds;
-    /*[[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(downloadFinished)
-                                                 name:@"downloadFinished" object:nil];
-    */
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished:)
+                                                 name:@"populairFeedDownload" object:nil];
+   
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished:)
+                                                 name:@"searchDownload" object:nil];
 
     client = [InstaClient sharedClient];
     
@@ -44,8 +47,8 @@
     
     // Register cell classes
 
-    [client addObserver:self forKeyPath:@"imagesArray" options:0 context:NULL];
-    [client addObserver:self forKeyPath:@"searchImagesArray" options:0 context:NULL];
+  //  [client addObserver:self forKeyPath:@"imagesArray" options:0 context:NULL];
+   // [client addObserver:self forKeyPath:@"searchImagesArray" options:0 context:NULL];
     
     // Do any additional setup after loading the view.
     activityView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
@@ -69,11 +72,21 @@
     
 }
 
-- (void)downloadFinished
+- (void)downloadFinished:(NSNotification *)notification
 {
-    NSLog(@"HOHOHOIHIHOIHO");
-    imagesArray = client.imagesArray;
-    [self.collectionView reloadData];
+    [activityView stopAnimating];
+    if ([notification.name isEqualToString:@"searchDownload"])
+    {
+        imagesArray = client.searchImagesArray;
+        [self.collectionView reloadData];
+    }
+    else
+    {
+        imagesArray = client.imagesArray;
+        [self.collectionView reloadData];
+    }
+  
+
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
@@ -83,7 +96,7 @@
     [client searchForKeyWords:keyword];
     NSLog(@"Werkt!");
 }
-
+/*
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
 {
     [activityView stopAnimating];
@@ -111,7 +124,7 @@
 
  
 }
-
+*/
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -206,16 +219,17 @@
         NSData *dataProfilePic = [NSData dataWithContentsOfURL:urlProfilePic];
         UIImage *imageProfilePic = [UIImage imageWithData:dataProfilePic];
         
-        
-        vc.tiet.text = @"hoi";
-        vc.profileImagevar = imageProfilePic;//segueMedia.profileImage;
-        vc.profileOmage.image = imageProfilePic;
+        vc.media = segueMedia;
+      /*  vc.tiet.text = @"hoi";
+       //segueMedia.profileImage;
+       // vc.profileImage.image = imageProfilePic;
        // vc.imagevar = segueMedia.instaImage;
         vc.titleLabelvar = username;//segueMedia.username;
         vc.fullImageURL = url;//segueMedia.instaImageURLFull;
         vc.likesCount.text = [NSString stringWithFormat:@"%ld%d", (long)segueMedia.likes];
         vc.profileImageURL = urlProfilePic;
        // NSLog(@"ProfileURL ------ : %@", segueMedia.profilePictureUrl);
+        */
         
         
         

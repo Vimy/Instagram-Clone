@@ -90,7 +90,7 @@
    // https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=6a88d49716fd4e0ba375cb784b9d9915"]];
     
-    self.imagesArray = [self startDownload:request];
+    self.imagesArray = [self startDownload:request forDownloadType:@"populairFeedDownload"];
     return self.imagesArray;
     
 }
@@ -102,7 +102,7 @@
     //  NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=38ce63e055ce48cd8f37aee2d0fe73f6"]];
    
     
-   self.personalImagesArray = [self startDownload:request];
+   self.personalImagesArray = [self startDownload:request forDownloadType:@"personalFeedDownload"];
     NSLog(@"PersonalFeed: %@", self.personalImagesArray);
     return self.personalImagesArray;
     
@@ -113,16 +113,16 @@
 {
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"https://api.instagram.com/v1/tags/%@/media/recent?client_id=%@", keywords, kCLIENTID]]];
-    self.searchImagesArray = [self startDownload:request];
+    self.searchImagesArray = [self startDownload:request forDownloadType:@"searchDownload"];
     NSLog(@"[INSTACLIENT]searchImagesArray: %@",self.searchImagesArray);
     
 }
 
-- (NSArray *)startDownload:(NSURLRequest  *)request
+- (NSArray *)startDownload:(NSURLRequest  *)request forDownloadType:(NSString *)downloadType
 {
     __block NSMutableArray *images = [[NSMutableArray alloc]init];
     
-    __block NSString *string = @"downloadFinished";
+    
     
     
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
@@ -142,7 +142,7 @@
                                             {
                                                     [media setValue:[imagesDic valueForKey:key ] forKey:key];
                                          //       NSLog(@"Key: %@", key);
-                                       //         NSLog(@"VALUE FOR KEY: %@",[imagesDic valueForKey:key ] );
+                                //             NSLog(@"VALUE FOR KEY: %@",[imagesDic valueForKey:key ] );
                                               }
                                    }
                      
@@ -154,7 +154,7 @@
         
          //json null check
          [[NSNotificationCenter defaultCenter] postNotification:
-          [NSNotification notificationWithName:string object:nil]];
+          [NSNotification notificationWithName:downloadType object:nil]];
       
          
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)

@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "InstaMedia.h"
 @interface ImageDetailViewController : UIViewController
 
 @property  UILabel *tiet;
+@property (strong, nonatomic) InstaMedia *media;
+
+@property (strong, nonatomic) IBOutlet UIImageView *imageProfile;
 
 @property (nonatomic, weak) NSString *titleLabelvar;
 @property (strong, nonatomic)  UIImage *imagevar;
@@ -18,7 +21,7 @@
 @property (strong, nonatomic) IBOutlet UIImageView *mainImage;
 @property (strong, nonatomic) IBOutlet UILabel *titleLabel;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
-@property (strong, nonatomic) IBOutlet UIImageView *profileOmage;
+
 @property (strong, nonatomic) NSURL *fullImageURL;
 @property (strong, nonatomic) NSURL *profileImageURL;
 

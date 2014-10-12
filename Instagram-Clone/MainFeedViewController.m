@@ -21,7 +21,6 @@
     InstaMedia *mediaFooter;
     
   
-    IBOutlet UILabel *likesLabel;
 }
 @end
 
@@ -31,7 +30,7 @@
 {
    [[NSNotificationCenter defaultCenter] addObserver:self
                                             selector:@selector(downloadFinished)
-                                              name:@"downloadFinished" object:nil];
+                                              name:@"personalFeedDownload" object:nil];
     
     [super viewDidLoad];
     client = [InstaClient sharedClient];
@@ -154,6 +153,13 @@
         //NSLog(@"Cell is nil");
     }
   //  NSLog(@"We zijn er mee bezig!");
+    
+    
+    NSString *likes =[mediaHeader.likes objectForKey:@"count"];
+    NSString *likesTekst = [NSString stringWithFormat:@"vind-ik-leuks"];
+    likesLabel.text = [NSString stringWithFormat:@"%@ %@", likes, likesTekst];
+    NSLog(@"[IDVC]Likes: %@", [mediaHeader.likes objectForKey:@"count"] );
+    
     
     NSDictionary *tiet = [mediaHeader.caption objectForKey:@"from"];
     NSString *username = [tiet objectForKey:@"username"];
