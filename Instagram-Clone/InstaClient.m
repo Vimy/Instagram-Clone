@@ -52,7 +52,7 @@
     NSString *authCode = [defaults stringForKey:@"auth_code"];
        if (authCode)
     {
-    
+    // http://nsscreencast.com/episodes/41-authentication-with-afnetworking
         
         
         NSString *parameterData = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&redirect_uri=%@&code=%@",kCLIENTID,kCLIENTSECRET,kREDIRECTURI,authCode];
@@ -90,9 +90,8 @@
    // https://api.instagram.com/v1/users/self/feed?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/v1/media/popular?client_id=6a88d49716fd4e0ba375cb784b9d9915"]];
     
-        self.imagesArray = [self startDownload:request];
-    
-       return self.imagesArray;
+    self.imagesArray = [self startDownload:request];
+    return self.imagesArray;
     
 }
 
@@ -123,6 +122,9 @@
 {
     __block NSMutableArray *images = [[NSMutableArray alloc]init];
     
+    __block NSString *string = @"downloadFinished";
+    
+    
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -152,7 +154,7 @@
         
          //json null check
          [[NSNotificationCenter defaultCenter] postNotification:
-          [NSNotification notificationWithName:@"downloadFinished" object:nil]];
+          [NSNotification notificationWithName:string object:nil]];
       
          
      } failure:^(AFHTTPRequestOperation *operation, NSError *error)

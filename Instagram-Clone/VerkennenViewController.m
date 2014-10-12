@@ -31,10 +31,10 @@
     
     [super viewDidLoad];
     self.collectionView.bounds = self.view.bounds;
-    [[NSNotificationCenter defaultCenter] addObserver:self
+    /*[[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished)
                                                  name:@"downloadFinished" object:nil];
-    
+    */
 
     client = [InstaClient sharedClient];
     
@@ -71,6 +71,7 @@
 
 - (void)downloadFinished
 {
+    NSLog(@"HOHOHOIHIHOIHO");
     imagesArray = client.imagesArray;
     [self.collectionView reloadData];
 }
@@ -91,6 +92,7 @@
     {
         NSLog(@"Keypath is: %@", keyPath);
         NSLog(@"[VKViewController]searchImagesArray called");
+        NSLog(@"SearchImagesArray : %@", client.searchImagesArray);
         imagesArray = client.searchImagesArray;
         [self.collectionView reloadData];
     }
