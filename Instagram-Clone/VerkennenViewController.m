@@ -10,6 +10,7 @@
 #import "InstaClient.h"
 #import "InstaMedia.h"
 #import "ImageDetailViewController.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface VerkennenViewController ()
 {
@@ -56,7 +57,7 @@
     [activityView startAnimating];
     [self.collectionView addSubview:activityView];
     
-    
+    self.collectionView.backgroundColor = [UIColor clearColor];
     dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
     
     dispatch_sync(backGroundQue, ^{
@@ -67,10 +68,27 @@
             
         });
     });
-   
+    [self.collectionView reloadData];
     
     
 }
+
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
+    
+    return UIEdgeInsetsMake(0, 0, 0, 0);
+    
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumInteritemSpacingForSectionAtIndex:(NSInteger)section {
+    return 0.0;
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section {
+    return 0.0;
+}
+
+
 
 - (void)downloadFinished:(NSNotification *)notification
 {
@@ -174,12 +192,16 @@
    // NSLog(@"FDSLKFJD : %@", tiet);
     
     NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"url"]];
+    [cellImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"buf.png"]];
+/*
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
+    
     
     //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
     if (image)
     {
+        
         cellImageView.image = image; //[UIImage imageWithData:imageData];
         // NSLog(@"[VKViewController]met url");
     }
@@ -189,6 +211,7 @@
        // NSLog(@"[VKViewController]Buf geladen!");
     }
  
+    */
     
     return cell;
 }

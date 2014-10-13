@@ -11,6 +11,8 @@
 #import "InstaMedia.h"
 #import "CustomHeaderViewCell.h"
 #import "CustomFooterViewCell.h"
+#import "UIImageView+AFNetworking.h"
+
 
 @interface MainFeedViewController ()
 {
@@ -154,6 +156,7 @@
     }
   //  NSLog(@"We zijn er mee bezig!");
     
+    UILabel *likesLabel = (UILabel *) [cell viewWithTag:10];
     
     NSString *likes =[mediaHeader.likes objectForKey:@"count"];
     NSString *likesTekst = [NSString stringWithFormat:@"vind-ik-leuks"];
@@ -167,16 +170,34 @@
     
     NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"profile_picture"]];
     NSLog(@"[MFVC]url: %@", url);
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *image = [UIImage imageWithData:data];
+   // NSData *data = [NSData dataWithContentsOfURL:url];
+   // UIImage *image = [UIImage imageWithData:data];
     cell.username.text =username;//@"user_name";
-    cell.profileImage.image = image;
-//
-   
+
+    [cell.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Buffy.png"]];
+    //cell.profileImage.image = image;
+    
     NSDateFormatter *df = [[NSDateFormatter alloc]init];
     [df setDateFormat:@"HH"];
-   cell.time.text = [df stringFromDate:mediaHeader.created_time];
-    NSLog(@"Date: %@", mediaHeader.created_time);
+    
+    NSTimeInterval timeInterval = (NSTimeInterval)mediaHeader.created_time;
+    NSDate *timestamp = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+    NSString *dateStart = [df stringFromDate:timestamp];
+    NSLog(@"DATUM IS %@", dateStart);
+    
+    NSDate *now = [NSDate date];
+    NSLog(@"Time diff is : %ff", [now timeIntervalSinceDate:timestamp]);
+   
+    NSCalendar *myCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian  ];
+    NSUInteger unitFlags = NSCalendarUnitHour;
+    NSDateComponents *components = [myCalendar components:unitFlags
+                                                 fromDate:timestamp
+                                                   toDate:now options:0];
+    
+    NSLog(@"Componententste: %li", (long)[components hour]);
+    
+  // cell.time.text = [df stringFromDate:mediaHeader.created_time];
+   // NSLog(@"Date: %@", mediaHeader.created_time);
     
     cell.profileImage.clipsToBounds = YES;
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2;
@@ -197,18 +218,20 @@
     UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:200];
     if (feedArray)
     {
-        NSLog(@"[[MFViewC]IndexPath-mainCells: %ld", (long)indexPath.section );
+       // NSLog(@"[[MFViewC]IndexPath-mainCells: %ld", (long)indexPath.section );
         media = [feedArray objectAtIndex:indexPath.section];
-        NSLog(@"[MFViewController]media.InstaIMageUrl: %@", media.images);
+       // NSLog(@"[MFViewController]media.InstaIMageUrl: %@", media.images);
         NSDictionary *tiet = [media.images objectForKey:@"standard_resolution"];
-        NSLog(@"FDSLKFJD : %@", tiet);
+       // NSLog(@"FDSLKFJD : %@", tiet);
         
          NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"url"]];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [UIImage imageWithData:data];
-        NSLog(@"[MFVC]media.images: %@", media.images);
+       // NSData *data = [NSData dataWithContentsOfURL:url];
+       // UIImage *image = [UIImage imageWithData:data];
+        //NSLog(@"[MFVC]media.images: %@", media.images);
         
-        cellImageView.image = image;
+        [cellImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Buffy.png"]];
+        
+        //cellImageView.image = image;
         //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
        /* if (media.instaImage)
         {

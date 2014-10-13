@@ -10,6 +10,6 @@
 
 @interface MainFeedViewController : UITableViewController
 
-@property (nonatomic) IBOutlet UILabel *likesLabel;
+//@property (nonatomic) IBOutlet UILabel *likesLabel;
 
 @end
