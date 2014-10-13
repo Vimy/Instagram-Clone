@@ -30,7 +30,7 @@
 		39C85A8E19D574D8007295D9 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39C85A8C19D574D8007295D9 /* LaunchScreen.xib */; };
 		39C85A9A19D574D8007295D9 /* Instagram_CloneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85A9919D574D8007295D9 /* Instagram_CloneTests.m */; };
 		39CE39F119DB19840079AA55 /* buf.png in Resources */ = {isa = PBXBuildFile; fileRef = 39CE39F019DB19840079AA55 /* buf.png */; };
-		39D139DC19EC80F5005ABEC0 /* MainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39D139DB19EC80F5005ABEC0 /* MainCell.xib */; };
+		39D139DC19EC80F5005ABEC0 /* mainCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 39D139DB19EC80F5005ABEC0 /* mainCell.xib */; };
 		39D139DF19EC8116005ABEC0 /* MainCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39D139DE19EC8116005ABEC0 /* MainCell.m */; };
 		39E314DC19D9F258009141C5 /* VerkennenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E314DB19D9F258009141C5 /* VerkennenViewController.m */; };
 		39E314DF19D9F508009141C5 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E314DE19D9F508009141C5 /* CameraViewController.m */; };
@@ -84,7 +84,7 @@
 		39C85A9819D574D8007295D9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		39C85A9919D574D8007295D9 /* Instagram_CloneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Instagram_CloneTests.m; sourceTree = "<group>"; };
 		39CE39F019DB19840079AA55 /* buf.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buf.png; sourceTree = "<group>"; };
-		39D139DB19EC80F5005ABEC0 /* MainCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainCell.xib; sourceTree = "<group>"; };
+		39D139DB19EC80F5005ABEC0 /* mainCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = mainCell.xib; sourceTree = "<group>"; };
 		39D139DD19EC8116005ABEC0 /* MainCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainCell.h; sourceTree = "<group>"; };
 		39D139DE19EC8116005ABEC0 /* MainCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainCell.m; sourceTree = "<group>"; };
 		39E314DA19D9F258009141C5 /* VerkennenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerkennenViewController.h; sourceTree = "<group>"; };
@@ -141,10 +141,9 @@
 				39C85A7E19D574D8007295D9 /* AppDelegate.h */,
 				39C85A7F19D574D8007295D9 /* AppDelegate.m */,
 				3955106A19E080D400023955 /* CustomHeaderViewCell.h */,
-				39D139DB19EC80F5005ABEC0 /* MainCell.xib */,
+				3955106B19E080D400023955 /* CustomHeaderViewCell.m */,
 				39D139DD19EC8116005ABEC0 /* MainCell.h */,
 				39D139DE19EC8116005ABEC0 /* MainCell.m */,
-				3955106B19E080D400023955 /* CustomHeaderViewCell.m */,
 				3955106719E078FC00023955 /* MainFeedViewController.h */,
 				3955106819E078FC00023955 /* MainFeedViewController.m */,
 				39E314DA19D9F258009141C5 /* VerkennenViewController.h */,
@@ -156,6 +155,7 @@
 				39C85A8719D574D8007295D9 /* Main.storyboard */,
 				3955106D19E0849800023955 /* headerCell.xib */,
 				39BEDC8F19E1BD2400506B3C /* footerCell.xib */,
+				39D139DB19EC80F5005ABEC0 /* mainCell.xib */,
 				39BEDC9119E1BD3500506B3C /* CustomFooterViewCell.h */,
 				39BEDC9219E1BD3500506B3C /* CustomFooterViewCell.m */,
 				39BC07DB19D73A450090E20E /* InstaUser.h */,
@@ -298,7 +298,7 @@
 			files = (
 				39BEDCD619E4455900506B3C /* icon_clock_20x20.png in Resources */,
 				3955106E19E0849800023955 /* headerCell.xib in Resources */,
-				39D139DC19EC80F5005ABEC0 /* MainCell.xib in Resources */,
+				39D139DC19EC80F5005ABEC0 /* mainCell.xib in Resources */,
 				3955102F19DF43CF00023955 /* billabong-1361543483.ttf in Resources */,
 				39C85A8919D574D8007295D9 /* Main.storyboard in Resources */,
 				39CE39F119DB19840079AA55 /* buf.png in Resources */,

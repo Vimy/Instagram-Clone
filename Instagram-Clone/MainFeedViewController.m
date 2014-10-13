@@ -26,7 +26,7 @@
   
 }
 @end
-
+//http://stackoverflow.com/questions/19819165/imitate-ios-7-facebook-hide-show-expanding-contracting-navigation-bar
 @implementation MainFeedViewController
 
 - (void)viewDidLoad
@@ -41,6 +41,7 @@
     self.shyNavBarManager.scrollView = self.tableView;
     [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forCellReuseIdentifier:@"headerCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"footerCell" bundle:nil] forCellReuseIdentifier:@"footerCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"mainCell" bundle:nil] forCellReuseIdentifier:@"mainCell"];
    // [client startPersonalFeed];
   //  [client addObserver:self forKeyPath:@"personalImagesArray" options:0 context:NULL];
    
@@ -153,7 +154,7 @@
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
         cell = [[CustomHeaderViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"headerCell"];
-        //NSLog(@"Cell is nil");
+        NSLog(@"Cell is nil");
     }
   //  NSLog(@"We zijn er mee bezig!");
     
@@ -218,7 +219,7 @@
     MainCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainCell"];
     if (cell==nil) {
         cell = [[MainCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mainCell"];
-        //NSLog(@"Cell is nil");
+        NSLog(@"Cell is nil");
     }
 
    
