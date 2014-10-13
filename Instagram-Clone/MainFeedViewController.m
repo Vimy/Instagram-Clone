@@ -12,7 +12,8 @@
 #import "CustomHeaderViewCell.h"
 #import "CustomFooterViewCell.h"
 #import "UIImageView+AFNetworking.h"
-
+#import "MainCell.h"
+#import "TLYShyNavBarManager.h"
 
 @interface MainFeedViewController ()
 {
@@ -37,7 +38,7 @@
     [super viewDidLoad];
     client = [InstaClient sharedClient];
     [client startConnection];
-    
+    self.shyNavBarManager.scrollView = self.tableView;
     [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forCellReuseIdentifier:@"headerCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"footerCell" bundle:nil] forCellReuseIdentifier:@"footerCell"];
    // [client startPersonalFeed];
@@ -213,9 +214,17 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"feedCell" forIndexPath:indexPath];
     
-    UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:200];
+    MainCell *cell = [tableView dequeueReusableCellWithIdentifier:@"mainCell"];
+    if (cell==nil) {
+        cell = [[MainCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"mainCell"];
+        //NSLog(@"Cell is nil");
+    }
+
+   
+   // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"feedCell" forIndexPath:indexPath];
+    
+    UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:450];
     if (feedArray)
     {
        // NSLog(@"[[MFViewC]IndexPath-mainCells: %ld", (long)indexPath.section );
@@ -229,7 +238,7 @@
        // UIImage *image = [UIImage imageWithData:data];
         //NSLog(@"[MFVC]media.images: %@", media.images);
         
-        [cellImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Buffy.png"]];
+        [ cell.mainImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Buffy.png"]];
         
         //cellImageView.image = image;
         //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];

@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-TLYShyNavBar.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,27 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>11F9A211247246A09859429C</key>
+		<key>325D56F5B3484D9A8E1219BA</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>5D1EF6AC91D64B93ADEC8153</key>
+		<key>872A6D31021D43B2A9A71280</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>73574CB36E734218A8069397</key>
+		<key>98EA2A38060945D39D9AE432</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D7CEF991DB14FBDA34B7D0B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>B42A35C759194A578CD56D43</key>
+		<key>D3EDD59F2DE84FA6AA204598</key>
 		<dict>
 			<key>primary</key>
 			<true/>
