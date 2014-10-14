@@ -38,7 +38,11 @@
     [super viewDidLoad];
     client = [InstaClient sharedClient];
     [client startConnection];
-    self.shyNavBarManager.scrollView = self.tableView;
+    
+    //navbar omhoog duwen
+    //self.shyNavBarManager.scrollView = self.tableView;
+    //http://stackoverflow.com/questions/19819165/imitate-ios-7-facebook-hide-show-expanding-contracting-navigation-bar
+    //http://stackoverflow.com/questions/17499391/ios-nested-view-controllers-view-inside-uiviewcontrollers-view
     [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forCellReuseIdentifier:@"headerCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"footerCell" bundle:nil] forCellReuseIdentifier:@"footerCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"mainCell" bundle:nil] forCellReuseIdentifier:@"mainCell"];
