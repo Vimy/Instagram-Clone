@@ -25,6 +25,7 @@
 - (NSArray *)startConnectionPopulairFeed;
 - (NSArray *)startPersonalFeed;
 +(id)sharedClient;
+- (void)downloadUserFeed:(NSString *)username;
 
 
 @end

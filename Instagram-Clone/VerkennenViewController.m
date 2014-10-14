@@ -11,6 +11,7 @@
 #import "InstaMedia.h"
 #import "ImageDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "MainFeedViewController.h"
 
 @interface VerkennenViewController ()
 {
@@ -192,7 +193,7 @@
    // NSLog(@"FDSLKFJD : %@", tiet);
     
     NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"url"]];
-    [cellImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"buf.png"]];
+    [cellImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"graybox.jpg"]];
 /*
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *image = [UIImage imageWithData:data];
@@ -222,12 +223,23 @@
     if ([segue.identifier isEqualToString:@"tiet"])
     {
         
-      
+        
+        NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
+        MainFeedViewController *vc = (MainFeedViewController *)segue.destinationViewController;
+        InstaMedia *segueMedia = [[InstaMedia alloc]init];
+        segueMedia = [imagesArray objectAtIndex:indexPath.row];
+        NSString *username = segueMedia.caption[@"from"][@"username"];
+        
+        //vc.username = username;
+        vc.mediaSegue = @[segueMedia];
+        
+        
+      /*
         NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
         ImageDetailViewController *vc = (ImageDetailViewController *)segue.destinationViewController;
         InstaMedia *segueMedia = [[InstaMedia alloc]init];
         segueMedia = [imagesArray objectAtIndex:indexPath.row];
-        
+      /*
         NSDictionary *tiet = [segueMedia.images objectForKey:@"standard_resolution"];
         // NSLog(@"FDSLKFJD : %@", tiet);
         
@@ -241,8 +253,11 @@
         NSLog(@"[VKVC]profileURL: %@", urlProfilePic);
         NSData *dataProfilePic = [NSData dataWithContentsOfURL:urlProfilePic];
         UIImage *imageProfilePic = [UIImage imageWithData:dataProfilePic];
+        */
         
-        vc.media = segueMedia;
+        
+        //vc.media = segueMedia;
+        
       /*  vc.tiet.text = @"hoi";
        //segueMedia.profileImage;
        // vc.profileImage.image = imageProfilePic;

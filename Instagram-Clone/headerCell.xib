@@ -18,6 +18,17 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="icon_clock_20x20.png" translatesAutoresizingMaskIntoConstraints="NO" id="sUx-eo-hSS">
                                 <rect key="frame" x="333" y="13" width="10" height="10"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="headTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="18q-Gt-3b1">
+                                <rect key="frame" x="50" y="7" width="192" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleColor" red="0.41568630933761597" green="0.57254904508590698" blue="0.69411766529083252" alpha="1" colorSpace="deviceRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="taptap:" destination="yGp-5S-hOO" eventType="touchUpInside" id="e6m-JT-cXH"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
@@ -33,23 +44,14 @@
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="whn-sg-yfa">
                         <rect key="frame" x="8" y="5" width="40" height="40"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="user_name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lLx-AJ-YDp">
-                        <rect key="frame" x="56" y="5" width="200" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.4156863093" green="0.57254904510000004" blue="0.69411766529999996" alpha="1" colorSpace="deviceRGB"/>
-                        <nil key="highlightedColor"/>
-                        <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                            <rect key="frame" x="62" y="72" width="200" height="21"/>
-                        </variation>
-                    </label>
                 </subviews>
             </tableViewCellContentView>
             <connections>
                 <outlet property="profileImage" destination="whn-sg-yfa" id="fpb-Dd-lus"/>
                 <outlet property="time" destination="ph2-Hr-SAa" id="93o-cp-g91"/>
-                <outlet property="username" destination="lLx-AJ-YDp" id="06r-XO-vBc"/>
+                <outlet property="usernameButton" destination="18q-Gt-3b1" id="3WS-Z2-Tor"/>
             </connections>
-            <point key="canvasLocation" x="44.5" y="301"/>
+            <point key="canvasLocation" x="44.5" y="292"/>
         </tableViewCell>
     </objects>
     <resources>

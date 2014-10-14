@@ -35,8 +35,22 @@
                                             selector:@selector(downloadFinished)
                                               name:@"personalFeedDownload" object:nil];
     
-    [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished)
+                                                 name:@"userFeedDownload" object:nil];
     client = [InstaClient sharedClient];
+/*
+    if (self.isSegue)
+    {
+        [client downloadUserFeed:self.username];
+        self.isSegue = NO;
+    }
+    else
+    {
+        
+    }
+    */
+    [super viewDidLoad];
     [client startConnection];
     
     //navbar omhoog duwen
@@ -49,19 +63,33 @@
    // [client startPersonalFeed];
   //  [client addObserver:self forKeyPath:@"personalImagesArray" options:0 context:NULL];
    
-    
-    
-    dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
-    
-    dispatch_sync(backGroundQue, ^{
+    if (!self.mediaSegue)
+    {
+        dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
         
-        [client startPersonalFeed];
-
-        dispatch_async(dispatch_get_main_queue(), ^{
+        dispatch_sync(backGroundQue, ^{
             
+            [client startPersonalFeed];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+            });
         });
-    });
 
+    }
+    else
+    {
+        if (!self.isUserView)
+        {
+            feedArray = self.mediaSegue;
+        }
+        else
+        {
+            [client downloadUserFeed:self.username];
+
+        }
+    }
+   
     
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -170,17 +198,17 @@
     NSLog(@"[IDVC]Likes: %@", [mediaHeader.likes objectForKey:@"count"] );
     
     
-    NSDictionary *tiet = [mediaHeader.caption objectForKey:@"from"];
-    NSString *username = [tiet objectForKey:@"username"];
+   // NSDictionary *tiet = [mediaHeader.caption objectForKey:@"from"];
+    NSString *username = mediaHeader.caption [@"from"][@"username"]; //[tiet objectForKey:@"username"];
     
     
-    NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"profile_picture"]];
+    NSURL *url = [NSURL URLWithString:mediaHeader.caption [@"from"][@"profile_picture"]];
     NSLog(@"[MFVC]url: %@", url);
    // NSData *data = [NSData dataWithContentsOfURL:url];
    // UIImage *image = [UIImage imageWithData:data];
-    cell.username.text =username;//@"user_name";
-
-    [cell.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Buffy.png"]];
+    [cell.usernameButton setTitle:username forState:UIControlStateNormal];
+    // cell.usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [cell.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
     //cell.profileImage.image = image;
     
     NSDateFormatter *df = [[NSDateFormatter alloc]init];
@@ -243,7 +271,7 @@
        // UIImage *image = [UIImage imageWithData:data];
         //NSLog(@"[MFVC]media.images: %@", media.images);
         
-        [ cell.mainImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"Buffy.png"]];
+        [ cell.mainImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"graybox.jpg"]];
         
         //cellImageView.image = image;
         //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];

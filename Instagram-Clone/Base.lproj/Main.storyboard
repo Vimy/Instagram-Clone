@@ -101,7 +101,7 @@
                                             </mask>
                                         </variation>
                                         <connections>
-                                            <segue destination="ueg-h7-lEp" kind="show" id="GKP-lb-Bwd"/>
+                                            <segue destination="ueg-h7-lEp" kind="show" identifier="tiet" id="GKP-lb-Bwd"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -363,12 +363,53 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wv-Fh-bRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="660.75" y="-657.375"/>
+            <point key="canvasLocation" x="2196.75" y="-666.375"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="QH2-di-r0z">
+            <objects>
+                <viewController id="sQQ-wX-kto" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jrm-am-sXL"/>
+                        <viewControllerLayoutGuide type="bottom" id="paG-Cf-VgP"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BB9-bj-0N5">
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RX5-Nb-23L">
+                                <rect key="frame" x="-61" y="-14" width="123" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                    <segment title=""/>
+                                    <segment title=""/>
+                                </segments>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="122" y="261" width="205" height="29"/>
+                                </variation>
+                            </segmentedControl>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <variation key="default">
+                            <mask key="subviews">
+                                <exclude reference="RX5-Nb-23L"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="subviews">
+                                <include reference="RX5-Nb-23L"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="XoC-s5-ZKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3012" y="-796.5"/>
         </scene>
         <!--Personal-->
         <scene sceneID="zxW-gP-DHf">
             <objects>
-                <viewController id="dqD-H9-95c" customClass="UserProfileViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="userView" id="dqD-H9-95c" customClass="UserProfileViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y9d-90-msV"/>
                         <viewControllerLayoutGuide type="bottom" id="9kH-yi-Rdc"/>
@@ -466,7 +507,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6B-wf-FGY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1850.25" y="-622.875"/>
+            <point key="canvasLocation" x="704.25" y="-925.125"/>
         </scene>
         <!--Foto-->
         <scene sceneID="iQ0-Kn-En0">
