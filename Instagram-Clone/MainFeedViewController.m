@@ -184,13 +184,15 @@
    
     mediaHeader = [feedArray objectAtIndex:section];
     tempMedia = mediaHeader;
-    
+    if (tempMedia)
+    {
+        NSLog(@"TEMPMEDIA IS VOL");
+    }
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
         cell = [[CustomHeaderViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"headerCell"];
         NSLog(@"Cell is nil");
     }
-  //  NSLog(@"We zijn er mee bezig!");
     cell.delegate = self;
     
     UILabel *likesLabel = (UILabel *) [cell viewWithTag:10];
@@ -198,21 +200,14 @@
     NSString *likes =[mediaHeader.likes objectForKey:@"count"];
     NSString *likesTekst = [NSString stringWithFormat:@"vind-ik-leuks"];
     likesLabel.text = [NSString stringWithFormat:@"%@ %@", likes, likesTekst];
-    NSLog(@"[IDVC]Likes: %@", [mediaHeader.likes objectForKey:@"count"] );
     
     
-   // NSDictionary *tiet = [mediaHeader.caption objectForKey:@"from"];
-    NSString *username = mediaHeader.caption [@"from"][@"username"]; //[tiet objectForKey:@"username"];
+    NSString *username = mediaHeader.caption [@"from"][@"username"];
     
     
     NSURL *url = [NSURL URLWithString:mediaHeader.caption [@"from"][@"profile_picture"]];
-    NSLog(@"[MFVC]url: %@", url);
-   // NSData *data = [NSData dataWithContentsOfURL:url];
-   // UIImage *image = [UIImage imageWithData:data];
-    [cell.usernameButton setTitle:username forState:UIControlStateNormal];
-    // cell.usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+      [cell.usernameButton setTitle:username forState:UIControlStateNormal];
     [cell.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
-    //cell.profileImage.image = image;
     
     NSDateFormatter *df = [[NSDateFormatter alloc]init];
     [df setDateFormat:@"HH"];
@@ -220,21 +215,15 @@
     NSTimeInterval timeInterval = (NSTimeInterval)mediaHeader.created_time;
     NSDate *timestamp = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     NSString *dateStart = [df stringFromDate:timestamp];
-    NSLog(@"DATUM IS %@", dateStart);
     
     NSDate *now = [NSDate date];
-    NSLog(@"Time diff is : %ff", [now timeIntervalSinceDate:timestamp]);
    
     NSCalendar *myCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian  ];
     NSUInteger unitFlags = NSCalendarUnitHour;
     NSDateComponents *components = [myCalendar components:unitFlags
                                                  fromDate:timestamp
                                                    toDate:now options:0];
-    
-    NSLog(@"Componententste: %li", (long)[components hour]);
-    
-  // cell.time.text = [df stringFromDate:mediaHeader.created_time];
-   // NSLog(@"Date: %@", mediaHeader.created_time);
+
     
     cell.profileImage.clipsToBounds = YES;
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2;
@@ -248,8 +237,13 @@
 -(void)loadNewScreen:(UIViewController *)controller
 {
       [self.navigationController pushViewController:controller animated:YES];
-    UserProfileViewController *vc = [[UserProfileViewController alloc]init];
-    vc.media = tempMedia;
+    
+  //  [[NSNotificationCenter defaultCenter] postNotificationName:@"changeToUserView" object:tempMedia];
+    NSDictionary *dic = @{@"media":tempMedia };
+    
+    
+    [[NSNotificationCenter defaultCenter] postNotification:
+     [NSNotification notificationWithName:@"changeToUserView" object:nil userInfo:dic]];
     
    
 }

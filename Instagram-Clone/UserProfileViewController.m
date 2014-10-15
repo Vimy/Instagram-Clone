@@ -21,22 +21,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    NSString *username = self.media.caption [@"from"][@"username"]; //[tiet objectForKey:@"username"];
-    self.username.text = username;
-    NSLog(@"USERPRF]username: %@", username);
-    
-    NSURL *url = [NSURL URLWithString:self.media.caption [@"from"][@"profile_picture"]];
-    NSLog(@"[MFVC]url: %@", url);
-    // NSData *data = [NSData dataWithContentsOfURL:url];
-    // UIImage *image = [UIImage imageWithData:data];
-    // cell.usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
-    [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
-    
-    self.profileImage.clipsToBounds = YES;
-    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
-    self.profileImage.layer.borderWidth = 1.0f;
-   // self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToUserView" object:nil];
+
+  
 
     // Do any additional setup after loading the view.
 }
@@ -46,6 +33,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)getMedia:(NSNotification *)notification
+{
+    InstaMedia *media = [[notification userInfo] valueForKey:@"media"];
+    self.media = media;
+    [self setupUI];
+}
+
+- (void)setupUI
+{
+    NSString *username = self.media.caption [@"from"][@"username"]; //[tiet objectForKey:@"username"];
+    self.username.text = username;
+    NSLog(@"USERPRF]username: %@", username);
+    
+    NSURL *url = [NSURL URLWithString:self.media.caption [@"from"][@"profile_picture"]];
+    NSLog(@"[USERPRF]url: %@", url);
+    // NSData *data = [NSData dataWithContentsOfURL:url];
+    // UIImage *image = [UIImage imageWithData:data];
+    // cell.usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+    [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
+    
+    self.profileImage.clipsToBounds = YES;
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
+    self.profileImage.layer.borderWidth = 1.0f;
+    // self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+}
 /*
 #pragma mark - Navigation
 
