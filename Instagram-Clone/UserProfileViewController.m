@@ -21,9 +21,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToUserView" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToView" object:nil];
 
-  
+ // http://stackoverflow.com/questions/5210535/passing-data-between-view-controllers
 
     // Do any additional setup after loading the view.
 }

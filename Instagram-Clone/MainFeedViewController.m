@@ -40,17 +40,7 @@
                                              selector:@selector(downloadFinished)
                                                  name:@"userFeedDownload" object:nil];
     client = [InstaClient sharedClient];
-/*
-    if (self.isSegue)
-    {
-        [client downloadUserFeed:self.username];
-        self.isSegue = NO;
-    }
-    else
-    {
-        
-    }
-    */
+
     [super viewDidLoad];
     [client startConnection];
     
@@ -61,9 +51,10 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forCellReuseIdentifier:@"headerCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"footerCell" bundle:nil] forCellReuseIdentifier:@"footerCell"];
     [self.tableView registerNib:[UINib nibWithNibName:@"mainCell" bundle:nil] forCellReuseIdentifier:@"mainCell"];
-   // [client startPersonalFeed];
   //  [client addObserver:self forKeyPath:@"personalImagesArray" options:0 context:NULL];
    
+    
+    
     if (!self.mediaSegue)
     {
         dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
@@ -92,12 +83,7 @@
     }
    
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-}
+   }
 
 - (void)downloadFinished
 {
@@ -107,7 +93,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 /*- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -132,7 +117,6 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    // Return the number of sections.
     if (feedArray)
     {
         return [feedArray count];
@@ -145,7 +129,6 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    // Return the number of rows in the section.
  
         return 1 ;
     
@@ -237,15 +220,9 @@
 -(void)loadNewScreen:(UIViewController *)controller
 {
       [self.navigationController pushViewController:controller animated:YES];
-    
-  //  [[NSNotificationCenter defaultCenter] postNotificationName:@"changeToUserView" object:tempMedia];
-    NSDictionary *dic = @{@"media":tempMedia };
-    
-    
-    [[NSNotificationCenter defaultCenter] postNotification:
-     [NSNotification notificationWithName:@"changeToUserView" object:nil userInfo:dic]];
-    
-   
+        NSDictionary *dic = @{@"media":tempMedia };
+    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"changeToView" object:nil userInfo:dic]];
+ 
 }
 
 
@@ -258,44 +235,15 @@
         NSLog(@"Cell is nil");
     }
 
-   
-   // UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"feedCell" forIndexPath:indexPath];
-    
-    UIImageView *cellImageView = (UIImageView *) [cell viewWithTag:450];
     if (feedArray)
     {
-       // NSLog(@"[[MFViewC]IndexPath-mainCells: %ld", (long)indexPath.section );
         media = [feedArray objectAtIndex:indexPath.section];
-       // NSLog(@"[MFViewController]media.InstaIMageUrl: %@", media.images);
-        NSDictionary *tiet = [media.images objectForKey:@"standard_resolution"];
-       // NSLog(@"FDSLKFJD : %@", tiet);
-        
-         NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"url"]];
-       // NSData *data = [NSData dataWithContentsOfURL:url];
-       // UIImage *image = [UIImage imageWithData:data];
-        //NSLog(@"[MFVC]media.images: %@", media.images);
-        
+        NSURL *url = [NSURL URLWithString:media.images[@"standard_resolution"][@"url"]];
         [ cell.mainImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"graybox.jpg"]];
         
-        //cellImageView.image = image;
-        //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
-       /* if (media.instaImage)
-        {
-            cellImageView.image = media.instaImage; //[UIImage imageWithData:imageData];
-            likesLabel.text = [NSString stringWithFormat:@"%ld",(long)media.likes];
-            
-            // NSLog(@"[VKViewController]met url");
-        }
-        else
-        {
-            cellImageView.image = [UIImage imageNamed:@"buf.png"];
-            // NSLog(@"[VKViewController]Buf geladen!");
-        }
-*/
         
     }
-    
-    
+
        return cell;
 }
 

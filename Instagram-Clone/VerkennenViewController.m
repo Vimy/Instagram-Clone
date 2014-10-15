@@ -187,32 +187,12 @@
     if (imagesArray)
     {
            media = [imagesArray objectAtIndex:indexPath.row];
-         //   NSLog(@"[VKViewController]media.InstaIMageUrl: %@", media.instaImageURLThumbnail);
     }
     NSDictionary *tiet = [media.images objectForKey:@"thumbnail"];
-   // NSLog(@"FDSLKFJD : %@", tiet);
     
     NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"url"]];
     [cellImageView setImageWithURL:url placeholderImage:[UIImage imageNamed:@"graybox.jpg"]];
-/*
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *image = [UIImage imageWithData:data];
-    
-    
-    //  NSData *imageData = [NSData dataWithContentsOfURL:[imagesArray objectAtIndex:indexPath.row]];
-    if (image)
-    {
-        
-        cellImageView.image = image; //[UIImage imageWithData:imageData];
-        // NSLog(@"[VKViewController]met url");
-    }
-    else
-    {
-        cellImageView.image = [UIImage imageNamed:@"buf.png"];
-       // NSLog(@"[VKViewController]Buf geladen!");
-    }
- 
-    */
+
     
     return cell;
 }
@@ -221,54 +201,14 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"tiet"])
-    {
-        
-        
+    { 
         NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
         MainFeedViewController *vc = (MainFeedViewController *)segue.destinationViewController;
         InstaMedia *segueMedia = [[InstaMedia alloc]init];
         segueMedia = [imagesArray objectAtIndex:indexPath.row];
         NSString *username = segueMedia.caption[@"from"][@"username"];
         
-        //vc.username = username;
         vc.mediaSegue = @[segueMedia];
-        
-        
-      /*
-        NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
-        ImageDetailViewController *vc = (ImageDetailViewController *)segue.destinationViewController;
-        InstaMedia *segueMedia = [[InstaMedia alloc]init];
-        segueMedia = [imagesArray objectAtIndex:indexPath.row];
-      /*
-        NSDictionary *tiet = [segueMedia.images objectForKey:@"standard_resolution"];
-        // NSLog(@"FDSLKFJD : %@", tiet);
-        
-        NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"url"]];
-        
-        NSDictionary *userDict = [segueMedia.caption objectForKey:@"from"];
-        NSString *username = [userDict  objectForKey:@"username"];
-        NSLog(@"[VKVC]userDict: %@", userDict);
-        
-        NSURL *urlProfilePic = [NSURL URLWithString:[userDict objectForKey:@"profile_picture"]];
-        NSLog(@"[VKVC]profileURL: %@", urlProfilePic);
-        NSData *dataProfilePic = [NSData dataWithContentsOfURL:urlProfilePic];
-        UIImage *imageProfilePic = [UIImage imageWithData:dataProfilePic];
-        */
-        
-        
-        //vc.media = segueMedia;
-        
-      /*  vc.tiet.text = @"hoi";
-       //segueMedia.profileImage;
-       // vc.profileImage.image = imageProfilePic;
-       // vc.imagevar = segueMedia.instaImage;
-        vc.titleLabelvar = username;//segueMedia.username;
-        vc.fullImageURL = url;//segueMedia.instaImageURLFull;
-        vc.likesCount.text = [NSString stringWithFormat:@"%ld%d", (long)segueMedia.likes];
-        vc.profileImageURL = urlProfilePic;
-       // NSLog(@"ProfileURL ------ : %@", segueMedia.profilePictureUrl);
-        */
-        
         
         
     }

@@ -18,17 +18,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-  //  NSLog(@"[IDVC]Tietel: %@", self.titleLabel.text);
-    
-   // NSLog(@"[IDVC]profileIMAGEURL: %@", self.profileImageURL);
-   // NSLog(@"[IDVC]mainIMAGEURL: %@", self.fullImageURL);
+
    NSString *likes = [[self.media.likes objectForKey:@"count"]stringValue];
     NSString *likesTekst = [NSString stringWithFormat:@"vind-ik-leuks"];
     self.likesCount.text = [NSString stringWithFormat:@"%@ %@", likes, likesTekst];
     NSLog(@"[IDVC]Likes: %@", [self.media.likes objectForKey:@"count"] );
     
     NSDictionary *tiet = [self.media.images objectForKey:@"standard_resolution"];
-    // NSLog(@"FDSLKFJD : %@", tiet);
     
     NSURL *url = [NSURL URLWithString:[tiet objectForKey:@"url"]];
     
@@ -43,16 +39,7 @@
     self.profileImage.image = imageProfilePic;
     self.imageProfile.image = imageProfilePic;
     self.titleLabel.text = username;
- /*  NSURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:urlProfilePic];
-    AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
-    operation.responseSerializer = [AFImageResponseSerializer serializer];
-    [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject){
-        self.profileImage.image = responseObject;
-        NSLog(@"ResponseObject: %@", responseObject);
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error){
-        NSLog(@"Error: %@", error);
-    }];
-    */
+
     
     NSURLRequest *request2 = [[NSMutableURLRequest alloc] initWithURL:url];
     AFHTTPRequestOperation *operation2 = [[AFHTTPRequestOperation alloc] initWithRequest:request2];
@@ -64,8 +51,7 @@
         NSLog(@"Error: %@", error);
     }];
 
-    
-   //[operation start];
+
     [operation2 start];
     
     if (self.profileImage.image)
