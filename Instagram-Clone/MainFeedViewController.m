@@ -14,6 +14,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "MainCell.h"
 #import "TLYShyNavBarManager.h"
+#import "UserProfileViewController.h"
 
 @interface MainFeedViewController ()
 {
@@ -22,7 +23,7 @@
     InstaMedia  *media;
     InstaMedia *mediaHeader;
     InstaMedia *mediaFooter;
-    
+    InstaMedia *tempMedia;
   
 }
 @end
@@ -182,6 +183,7 @@
 {
    
     mediaHeader = [feedArray objectAtIndex:section];
+    tempMedia = mediaHeader;
     
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
@@ -189,6 +191,7 @@
         NSLog(@"Cell is nil");
     }
   //  NSLog(@"We zijn er mee bezig!");
+    cell.delegate = self;
     
     UILabel *likesLabel = (UILabel *) [cell viewWithTag:10];
     
@@ -242,7 +245,14 @@
 }
 
 
-
+-(void)loadNewScreen:(UIViewController *)controller
+{
+      [self.navigationController pushViewController:controller animated:YES];
+    UserProfileViewController *vc = [[UserProfileViewController alloc]init];
+    vc.media = tempMedia;
+    
+   
+}
 
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath

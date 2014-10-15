@@ -28,12 +28,13 @@
 {
     UIStoryboard* storyboard = [UIStoryboard storyboardWithName:@"Main"
                                                          bundle:nil];
-    UserProfileViewController *add =
+    UserProfileViewController *storyboardView =
     [storyboard instantiateViewControllerWithIdentifier:@"userView"];
+    UINavigationController *navigateController = [[UINavigationController alloc]initWithRootViewController:storyboardView];
     
-   // [self presentViewController:add
-     //                  animated:YES
-      //               completion:nil];
+    
+    [self.delegate loadNewScreen:storyboardView];
+    
 }
 
 @end

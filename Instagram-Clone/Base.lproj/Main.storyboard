@@ -140,7 +140,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBt-5r-KGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="150.75" y="262.875"/>
+            <point key="canvasLocation" x="477.75" y="426.375"/>
         </scene>
         <!--Instaclone-->
         <scene sceneID="gpr-JY-IPx">
@@ -195,7 +195,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUc-hl-KkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2841" y="76.5"/>
+            <point key="canvasLocation" x="3759" y="76.5"/>
         </scene>
         <!--Image Detail View Controller-->
         <scene sceneID="BIx-eY-0Ai">
@@ -292,7 +292,7 @@
                         <segue destination="5GT-AP-TzF" kind="relationship" relationship="viewControllers" id="pia-iz-4Uh"/>
                         <segue destination="wqn-hu-dVp" kind="relationship" relationship="viewControllers" id="XIf-xE-HBC"/>
                         <segue destination="mIf-so-ZSJ" kind="relationship" relationship="viewControllers" id="HkF-Tc-JlD"/>
-                        <segue destination="dqD-H9-95c" kind="relationship" relationship="viewControllers" id="V9h-jH-uoO"/>
+                        <segue destination="DhN-7x-XYg" kind="relationship" relationship="viewControllers" id="V9h-jH-uoO"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
@@ -363,7 +363,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wv-Fh-bRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2196.75" y="-666.375"/>
+            <point key="canvasLocation" x="2841.75" y="-675.375"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QH2-di-r0z">
@@ -404,9 +404,9 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XoC-s5-ZKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3012" y="-796.5"/>
+            <point key="canvasLocation" x="3930" y="-796.5"/>
         </scene>
-        <!--Personal-->
+        <!--Instaclone-->
         <scene sceneID="zxW-gP-DHf">
             <objects>
                 <viewController storyboardIdentifier="userView" id="dqD-H9-95c" customClass="UserProfileViewController" sceneMemberID="viewController">
@@ -420,7 +420,7 @@
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qoa-S4-y43">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="156" width="375" height="511"/>
+                                    <rect key="frame" x="0.0" y="209" width="375" height="458"/>
                                 </variation>
                                 <connections>
                                     <segue destination="ueg-h7-lEp" kind="embed" id="BkT-xY-8eX"/>
@@ -432,7 +432,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="39" y="125" width="46" height="30"/>
+                                    <rect key="frame" x="39" y="177" width="46" height="30"/>
                                 </variation>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4NS-QK-VdT">
@@ -441,7 +441,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="120" y="125" width="46" height="30"/>
+                                    <rect key="frame" x="120" y="177" width="46" height="30"/>
                                 </variation>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="u6C-Gh-njP">
@@ -450,7 +450,7 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="206" y="125" width="46" height="30"/>
+                                    <rect key="frame" x="206" y="177" width="46" height="30"/>
                                 </variation>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZYH-5c-LDx">
@@ -459,13 +459,13 @@
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="290" y="125" width="46" height="30"/>
+                                    <rect key="frame" x="290" y="177" width="46" height="30"/>
                                 </variation>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w09-8P-En5">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="20" width="75" height="75"/>
+                                    <rect key="frame" x="16" y="72" width="75" height="75"/>
                                 </variation>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="naam" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWI-rr-lMK">
@@ -474,7 +474,7 @@
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="16" y="103" width="101" height="21"/>
+                                    <rect key="frame" x="16" y="155" width="158" height="21"/>
                                 </variation>
                             </label>
                         </subviews>
@@ -502,12 +502,16 @@
                             </mask>
                         </variation>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Personal" id="70y-Kw-XUg"/>
+                    <navigationItem key="navigationItem" title="Instaclone" id="V2w-di-LrM"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="profileImage" destination="w09-8P-En5" id="0t7-t7-LVr"/>
+                        <outlet property="username" destination="aWI-rr-lMK" id="Nw5-9g-lYk"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M6B-wf-FGY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="704.25" y="-925.125"/>
+            <point key="canvasLocation" x="1569.75" y="-969.375"/>
         </scene>
         <!--Foto-->
         <scene sceneID="iQ0-Kn-En0">
@@ -526,7 +530,26 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y4k-Gg-p1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1923" y="76.5"/>
+            <point key="canvasLocation" x="2841" y="76.5"/>
+        </scene>
+        <!--Personal-->
+        <scene sceneID="3W9-W3-Thj">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="DhN-7x-XYg" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Personal" id="70y-Kw-XUg"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="84V-n7-Bhh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="dqD-H9-95c" kind="relationship" relationship="rootViewController" id="ZHW-gd-ba0"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ytM-yU-Ivq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="700.5" y="-270"/>
         </scene>
     </scenes>
     <resources>
