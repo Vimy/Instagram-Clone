@@ -197,7 +197,6 @@
     
     NSTimeInterval timeInterval = (NSTimeInterval)mediaHeader.created_time;
     NSDate *timestamp = [NSDate dateWithTimeIntervalSince1970:timeInterval];
-    NSString *dateStart = [df stringFromDate:timestamp];
     
     NSDate *now = [NSDate date];
    
@@ -207,7 +206,9 @@
                                                  fromDate:timestamp
                                                    toDate:now options:0];
 
+    NSLog(@"Tijd gepasseerd: %ld", (long)[components hour]);
     
+    cell.time.text = [NSString stringWithFormat:@"%ldu",(long)[components hour] ];
     cell.profileImage.clipsToBounds = YES;
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2;
     cell.profileImage.layer.borderWidth = 2.0f;
@@ -215,7 +216,7 @@
     return cell;
  
 }
-
+//http://www.reddit.com/r/iOSProgramming/comments/2jcboi/the_best_way_to_get_notified_when_the_data_is/
 
 -(void)loadNewScreen:(UIViewController *)controller
 {

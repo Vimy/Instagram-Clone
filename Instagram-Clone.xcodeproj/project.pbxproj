@@ -147,43 +147,12 @@
 			children = (
 				39C85A7E19D574D8007295D9 /* AppDelegate.h */,
 				39C85A7F19D574D8007295D9 /* AppDelegate.m */,
-				3955106A19E080D400023955 /* CustomHeaderViewCell.h */,
-				3955106B19E080D400023955 /* CustomHeaderViewCell.m */,
-				39D139DD19EC8116005ABEC0 /* MainCell.h */,
-				39D139DE19EC8116005ABEC0 /* MainCell.m */,
-				3955106719E078FC00023955 /* MainFeedViewController.h */,
-				3955106819E078FC00023955 /* MainFeedViewController.m */,
-				39E314DA19D9F258009141C5 /* VerkennenViewController.h */,
-				39E314DB19D9F258009141C5 /* VerkennenViewController.m */,
-				39E314DD19D9F508009141C5 /* CameraViewController.h */,
-				39E314DE19D9F508009141C5 /* CameraViewController.m */,
-				39C6FD5419DC9BFF000B6676 /* ImageDetailViewController.h */,
-				39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */,
-				39D139E019ED7ED1005ABEC0 /* UserProfileViewController.h */,
-				39D139E119ED7ED1005ABEC0 /* UserProfileViewController.m */,
-				39C85A8719D574D8007295D9 /* Main.storyboard */,
-				3955106D19E0849800023955 /* headerCell.xib */,
-				39BEDC8F19E1BD2400506B3C /* footerCell.xib */,
-				39D139DB19EC80F5005ABEC0 /* mainCell.xib */,
-				39BEDC9119E1BD3500506B3C /* CustomFooterViewCell.h */,
-				39BEDC9219E1BD3500506B3C /* CustomFooterViewCell.m */,
-				39BC07DB19D73A450090E20E /* InstaUser.h */,
-				39BC07DC19D73A450090E20E /* InstaUser.m */,
-				39BC07D819D735320090E20E /* InstaMedia.h */,
-				39BC07D919D735320090E20E /* InstaMedia.m */,
-				39BC07D519D6D3460090E20E /* InstaClient.h */,
-				39BC07D619D6D3460090E20E /* InstaClient.m */,
-				39BEDD8319E719A700506B3C /* NSNull+JSON.h */,
-				39BEDD8419E719A700506B3C /* NSNull+JSON.m */,
+				39D139E819EEEE2B005ABEC0 /* Views */,
+				39D139E919EEEE37005ABEC0 /* ViewControllers */,
+				39D139E719EEEE1A005ABEC0 /* Model */,
 				39C85A8A19D574D8007295D9 /* Images.xcassets */,
 				39C85A8C19D574D8007295D9 /* LaunchScreen.xib */,
-				39D139E319EDB88B005ABEC0 /* graybox.jpg */,
-				39D139E419EDB88B005ABEC0 /* none.gif */,
-				39CE39F019DB19840079AA55 /* buf.png */,
-				3955106F19E0895A00023955 /* Buffy.png */,
-				39BEDCD219E4455900506B3C /* icon_balloon_20x20.png */,
-				39BEDCD319E4455900506B3C /* icon_clock_20x20.png */,
-				39BEDCD419E4455900506B3C /* icon_heart_20x20.png */,
+				39D139EA19EEEE53005ABEC0 /* Assets */,
 				39C85A7A19D574D8007295D9 /* Supporting Files */,
 			);
 			path = "Instagram-Clone";
@@ -214,6 +183,69 @@
 				39C85A9819D574D8007295D9 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		39D139E719EEEE1A005ABEC0 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				39BC07DB19D73A450090E20E /* InstaUser.h */,
+				39BC07DC19D73A450090E20E /* InstaUser.m */,
+				39BC07D819D735320090E20E /* InstaMedia.h */,
+				39BC07D919D735320090E20E /* InstaMedia.m */,
+				39BC07D519D6D3460090E20E /* InstaClient.h */,
+				39BC07D619D6D3460090E20E /* InstaClient.m */,
+				39BEDD8319E719A700506B3C /* NSNull+JSON.h */,
+				39BEDD8419E719A700506B3C /* NSNull+JSON.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		39D139E819EEEE2B005ABEC0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3955106A19E080D400023955 /* CustomHeaderViewCell.h */,
+				3955106B19E080D400023955 /* CustomHeaderViewCell.m */,
+				39D139DD19EC8116005ABEC0 /* MainCell.h */,
+				39D139DE19EC8116005ABEC0 /* MainCell.m */,
+				39BEDC9119E1BD3500506B3C /* CustomFooterViewCell.h */,
+				39BEDC9219E1BD3500506B3C /* CustomFooterViewCell.m */,
+				39C85A8719D574D8007295D9 /* Main.storyboard */,
+				3955106D19E0849800023955 /* headerCell.xib */,
+				39BEDC8F19E1BD2400506B3C /* footerCell.xib */,
+				39D139DB19EC80F5005ABEC0 /* mainCell.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		39D139E919EEEE37005ABEC0 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				3955106719E078FC00023955 /* MainFeedViewController.h */,
+				3955106819E078FC00023955 /* MainFeedViewController.m */,
+				39E314DA19D9F258009141C5 /* VerkennenViewController.h */,
+				39E314DB19D9F258009141C5 /* VerkennenViewController.m */,
+				39E314DD19D9F508009141C5 /* CameraViewController.h */,
+				39E314DE19D9F508009141C5 /* CameraViewController.m */,
+				39C6FD5419DC9BFF000B6676 /* ImageDetailViewController.h */,
+				39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */,
+				39D139E019ED7ED1005ABEC0 /* UserProfileViewController.h */,
+				39D139E119ED7ED1005ABEC0 /* UserProfileViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		39D139EA19EEEE53005ABEC0 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				39D139E319EDB88B005ABEC0 /* graybox.jpg */,
+				39D139E419EDB88B005ABEC0 /* none.gif */,
+				39CE39F019DB19840079AA55 /* buf.png */,
+				3955106F19E0895A00023955 /* Buffy.png */,
+				39BEDCD219E4455900506B3C /* icon_balloon_20x20.png */,
+				39BEDCD319E4455900506B3C /* icon_clock_20x20.png */,
+				39BEDCD419E4455900506B3C /* icon_heart_20x20.png */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 		46A0D1372BC140C29C3D667F /* Frameworks */ = {
