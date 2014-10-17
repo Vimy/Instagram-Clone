@@ -20,14 +20,21 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
+    NSLog(@"[USERPRF]Nu werkt het!");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToView" object:nil];
-
+    [self setupUI];
  // http://stackoverflow.com/questions/5210535/passing-data-between-view-controllers
-
+// http://stackoverflow.com/questions/15540120/passing-data-to-container-view
     // Do any additional setup after loading the view.
 }
 
+- (void)viewWillAppear:(BOOL)animated
+{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToView" object:nil];
+     NSLog(@"[USERPRF]Nu werkt viewWillAppear!");
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
@@ -35,6 +42,7 @@
 
 - (void)getMedia:(NSNotification *)notification
 {
+    NSLog(@"[USERPRF]Nu werkt het!");
     InstaMedia *media = [[notification userInfo] valueForKey:@"media"];
     self.media = media;
     [self setupUI];
@@ -53,9 +61,9 @@
     // cell.usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
     
-    self.profileImage.clipsToBounds = YES;
-    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
-    self.profileImage.layer.borderWidth = 1.0f;
+   // self.profileImage.clipsToBounds = YES;
+    //self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
+    //self.profileImage.layer.borderWidth = 1.0f;
     // self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 /*

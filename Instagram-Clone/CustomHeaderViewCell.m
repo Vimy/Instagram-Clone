@@ -7,7 +7,6 @@
 //
 
 #import "CustomHeaderViewCell.h"
-#import "UserProfileViewController.h"
 @implementation CustomHeaderViewCell
 
 - (void)awakeFromNib
@@ -30,9 +29,7 @@
                                                          bundle:nil];
     UserProfileViewController *storyboardView =
     [storyboard instantiateViewControllerWithIdentifier:@"userView"];
-    UINavigationController *navigateController = [[UINavigationController alloc]initWithRootViewController:storyboardView];
-    
-    
+   // UINavigationController *navigateController = [[UINavigationController alloc]initWithRootViewController:storyboardView];
     [self.delegate loadNewScreen:storyboardView];
     
 }

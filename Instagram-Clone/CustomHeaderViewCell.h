@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserProfileViewController.h"
+
 @protocol changeViewcontrollerProtocol <NSObject>
-- (void)loadNewScreen:(UIViewController *)controller;
+- (void)loadNewScreen:(UserProfileViewController *)controller;
 @end
 
 @interface CustomHeaderViewCell : UITableViewCell

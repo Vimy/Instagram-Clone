@@ -16,7 +16,7 @@
 #import "TLYShyNavBarManager.h"
 #import "UserProfileViewController.h"
 
-@interface MainFeedViewController ()
+@interface MainFeedViewController () <UserProfileViewControllerDelegate>
 {
     NSArray *feedArray;
     InstaClient *client;
@@ -32,13 +32,19 @@
 
 - (void)viewDidLoad
 {
-   [[NSNotificationCenter defaultCenter] addObserver:self
-                                            selector:@selector(downloadFinished)
-                                              name:@"personalFeedDownload" object:nil];
+    
+    
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished)
+                                                 name:@"personalFeedDownload" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished)
                                                  name:@"userFeedDownload" object:nil];
+
+    
+ 
     client = [InstaClient sharedClient];
 
     [super viewDidLoad];
@@ -54,7 +60,7 @@
   //  [client addObserver:self forKeyPath:@"personalImagesArray" options:0 context:NULL];
    
     
-    
+  
     if (!self.mediaSegue)
     {
         dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
@@ -82,9 +88,25 @@
         }
     }
    
-    
-   }
+}
 
+
+-  (void)viewWillAppear:(BOOL)animated
+{
+    NSLog(@"TABBAR: %lu", (unsigned long)[self.tabBarController selectedIndex]);
+   /* if(self.tabBarController.selectedIndex)
+    {
+        [client downloadUserFeed:@"matthiasv"];
+        NSLog(@"HOIIIII!");
+    }
+    */
+
+}
+
+- (void)dataFromController:(InstaMedia *)media
+{
+    
+}
 - (void)downloadFinished
 {
     feedArray = client.personalImagesArray;
@@ -166,7 +188,7 @@
 {
    
     mediaHeader = [feedArray objectAtIndex:section];
-    tempMedia = mediaHeader;
+    tempMedia = [feedArray objectAtIndex:section]; // mediaHeader;
     if (tempMedia)
     {
         NSLog(@"TEMPMEDIA IS VOL");
@@ -218,11 +240,16 @@
 }
 //http://www.reddit.com/r/iOSProgramming/comments/2jcboi/the_best_way_to_get_notified_when_the_data_is/
 
--(void)loadNewScreen:(UIViewController *)controller
+-(void)loadNewScreen:(UserProfileViewController *)controller
 {
+    //cell delegate
+    NSLog(@"WEEEERKT DIT WEEEEELLLL????");
       [self.navigationController pushViewController:controller animated:YES];
         NSDictionary *dic = @{@"media":tempMedia };
+    controller.delegate = self;
+    controller.media = tempMedia;
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"changeToView" object:nil userInfo:dic]];
+
  
 }
 
