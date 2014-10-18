@@ -16,19 +16,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="Af7-Lg-BMi">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <variation key="widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="20" width="400" height="44"/>
-                                </variation>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="64" width="375" height="44"/>
-                                </variation>
-                                <connections>
-                                    <outlet property="delegate" destination="txo-4P-rtJ" id="MHN-xE-bOA"/>
-                                </connections>
-                            </searchBar>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="UB6-f9-JhR">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="0.0" id="b4p-D6-pLR">
@@ -37,12 +24,26 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <searchBar key="backgroundView" contentMode="redraw" id="Af7-Lg-BMi">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <variation key="widthClass=compact" fixedFrame="YES">
+                                        <rect key="frame" x="0.0" y="20" width="400" height="44"/>
+                                    </variation>
+                                    <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                        <rect key="frame" x="0.0" y="64" width="375" height="44"/>
+                                    </variation>
+                                    <connections>
+                                        <outlet property="delegate" destination="txo-4P-rtJ" id="MHN-xE-bOA"/>
+                                    </connections>
+                                </searchBar>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cell" id="I7y-NJ-y37">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                            <rect key="frame" x="0.0" y="0.0" width="125" height="125"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" tag="100" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Aov-pb-xsW">
@@ -120,13 +121,11 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <variation key="default">
                             <mask key="subviews">
-                                <exclude reference="Af7-Lg-BMi"/>
                                 <exclude reference="UB6-f9-JhR"/>
                             </mask>
                         </variation>
                         <variation key="widthClass=compact">
                             <mask key="subviews">
-                                <include reference="Af7-Lg-BMi"/>
                                 <include reference="UB6-f9-JhR"/>
                             </mask>
                         </variation>
@@ -140,7 +139,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aBt-5r-KGg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="477.75" y="426.375"/>
+            <point key="canvasLocation" x="455.5" y="494.5"/>
         </scene>
         <!--Instaclone-->
         <scene sceneID="gpr-JY-IPx">
@@ -195,7 +194,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EUc-hl-KkX" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3759" y="76.5"/>
+            <point key="canvasLocation" x="2271" y="44"/>
         </scene>
         <!--Image Detail View Controller-->
         <scene sceneID="BIx-eY-0Ai">
@@ -297,7 +296,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-843" y="-13.5"/>
+            <point key="canvasLocation" x="-1115" y="-1110"/>
         </scene>
         <!--Verkennen-->
         <scene sceneID="Ext-pd-zbx">
@@ -305,6 +304,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="wqn-hu-dVp" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Verkennen" id="99T-Qw-2dT"/>
                     <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="7Qa-Vk-dBp">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -316,7 +316,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PiU-RN-Eo0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-309" y="728.25"/>
+            <point key="canvasLocation" x="-509.5" y="127.5"/>
         </scene>
         <!--Feed-->
         <scene sceneID="raJ-43-Otp">
@@ -335,7 +335,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n5j-bL-i1K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-106.5" y="-606"/>
+            <point key="canvasLocation" x="109" y="-2190"/>
         </scene>
         <!--Instaclone-->
         <scene sceneID="X9L-nR-Ost">
@@ -363,7 +363,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wv-Fh-bRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2841.75" y="-675.375"/>
+            <point key="canvasLocation" x="3193.5" y="-1675.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="QH2-di-r0z">
@@ -405,7 +405,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XoC-s5-ZKo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3930" y="-796.5"/>
+            <point key="canvasLocation" x="3858" y="-589"/>
         </scene>
         <!--Instaclone-->
         <scene sceneID="zxW-gP-DHf">
@@ -425,7 +425,7 @@
                                     <rect key="frame" x="0.0" y="209" width="375" height="458"/>
                                 </variation>
                                 <connections>
-                                    <segue destination="ueg-h7-lEp" kind="embed" id="BkT-xY-8eX"/>
+                                    <segue destination="ueg-h7-lEp" kind="embed" identifier="showUserFeed" id="BkT-xY-8eX"/>
                                 </connections>
                             </containerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yut-UQ-dTr">
@@ -465,7 +465,7 @@
                                 </variation>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="w09-8P-En5">
-                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <rect key="frame" x="16" y="72" width="75" height="75"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="16" y="72" width="75" height="75"/>
                                 </variation>
@@ -532,7 +532,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="y4k-Gg-p1d" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2841" y="76.5"/>
+            <point key="canvasLocation" x="129" y="-332"/>
         </scene>
         <!--Personal-->
         <scene sceneID="3W9-W3-Thj">
@@ -551,7 +551,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ytM-yU-Ivq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="700.5" y="-270"/>
+            <point key="canvasLocation" x="540" y="-1118"/>
         </scene>
     </scenes>
     <resources>

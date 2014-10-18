@@ -120,7 +120,7 @@
 
 - (void)downloadUserFeed:(NSString *)username
 {
-       NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"https://api.instagram.com/v1/users/3/media/recent/?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae"]]];
+       NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"https://api.instagram.com/v1/users/%@/media/recent/?access_token=687802.6a88d49.78af428cbc2947d4951bcfb72116b7ae", username]]];
     self.personalImagesArray = [self startDownload:request forDownloadType:@"userFeedDownload"];
 }
 

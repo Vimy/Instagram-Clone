@@ -18,7 +18,7 @@
 
 @interface MainFeedViewController () <UserProfileViewControllerDelegate>
 {
-    NSArray *feedArray;
+    
     InstaClient *client;
     InstaMedia  *media;
     InstaMedia *mediaHeader;
@@ -59,8 +59,23 @@
     [self.tableView registerNib:[UINib nibWithNibName:@"mainCell" bundle:nil] forCellReuseIdentifier:@"mainCell"];
   //  [client addObserver:self forKeyPath:@"personalImagesArray" options:0 context:NULL];
    
-    
   
+    
+    
+}
+
+
+-  (void)viewWillAppear:(BOOL)animated
+{
+   // NSLog(@"TABBAR: %lu", (unsigned long)[self.tabBarController selectedIndex]);
+   /* if(self.tabBarController.selectedIndex)
+    {
+        [client downloadUserFeed:@"matthiasv"];
+        NSLog(@"HOIIIII!");
+    }
+    */
+
+    
     if (!self.mediaSegue)
     {
         dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
@@ -73,33 +88,19 @@
                 
             });
         });
-
+        
     }
     else
     {
-        if (!self.isUserView)
+        if (self.isImageDetailView)
         {
-            feedArray = self.mediaSegue;
+            _feedArray = self.mediaSegue;
         }
         else
         {
             [client downloadUserFeed:self.username];
-
         }
     }
-   
-}
-
-
--  (void)viewWillAppear:(BOOL)animated
-{
-    NSLog(@"TABBAR: %lu", (unsigned long)[self.tabBarController selectedIndex]);
-   /* if(self.tabBarController.selectedIndex)
-    {
-        [client downloadUserFeed:@"matthiasv"];
-        NSLog(@"HOIIIII!");
-    }
-    */
 
 }
 
@@ -109,7 +110,7 @@
 }
 - (void)downloadFinished
 {
-    feedArray = client.personalImagesArray;
+    self.feedArray = client.personalImagesArray;
     [self.tableView reloadData];
 }
 - (void)didReceiveMemoryWarning
@@ -139,9 +140,9 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    if (feedArray)
+    if (_feedArray)
     {
-        return [feedArray count];
+        return [_feedArray count];
     }
     else
     {
@@ -187,11 +188,11 @@
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
    
-    mediaHeader = [feedArray objectAtIndex:section];
-    tempMedia = [feedArray objectAtIndex:section]; // mediaHeader;
+    mediaHeader = [_feedArray objectAtIndex:section];
+    tempMedia = [_feedArray objectAtIndex:section]; // mediaHeader;
     if (tempMedia)
     {
-        NSLog(@"TEMPMEDIA IS VOL");
+   //     NSLog(@"TEMPMEDIA IS VOL");
     }
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
@@ -228,7 +229,7 @@
                                                  fromDate:timestamp
                                                    toDate:now options:0];
 
-    NSLog(@"Tijd gepasseerd: %ld", (long)[components hour]);
+  //  NSLog(@"Tijd gepasseerd: %ld", (long)[components hour]);
     
     cell.time.text = [NSString stringWithFormat:@"%ldu",(long)[components hour] ];
     cell.profileImage.clipsToBounds = YES;
@@ -248,6 +249,7 @@
         NSDictionary *dic = @{@"media":tempMedia };
     controller.delegate = self;
     controller.media = tempMedia;
+    controller.mediaArray = @[tempMedia];
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"changeToView" object:nil userInfo:dic]];
 
  
@@ -263,9 +265,9 @@
         NSLog(@"Cell is nil");
     }
 
-    if (feedArray)
+    if (_feedArray)
     {
-        media = [feedArray objectAtIndex:indexPath.section];
+        media = [_feedArray objectAtIndex:indexPath.section];
         NSURL *url = [NSURL URLWithString:media.images[@"standard_resolution"][@"url"]];
         [ cell.mainImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"graybox.jpg"]];
         

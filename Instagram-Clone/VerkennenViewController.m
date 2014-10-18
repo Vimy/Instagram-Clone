@@ -207,9 +207,9 @@
         InstaMedia *segueMedia = [[InstaMedia alloc]init];
         segueMedia = [imagesArray objectAtIndex:indexPath.row];
         NSString *username = segueMedia.caption[@"from"][@"username"];
-        
+        vc.isImageDetailView = YES;
         vc.mediaSegue = @[segueMedia];
-        
+        vc.feedArray = @[segueMedia];
         
     }
 }

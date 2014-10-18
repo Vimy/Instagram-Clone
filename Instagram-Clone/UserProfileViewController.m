@@ -11,8 +11,9 @@
 #import "UIImageView+AFNetworking.h"
 
 @interface UserProfileViewController ()
-@property (strong, nonatomic) IBOutlet UIImageView *profileImage;
-@property (strong, nonatomic) IBOutlet UILabel *username;
+{
+    NSString *username;
+}
 
 @end
 
@@ -50,7 +51,7 @@
 
 - (void)setupUI
 {
-    NSString *username = self.media.caption [@"from"][@"username"]; //[tiet objectForKey:@"username"];
+    username = self.media.caption [@"from"][@"username"]; //[tiet objectForKey:@"username"];
     self.username.text = username;
     NSLog(@"USERPRF]username: %@", username);
     
@@ -61,11 +62,25 @@
     // cell.usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
     [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
     
-   // self.profileImage.clipsToBounds = YES;
-    //self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
-    //self.profileImage.layer.borderWidth = 1.0f;
-    // self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+   self.profileImage.clipsToBounds = YES;
+self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
+   self.profileImage.layer.borderWidth = 0.5f;
+    self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
 }
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if ([segue.identifier isEqualToString:@"showUserFeed"])
+    {
+        NSLog(@"segue WERKT");
+        MainFeedViewController *vc = (MainFeedViewController *)segue.destinationViewController;
+        vc.username = self.media.caption [@"from"][@"id"];
+        vc.mediaSegue = self.mediaArray;
+        vc.isUserView = YES;
+        vc.feedArray = self.mediaArray;
+    }
+}
+
 /*
 #pragma mark - Navigation
 

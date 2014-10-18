@@ -22,4 +22,7 @@
 
 @property (nonatomic, strong) InstaMedia *media;
 @property (nonatomic, weak) id<UserProfileViewControllerDelegate> delegate;
+@property (strong, nonatomic) IBOutlet UIImageView *profileImage;
+@property (strong, nonatomic) IBOutlet UILabel *username;
+@property (strong, nonatomic) NSArray *mediaArray;
 @end

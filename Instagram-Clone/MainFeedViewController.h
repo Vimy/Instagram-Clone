@@ -15,5 +15,6 @@
 @property (strong, nonatomic) NSArray *mediaSegue;
 @property BOOL isUserView;
 @property (strong, nonatomic) NSString *username;
-
+@property BOOL isImageDetailView;
+@property (nonatomic, copy) NSArray *feedArray;
 @end
