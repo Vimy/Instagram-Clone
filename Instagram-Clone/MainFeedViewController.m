@@ -52,6 +52,8 @@
     
     //navbar omhoog duwen
     //self.shyNavBarManager.scrollView = self.tableView;
+    
+    
     //http://stackoverflow.com/questions/19819165/imitate-ios-7-facebook-hide-show-expanding-contracting-navigation-bar
     //http://stackoverflow.com/questions/17499391/ios-nested-view-controllers-view-inside-uiviewcontrollers-view
     [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forCellReuseIdentifier:@"headerCell"];
@@ -68,39 +70,46 @@
 -  (void)viewWillAppear:(BOOL)animated
 {
    // NSLog(@"TABBAR: %lu", (unsigned long)[self.tabBarController selectedIndex]);
-   /* if(self.tabBarController.selectedIndex)
+    if(self.tabBarController.selectedIndex == 3)
     {
-        [client downloadUserFeed:@"matthiasv"];
+        [client downloadUserFeed:@"self"];
         NSLog(@"HOIIIII!");
-    }
-    */
-
-    
-    if (!self.mediaSegue)
-    {
-        dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
-        
-        dispatch_sync(backGroundQue, ^{
-            
-            [client startPersonalFeed];
-            
-            dispatch_async(dispatch_get_main_queue(), ^{
-                
-            });
-        });
-        
     }
     else
     {
-        if (self.isImageDetailView)
+        
+        if (!self.mediaSegue)
         {
-            _feedArray = self.mediaSegue;
+            dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
+            
+            dispatch_sync(backGroundQue, ^{
+                
+                [client startPersonalFeed];
+                
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                });
+            });
+            
         }
         else
         {
-            [client downloadUserFeed:self.username];
+            if (self.isImageDetailView)
+            {
+                _feedArray = self.mediaSegue;
+            }
+            else
+            {
+                [client downloadUserFeed:self.username];
+            }
         }
+
+    
+    
+    
     }
+
+    
 
 }
 
@@ -111,6 +120,7 @@
 - (void)downloadFinished
 {
     self.feedArray = client.personalImagesArray;
+    NSLog(@"Dit gebeurd nu!");
     [self.tableView reloadData];
 }
 - (void)didReceiveMemoryWarning
@@ -224,14 +234,26 @@
     NSDate *now = [NSDate date];
    
     NSCalendar *myCalendar = [[NSCalendar alloc] initWithCalendarIdentifier:NSCalendarIdentifierGregorian  ];
-    NSUInteger unitFlags = NSCalendarUnitHour;
+    NSUInteger unitFlags = NSCalendarUnitHour | NSCalendarUnitDay;
     NSDateComponents *components = [myCalendar components:unitFlags
                                                  fromDate:timestamp
                                                    toDate:now options:0];
 
-  //  NSLog(@"Tijd gepasseerd: %ld", (long)[components hour]);
+   NSLog(@"Tijd gepasseerd: %ld", (long)[components day]);
+  
+    if ([components hour] > 24)
+    {
+        cell.time.text = [NSString stringWithFormat:@"%ld u",(long)[components day] ];
+    }
+    else
+    {
+        cell.time.text = [NSString stringWithFormat:@"%ld u",(long)[components hour] ];
+
+    }
+  
     
-    cell.time.text = [NSString stringWithFormat:@"%ldu",(long)[components hour] ];
+    cell.time.text = [NSString stringWithFormat:@"%ld u",(long)[components hour] ];
+
     cell.profileImage.clipsToBounds = YES;
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2;
     cell.profileImage.layer.borderWidth = 2.0f;
@@ -271,6 +293,11 @@
         NSURL *url = [NSURL URLWithString:media.images[@"standard_resolution"][@"url"]];
         [ cell.mainImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"graybox.jpg"]];
         
+        NSString *likes =[mediaHeader.likes objectForKey:@"count"];
+        NSString *likesTekst = [NSString stringWithFormat:@"vind-ik-leuks"];
+        cell.likesCountLabel.text = [NSString stringWithFormat:@"%@ %@", likes, likesTekst];
+        
+       
         
     }
 

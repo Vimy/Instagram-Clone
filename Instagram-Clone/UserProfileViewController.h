@@ -24,5 +24,9 @@
 @property (nonatomic, weak) id<UserProfileViewControllerDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
 @property (strong, nonatomic) IBOutlet UILabel *username;
+@property (strong, nonatomic) IBOutlet UILabel *userMediaCountLabel;
+@property (strong, nonatomic) IBOutlet UILabel *userFollowingCountLabel;
+@property (strong, nonatomic) IBOutlet UILabel *userFollowersCountLabel;
+@property (strong, nonatomic) IBOutlet UILabel *userOnderschriftLabel;
 @property (strong, nonatomic) NSArray *mediaArray;
 @end

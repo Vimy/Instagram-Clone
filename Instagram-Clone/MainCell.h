@@ -10,5 +10,7 @@
 
 @interface MainCell : UITableViewCell
 @property (strong, nonatomic) IBOutlet UIImageView *mainImage;
+@property (strong, nonatomic) IBOutlet UILabel *likesCountLabel;
+@property (strong, nonatomic) IBOutlet UILabel *onderschriftLabel;
 
 @end
