@@ -239,7 +239,7 @@
                                                  fromDate:timestamp
                                                    toDate:now options:0];
 
-   NSLog(@"Tijd gepasseerd: %ld", (long)[components day]);
+   NSLog(@"Tijd gepasseerd in dagen: %ld | Tijd gepasseerd in uren: %ld ", (long)[components day], (long)[components hour]);
   
     if ([components hour] > 24)
     {
