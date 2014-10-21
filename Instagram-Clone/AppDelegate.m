@@ -23,40 +23,7 @@
     NSLog(@"Deze url krijgen we: %@", url);
     NSLog(@"Dit is de query url: %@", [url query]);
     
-    //experiment
-   /* curl \-F 'client_id=CLIENT-ID' \
-    -F 'client_secret=CLIENT-SECRET' \
-    -F 'grant_type=authorization_code' \
-    -F 'redirect_uri=YOUR-REDIRECT-URI' \
-    -F 'code=CODE' \https://api.instagram.com/oauth/access_token
-*/
-    
-    //https://gist.github.com/mombrea/8467128
-    
-  
-    
-    
-    /*
-    
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/access_token/"]];
-    [request setHTTPMethod:@"POST"];
-    [request setValue:@"38ce63e055ce48cd8f37aee2d0fe73f6" forHTTPHeaderField:@"client_id"];
-    [request setValue:@"023772c25df742868e280ac8a1e0e0f4" forHTTPHeaderField:@"client_secret"];
-    [request setValue:[self parseQueryString:[url absoluteString]] forHTTPHeaderField:@"grant_type"];
-    [request setValue:@"instaklone://" forHTTPHeaderField:@"redirect_uri" ];
-    NSURLConnection *instaConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
-    NSLog(@"url called");
-    
-    */
-    
-    InstaClient *sharedClient = [InstaClient sharedClient];
-    
-    [sharedClient setInstaToken:[self parseQueryString:[url absoluteString]]];
-
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:[self parseQueryString:[url absoluteString]] forKey:@"auth_code"];
-    [defaults synchronize];
-    
+ 
     
     return YES;
     
@@ -64,27 +31,21 @@
 
 
 
-- (NSString *)parseQueryString:(NSString *)query
-{
-    NSArray *pairs = [query componentsSeparatedByString:@"="];
-    NSLog(@"Array: %@", pairs);
-    
-    NSString *string = pairs[1];
-    NSLog(@"string: %@", string);
-    return string;
-    
-    
-    
-}
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[UINavigationBar appearance] setBarTintColor:UIColorFromRGB(0x0517fa4)];
     
     [[UINavigationBar appearance] setTintColor:[UIColor whiteColor]];
 
+    NSShadow *shadow = [[NSShadow alloc] init];
+    shadow.shadowColor = [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8];
+    shadow.shadowOffset = CGSizeMake(0, -1); //[NSValue valueWithUIOffset:UIOffsetMake(0, -1)]
+    
+    
+    
     [[UINavigationBar appearance] setTitleTextAttributes:@{
                                                            NSForegroundColorAttributeName: [UIColor colorWithRed:255.0/255.0 green:255.0/255.0 blue:255.0/255.0 alpha:1.0],
-                                                           NSShadowAttributeName: [UIColor colorWithRed:0.0 green:0.0 blue:0.0 alpha:0.8],
-                                                           UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetMake(0, -1)],
+                                                           NSShadowAttributeName:shadow ,
                                                            NSFontAttributeName: [UIFont fontWithName:@"Billabong" size:40.0],
                                                            }];    // Override point for customization after application launch.
     

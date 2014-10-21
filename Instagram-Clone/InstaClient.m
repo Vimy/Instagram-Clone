@@ -214,4 +214,54 @@
     return [NSDictionary dictionaryWithDictionary:replaced];
 }
 
+
+- (void)handleOAuthCallbackWithUrl:(NSURL *)url
+{
+    //experiment
+    /* curl \-F 'client_id=CLIENT-ID' \
+     -F 'client_secret=CLIENT-SECRET' \
+     -F 'grant_type=authorization_code' \
+     -F 'redirect_uri=YOUR-REDIRECT-URI' \
+     -F 'code=CODE' \https://api.instagram.com/oauth/access_token
+     */
+    
+    //https://gist.github.com/mombrea/8467128
+    
+    
+    
+    
+    /*
+     
+     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/access_token/"]];
+     [request setHTTPMethod:@"POST"];
+     [request setValue:@"38ce63e055ce48cd8f37aee2d0fe73f6" forHTTPHeaderField:@"client_id"];
+     [request setValue:@"023772c25df742868e280ac8a1e0e0f4" forHTTPHeaderField:@"client_secret"];
+     [request setValue:[self parseQueryString:[url absoluteString]] forHTTPHeaderField:@"grant_type"];
+     [request setValue:@"instaklone://" forHTTPHeaderField:@"redirect_uri" ];
+     NSURLConnection *instaConnection = [[NSURLConnection alloc]initWithRequest:request delegate:self];
+     NSLog(@"url called");
+     
+     */
+    
+    
+    self.instaToken = [self parseQueryString:[url absoluteString]];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:[self parseQueryString:[url absoluteString]] forKey:@"auth_code"];
+    [defaults synchronize];
+    
+}
+
+- (NSString *)parseQueryString:(NSString *)query
+{
+    NSArray *pairs = [query componentsSeparatedByString:@"="];
+    NSLog(@"Array: %@", pairs);
+    
+    NSString *string = pairs[1];
+    NSLog(@"string: %@", string);
+    return string;
+    
+    
+    
+}
 @end

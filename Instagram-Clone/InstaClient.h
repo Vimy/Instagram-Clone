@@ -26,6 +26,8 @@
 - (NSArray *)startPersonalFeed;
 +(id)sharedClient;
 - (void)downloadUserFeed:(NSString *)username;
+- (void)handleOAuthCallbackWithUrl:(NSURL *)url;
+- (NSString *)parseQueryString:(NSString *)query;
 
-
+//https://www.youtube.com/watch?v=vv2i8PuGkF8
 @end
