@@ -78,6 +78,13 @@
     }
     else
     {
+        
+       UIWebView * webview=[[UIWebView alloc]initWithFrame:CGRectMake(0, 0, 1024,768)];
+        NSString *url=@"http://www.google.com";
+        NSURL *nsurl=[NSURL URLWithString:url];
+        NSURLRequest *nsrequest=[NSURLRequest requestWithURL:nsurl];
+        [webview loadRequest:nsrequest];
+        [view addSubview:webview];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"https://api.instagram.com/oauth/authorize/?client_id=6a88d49716fd4e0ba375cb784b9d9915&redirect_uri=instaklone://&response_type=code"]];
         NSLog(@"Key doesn't exists");
     }

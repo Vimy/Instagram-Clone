@@ -23,7 +23,8 @@
     NSLog(@"Deze url krijgen we: %@", url);
     NSLog(@"Dit is de query url: %@", [url query]);
     
- 
+    InstaClient *client = [InstaClient sharedClient];
+    [client handleOAuthCallbackWithUrl:url];
     
     return YES;
     
