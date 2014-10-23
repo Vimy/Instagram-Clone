@@ -21,7 +21,6 @@
 		39BEDCD519E4455900506B3C /* icon_balloon_20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BEDCD219E4455900506B3C /* icon_balloon_20x20.png */; };
 		39BEDCD619E4455900506B3C /* icon_clock_20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BEDCD319E4455900506B3C /* icon_clock_20x20.png */; };
 		39BEDCD719E4455900506B3C /* icon_heart_20x20.png in Resources */ = {isa = PBXBuildFile; fileRef = 39BEDCD419E4455900506B3C /* icon_heart_20x20.png */; };
-		39BEDD8519E719A700506B3C /* NSNull+JSON.m in Sources */ = {isa = PBXBuildFile; fileRef = 39BEDD8419E719A700506B3C /* NSNull+JSON.m */; };
 		39C6FD5619DC9BFF000B6676 /* ImageDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */; };
 		39C85A7D19D574D8007295D9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85A7C19D574D8007295D9 /* main.m */; };
 		39C85A8019D574D8007295D9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 39C85A7F19D574D8007295D9 /* AppDelegate.m */; };
@@ -71,8 +70,6 @@
 		39BEDCD219E4455900506B3C /* icon_balloon_20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_balloon_20x20.png; sourceTree = "<group>"; };
 		39BEDCD319E4455900506B3C /* icon_clock_20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_clock_20x20.png; sourceTree = "<group>"; };
 		39BEDCD419E4455900506B3C /* icon_heart_20x20.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon_heart_20x20.png; sourceTree = "<group>"; };
-		39BEDD8319E719A700506B3C /* NSNull+JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSNull+JSON.h"; sourceTree = "<group>"; };
-		39BEDD8419E719A700506B3C /* NSNull+JSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSNull+JSON.m"; sourceTree = "<group>"; };
 		39C6FD5419DC9BFF000B6676 /* ImageDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageDetailViewController.h; sourceTree = "<group>"; };
 		39C6FD5519DC9BFF000B6676 /* ImageDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageDetailViewController.m; sourceTree = "<group>"; };
 		39C85A7719D574D8007295D9 /* Instagram-Clone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Instagram-Clone.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -194,8 +191,6 @@
 				39BC07D919D735320090E20E /* InstaMedia.m */,
 				39BC07D519D6D3460090E20E /* InstaClient.h */,
 				39BC07D619D6D3460090E20E /* InstaClient.m */,
-				39BEDD8319E719A700506B3C /* NSNull+JSON.h */,
-				39BEDD8419E719A700506B3C /* NSNull+JSON.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -413,7 +408,6 @@
 				39C85A7D19D574D8007295D9 /* main.m in Sources */,
 				39BC07DA19D735320090E20E /* InstaMedia.m in Sources */,
 				39BEDC9319E1BD3500506B3C /* CustomFooterViewCell.m in Sources */,
-				39BEDD8519E719A700506B3C /* NSNull+JSON.m in Sources */,
 				39C6FD5619DC9BFF000B6676 /* ImageDetailViewController.m in Sources */,
 				3955106919E078FC00023955 /* MainFeedViewController.m in Sources */,
 				39D139E219ED7ED1005ABEC0 /* UserProfileViewController.m in Sources */,

@@ -10,7 +10,6 @@
 #import "InstaMedia.h"
 #import "InstaUser.h"
 #import "AFOAuth2Client.h"
-#import "NSNull+JSON.h"
 
 
 @implementation InstaClient
@@ -157,7 +156,14 @@
                                  {
                                      if([media respondsToSelector:NSSelectorFromString(key)])
                                             {
+                                                if ([[imagesDic valueForKey:key] isKindOfClass:[NSNull class]])
+                                                {
+                                                    continue;
+                                                }
+                                                else
+                                                {
                                                     [media setValue:[imagesDic valueForKey:key ] forKey:key];
+                                                }
                                          //       NSLog(@"Key: %@", key);
                                 //             NSLog(@"VALUE FOR KEY: %@",[imagesDic valueForKey:key ] );
                                               }
@@ -184,46 +190,7 @@
 
 }
 
-- (NSDictionary *)nullFreeDictionaryWithDictionary:(NSDictionary *)dictionary
-{
-    NSMutableDictionary *replaced = [NSMutableDictionary dictionaryWithDictionary:dictionary];
-    // Iterate through each key-object pair.
-    [dictionary enumerateKeysAndObjectsUsingBlock:^(id key, id object, BOOL *stop) {
-        // If object is a dictionary, recursively remove NSNull from dictionary.
-        if ([object isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *innerDict = object;
-            replaced[key] = [self nullFreeDictionaryWithDictionary:innerDict];
-        }
-        // If object is an array, enumerate through array.
-        else if ([object isKindOfClass:[NSArray class]]) {
-            NSMutableArray *nullFreeRecords = [NSMutableArray array];
-            for (id record in object) {
-                // If object is a dictionary, recursively remove NSNull from dictionary.
-                if ([record isKindOfClass:[NSDictionary class]]) {
-                    NSDictionary *nullFreeRecord = [self nullFreeDictionaryWithDictionary:record];
-                    [nullFreeRecords addObject:nullFreeRecord];
-                }
-                else {
-                    if (object == [NSNull null]) {
-                        [nullFreeRecords addObject:@""];
-                    }
-                    else {
-                        [nullFreeRecords addObject:record];
-                    }
-                }
-            }
-            replaced[key] = nullFreeRecords;
-        }
-        else {
-            // Replace [NSNull null] with nil string "" to avoid having to perform null comparisons while parsing.
-            if (object == [NSNull null]) {
-                replaced[key] = @"";
-            }
-        }
-    }];
-    
-    return [NSDictionary dictionaryWithDictionary:replaced];
-}
+
 
 
 - (void)handleOAuthCallbackWithUrl:(NSURL *)url
