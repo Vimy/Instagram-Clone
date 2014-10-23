@@ -50,11 +50,11 @@
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSString *authCode = [defaults stringForKey:@"auth_code"];
-       if (authCode)
+    if (authCode)
     {
     // http://nsscreencast.com/episodes/41-authentication-with-afnetworking
         
-        
+        NSLog(@"Test");
         NSString *parameterData = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&redirect_uri=%@&code=%@",kCLIENTID,kCLIENTSECRET,kREDIRECTURI,authCode];
        
         NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"];
@@ -67,6 +67,7 @@
         operation.responseSerializer = [AFJSONResponseSerializer serializer];
         [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id result)
          {
+             NSLog(@"Test!");
              NSLog(@"JSON response: %@", result);
              
          }
@@ -75,6 +76,7 @@
              NSLog(@"Error: %@", [error localizedDescription]);
          }];
     
+        [operation start];
         
     }
     else

@@ -50,6 +50,10 @@
     [session addOutput:stillImageOutput];
     
     
+    UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(187.5, 400, 50,50)];
+    [button addTarget:self action:@selector(takePicture:) forControlEvents:UIControlEventTouchUpInside];
+    
+    
     
     
     [session startRunning];
