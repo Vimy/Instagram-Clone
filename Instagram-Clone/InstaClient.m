@@ -68,14 +68,12 @@
          {
              NSLog(@"Test!");
              NSLog(@"JSON response: %@", result);
-             
          }
         failure:^(AFHTTPRequestOperation *operation, NSError *error)
          {
              NSLog(@"Error: %@", [error localizedDescription]);
          }];
-    
-        [operation start];
+    [operation start];
         
     }
     else

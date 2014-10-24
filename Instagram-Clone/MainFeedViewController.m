@@ -202,7 +202,7 @@
     tempMedia = [_feedArray objectAtIndex:section]; // mediaHeader;
     if (tempMedia)
     {
-   //     NSLog(@"TEMPMEDIA IS VOL");
+        NSLog(@"TEMPMEDIA IS VOL");
     }
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
@@ -268,13 +268,11 @@
     //cell delegate
     NSLog(@"WEEEERKT DIT WEEEEELLLL????");
       [self.navigationController pushViewController:controller animated:YES];
-        NSDictionary *dic = @{@"media":tempMedia };
+        NSDictionary *dic = @{@"media":mediaHeader };
     controller.delegate = self;
-    controller.media = tempMedia;
-    controller.mediaArray = @[tempMedia];
+    controller.media = mediaHeader;
+    controller.mediaArray = @[mediaHeader];
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"changeToView" object:nil userInfo:dic]];
-
- 
 }
 
 
