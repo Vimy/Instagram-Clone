@@ -23,18 +23,18 @@
 
 - (void)viewDidLoad
 {
-    
+    //https://www.crowleyworks.com/mobile/appendix/container_view_controllers
     [super viewDidLoad];
     
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    MainFeedViewController *childController  = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
     
-    MainFeedViewController *childController = [[MainFeedViewController alloc]init];
     [self addChildViewController:childController];
-    childController.view.frame = self.userFeedView.bounds; // set the frame any way you want
-    [self.userFeedView addSubview:childController.view];
+    childController.view.frame = self.containerView.bounds; // set the frame any way you want
+    [self.containerView addSubview:childController.view];
     [childController didMoveToParentViewController:self];
     
     
-    self.userCollectionView.hidden = YES;
     NSLog(@"[USERPRF]Nu werkt het!");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToView" object:nil];
     [self setupUI];
@@ -54,19 +54,17 @@
 }
 - (IBAction)switchViews:(UISegmentedControl *)sender
 {
-    switch (sender.selectedSegmentIndex)
-    {
-        case 0:
-            self.userFeedView.hidden = NO;
-            self.userCollectionView.hidden = YES;
-            break;
+    switch (sender.selectedSegmentIndex) {
         case 1:
-            self.userFeedView.hidden = YES;
-            self.userCollectionView.hidden = NO;
+            VerkennenViewController *childController  = [sb instantiateViewControllerWithIdentifier:@"collectionView"];
+            
+            [self swapFromViewController:<#(UIViewController *)#> toViewController:childController]
             break;
+            
         default:
             break;
     }
+    
 }
 
 - (void)getMedia:(NSNotification *)notification
@@ -80,7 +78,7 @@
 - (void)setupUI
 {
     username = self.media.caption [@"from"][@"username"]; //[tiet objectForKey:@"username"];
-    self.username.text = username;
+    self.usernameLabel.text = username;
     NSLog(@"USERPRF]username: %@", username);
     
     NSURL *url = [NSURL URLWithString:self.media.caption [@"from"][@"profile_picture"]];
@@ -91,14 +89,15 @@
     [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
     
    self.profileImage.clipsToBounds = YES;
-self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
+    self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
    self.profileImage.layer.borderWidth = 0.5f;
     self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
 }
 - (IBAction)ActionMan:(UIButton *)sender
 {
-    ImageDetailViewController *vc = [[ImageDetailViewController alloc]init];
-    MainFeedViewController *oldVC = self.childViewControllers[0];
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    ImageDetailViewController *vc  = [sb instantiateViewControllerWithIdentifier:@"imageFeed"];
+    UIViewController *oldVC = self.childViewControllers[0];
     
     vc.view.frame = oldVC.view.frame;
     
@@ -116,8 +115,20 @@ self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
     
 }
 
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+- (void)swapFromViewController:(UIViewController*)oldVC toViewController:(UIViewController *)newVC
+{
+    newVC.view.frame = oldVC.view.frame;
+    [oldVC willMoveToParentViewController:nil];
+    [self addChildViewController:newVC];
+    [self transitionFromViewController:oldVC toViewController:newVC duration:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
+        
+    } completion:^(BOOL finished){
+        [oldVC removeFromParentViewController];
+        [newVC didMoveToParentViewController:self];
+    }];
+    
+}
+/*- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showUserFeed"])
     {
@@ -144,7 +155,7 @@ self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
 
     
 }
-
+*/
 /*
 #pragma mark - Navigation
 

@@ -19,16 +19,14 @@
 
 @interface UserProfileViewController : UIViewController
 //http://stackoverflow.com/questions/16330195/change-container-view-content-with-tabs-in-ios
-@property (strong, nonatomic) IBOutlet UIView *userFeedView;
-@property (strong, nonatomic) IBOutlet UIView *userCollectionView;
+@property (strong, nonatomic) IBOutlet UIView *containerView;
 @property (nonatomic, strong) InstaMedia *media;
 @property (nonatomic, weak) id<UserProfileViewControllerDelegate> delegate;
 @property (strong, nonatomic) IBOutlet UIImageView *profileImage;
-@property (strong, nonatomic) IBOutlet UILabel *username;
+@property (strong, nonatomic) IBOutlet UILabel *usernameLabel;
 @property (strong, nonatomic) IBOutlet UILabel *userMediaCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *userFollowingCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *userFollowersCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *userOnderschriftLabel;
-@property (strong, nonatomic) IBOutlet UIView *userMapView;
 @property (strong, nonatomic) NSArray *mediaArray;
 @end

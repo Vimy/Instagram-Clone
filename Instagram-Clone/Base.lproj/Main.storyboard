@@ -9,7 +9,7 @@
         <!--Instaclone-->
         <scene sceneID="TIJ-DW-XpM">
             <objects>
-                <viewController id="txo-4P-rtJ" customClass="VerkennenViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="collectionView" id="txo-4P-rtJ" customClass="VerkennenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="d1g-KL-xAT"/>
                         <viewControllerLayoutGuide type="bottom" id="awH-lu-HU3"/>
@@ -216,7 +216,7 @@
         <!--Image Detail View Controller-->
         <scene sceneID="BIx-eY-0Ai">
             <objects>
-                <viewController id="LaH-JN-1xV" customClass="ImageDetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="imageFeed" id="LaH-JN-1xV" customClass="ImageDetailViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="e4T-kX-mlJ"/>
                         <viewControllerLayoutGuide type="bottom" id="ZoY-If-Qjc"/>
@@ -225,7 +225,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Jka-0a-cUW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="Buffy.png" translatesAutoresizingMaskIntoConstraints="NO" id="Jka-0a-cUW">
                                 <rect key="frame" x="0.0" y="107" width="375" height="290"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="118" width="375" height="320"/>
@@ -348,7 +348,7 @@
         <!--Instaclone-->
         <scene sceneID="X9L-nR-Ost">
             <objects>
-                <tableViewController id="ueg-h7-lEp" customClass="MainFeedViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MainFeed" id="ueg-h7-lEp" customClass="MainFeedViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="350" sectionHeaderHeight="22" sectionFooterHeight="22" id="yAy-Le-QRN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -396,15 +396,6 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="209" width="375" height="458"/>
                                 </variation>
-                            </containerView>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EzL-r3-ox9">
-                                <rect key="frame" x="0.0" y="183" width="375" height="435"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="209" width="375" height="458"/>
-                                </variation>
-                                <connections>
-                                    <segue destination="txo-4P-rtJ" kind="embed" identifier="showUserFeedCollection" id="aqc-Y4-cck"/>
-                                </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="berichten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-lp-grj">
                                 <rect key="frame" x="162" y="90" width="50" height="21"/>
@@ -479,16 +470,6 @@
                                     <rect key="frame" x="62" y="72" width="200" height="21"/>
                                 </variation>
                             </label>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tyw-sp-92H">
-                                <rect key="frame" x="126" y="151" width="123" height="29"/>
-                                <segments>
-                                    <segment title="First"/>
-                                    <segment title="Second"/>
-                                </segments>
-                                <connections>
-                                    <action selector="switchViews:" destination="dqD-H9-95c" eventType="valueChanged" id="zUh-k2-RWD"/>
-                                </connections>
-                            </segmentedControl>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeh-oM-WCO">
                                 <rect key="frame" x="298" y="126" width="46" height="30"/>
                                 <state key="normal" title="Button">
@@ -498,12 +479,18 @@
                                     <action selector="ActionMan:" destination="dqD-H9-95c" eventType="touchUpInside" id="pj1-l9-yUo"/>
                                 </connections>
                             </button>
-                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97V-OS-zRg">
-                                <rect key="frame" x="0.0" y="183" width="375" height="435"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="0.0" y="209" width="375" height="458"/>
-                                </variation>
-                            </containerView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tyw-sp-92H">
+                                <rect key="frame" x="111" y="151" width="152" height="29"/>
+                                <segments>
+                                    <segment title="" image="icon_balloon_20x20.png"/>
+                                    <segment title="" image="icon_clock_20x20.png"/>
+                                    <segment title="" image="icon_heart_20x20.png"/>
+                                    <segment title=""/>
+                                </segments>
+                                <connections>
+                                    <action selector="switchViews:" destination="dqD-H9-95c" eventType="valueChanged" id="zUh-k2-RWD"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -545,12 +532,10 @@
                     <navigationItem key="navigationItem" title="Instaclone" id="V2w-di-LrM"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
+                        <outlet property="containerView" destination="qoa-S4-y43" id="gjQ-X0-Xol"/>
                         <outlet property="profileImage" destination="w09-8P-En5" id="0t7-t7-LVr"/>
-                        <outlet property="userCollectionView" destination="EzL-r3-ox9" id="3eI-nL-jNG"/>
-                        <outlet property="userFeedView" destination="qoa-S4-y43" id="kaK-ns-vAD"/>
                         <outlet property="userFollowersCountLabel" destination="lmA-5q-ifu" id="2g5-8s-rau"/>
                         <outlet property="userFollowingCountLabel" destination="cOy-sz-clN" id="Zfg-SJ-25L"/>
-                        <outlet property="userMapView" destination="97V-OS-zRg" id="YJa-js-dgL"/>
                         <outlet property="userMediaCountLabel" destination="lxI-bf-s1d" id="z0M-P2-DCp"/>
                         <outlet property="userOnderschriftLabel" destination="mJY-QG-f5M" id="kIe-r7-2Sz"/>
                         <outlet property="username" destination="3XK-gK-uwj" id="jmD-h3-fQ9"/>
@@ -600,11 +585,13 @@
         </scene>
     </scenes>
     <resources>
+        <image name="Buffy.png" width="312" height="311"/>
         <image name="first" width="30" height="30"/>
+        <image name="icon_balloon_20x20.png" width="20" height="20"/>
+        <image name="icon_clock_20x20.png" width="20" height="20"/>
         <image name="icon_heart_20x20.png" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="aqc-Y4-cck"/>
-        <segue reference="gkr-2H-F0e"/>
+        <segue reference="GKP-lb-Bwd"/>
     </inferredMetricsTieBreakers>
 </document>
