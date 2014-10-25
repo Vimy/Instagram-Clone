@@ -8,12 +8,14 @@ Learned so far:
 - git (terminal)
 - AFNetworking
 - What OAuth2 is / How to use it
-- Delegates
+- Protocols / Delegates
 
 
 Main instagram feed
+
 ![Main instagram feed](http://i.imgur.com/EjumscZ.png)
 
 Populair images feed
+
 ![Populair images feed](http://i.imgur.com/t3dAtZJ.png)
 
