@@ -137,6 +137,33 @@
             </objects>
             <point key="canvasLocation" x="-724.5" y="202.5"/>
         </scene>
+        <!--Map View Controller-->
+        <scene sceneID="8jV-R2-d5G">
+            <objects>
+                <viewController id="Thn-8W-cj7" customClass="MapViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jVV-pa-YjS"/>
+                        <viewControllerLayoutGuide type="bottom" id="f2C-6p-tAC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="tSS-iF-Xch">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="2Yd-hr-7a1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="mapView" destination="2Yd-hr-7a1" id="Dsu-b4-lHl"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0Qt-CT-a7C" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1647" y="-892"/>
+        </scene>
         <!--Instaclone-->
         <scene sceneID="gpr-JY-IPx">
             <objects>
@@ -369,8 +396,14 @@
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="209" width="375" height="458"/>
                                 </variation>
+                            </containerView>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="EzL-r3-ox9">
+                                <rect key="frame" x="0.0" y="183" width="375" height="435"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="209" width="375" height="458"/>
+                                </variation>
                                 <connections>
-                                    <segue destination="ueg-h7-lEp" kind="embed" identifier="showUserFeed" id="BkT-xY-8eX"/>
+                                    <segue destination="txo-4P-rtJ" kind="embed" identifier="showUserFeedCollection" id="aqc-Y4-cck"/>
                                 </connections>
                             </containerView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="berichten" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fUS-lp-grj">
@@ -446,6 +479,31 @@
                                     <rect key="frame" x="62" y="72" width="200" height="21"/>
                                 </variation>
                             </label>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tyw-sp-92H">
+                                <rect key="frame" x="126" y="151" width="123" height="29"/>
+                                <segments>
+                                    <segment title="First"/>
+                                    <segment title="Second"/>
+                                </segments>
+                                <connections>
+                                    <action selector="switchViews:" destination="dqD-H9-95c" eventType="valueChanged" id="zUh-k2-RWD"/>
+                                </connections>
+                            </segmentedControl>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yeh-oM-WCO">
+                                <rect key="frame" x="298" y="126" width="46" height="30"/>
+                                <state key="normal" title="Button">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="ActionMan:" destination="dqD-H9-95c" eventType="touchUpInside" id="pj1-l9-yUo"/>
+                                </connections>
+                            </button>
+                            <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="97V-OS-zRg">
+                                <rect key="frame" x="0.0" y="183" width="375" height="435"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="0.0" y="209" width="375" height="458"/>
+                                </variation>
+                            </containerView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -488,8 +546,11 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="profileImage" destination="w09-8P-En5" id="0t7-t7-LVr"/>
+                        <outlet property="userCollectionView" destination="EzL-r3-ox9" id="3eI-nL-jNG"/>
+                        <outlet property="userFeedView" destination="qoa-S4-y43" id="kaK-ns-vAD"/>
                         <outlet property="userFollowersCountLabel" destination="lmA-5q-ifu" id="2g5-8s-rau"/>
                         <outlet property="userFollowingCountLabel" destination="cOy-sz-clN" id="Zfg-SJ-25L"/>
+                        <outlet property="userMapView" destination="97V-OS-zRg" id="YJa-js-dgL"/>
                         <outlet property="userMediaCountLabel" destination="lxI-bf-s1d" id="z0M-P2-DCp"/>
                         <outlet property="userOnderschriftLabel" destination="mJY-QG-f5M" id="kIe-r7-2Sz"/>
                         <outlet property="username" destination="3XK-gK-uwj" id="jmD-h3-fQ9"/>
@@ -543,6 +604,7 @@
         <image name="icon_heart_20x20.png" width="20" height="20"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BkT-xY-8eX"/>
+        <segue reference="aqc-Y4-cck"/>
+        <segue reference="gkr-2H-F0e"/>
     </inferredMetricsTieBreakers>
 </document>

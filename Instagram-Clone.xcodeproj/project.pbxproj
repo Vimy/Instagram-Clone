@@ -36,6 +36,8 @@
 		39D139E619EDB88B005ABEC0 /* none.gif in Resources */ = {isa = PBXBuildFile; fileRef = 39D139E419EDB88B005ABEC0 /* none.gif */; };
 		39E314DC19D9F258009141C5 /* VerkennenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E314DB19D9F258009141C5 /* VerkennenViewController.m */; };
 		39E314DF19D9F508009141C5 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E314DE19D9F508009141C5 /* CameraViewController.m */; };
+		39EC489719FBE0980059EE2B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39EC489619FBE0980059EE2B /* MapViewController.m */; };
+		39EC489919FBE0D80059EE2B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EC489819FBE0D80059EE2B /* MapKit.framework */; };
 		5549B60BB453478DAB3C8FC3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 987AF76454014E00A3C48721 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -95,6 +97,9 @@
 		39E314DB19D9F258009141C5 /* VerkennenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerkennenViewController.m; sourceTree = "<group>"; };
 		39E314DD19D9F508009141C5 /* CameraViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraViewController.h; sourceTree = "<group>"; };
 		39E314DE19D9F508009141C5 /* CameraViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CameraViewController.m; sourceTree = "<group>"; };
+		39EC489519FBE0980059EE2B /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		39EC489619FBE0980059EE2B /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		39EC489819FBE0D80059EE2B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		7B96481912E24A369F32A332 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		987AF76454014E00A3C48721 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -104,6 +109,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				39EC489919FBE0D80059EE2B /* MapKit.framework in Frameworks */,
 				39BEDC9519E32B5700506B3C /* AVFoundation.framework in Frameworks */,
 				5549B60BB453478DAB3C8FC3 /* libPods.a in Frameworks */,
 			);
@@ -215,6 +221,8 @@
 		39D139E919EEEE37005ABEC0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				39EC489519FBE0980059EE2B /* MapViewController.h */,
+				39EC489619FBE0980059EE2B /* MapViewController.m */,
 				3955106719E078FC00023955 /* MainFeedViewController.h */,
 				3955106819E078FC00023955 /* MainFeedViewController.m */,
 				39E314DA19D9F258009141C5 /* VerkennenViewController.h */,
@@ -246,6 +254,7 @@
 		46A0D1372BC140C29C3D667F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				39EC489819FBE0D80059EE2B /* MapKit.framework */,
 				39BEDC9419E32B5700506B3C /* AVFoundation.framework */,
 				987AF76454014E00A3C48721 /* libPods.a */,
 			);
@@ -411,6 +420,7 @@
 				39C6FD5619DC9BFF000B6676 /* ImageDetailViewController.m in Sources */,
 				3955106919E078FC00023955 /* MainFeedViewController.m in Sources */,
 				39D139E219ED7ED1005ABEC0 /* UserProfileViewController.m in Sources */,
+				39EC489719FBE0980059EE2B /* MapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

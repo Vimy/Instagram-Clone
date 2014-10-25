@@ -29,6 +29,7 @@
 
 - (void)viewDidLoad
 {
+    
     //http://canvaspod.io/
     
     [super viewDidLoad];
@@ -69,6 +70,8 @@
             
         });
     });
+    
+    imagesArray = self.mediaSegue;
     [self.collectionView reloadData];
     
     
