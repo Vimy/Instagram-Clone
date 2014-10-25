@@ -19,3 +19,6 @@ Populair images feed
 
 ![Populair images feed](http://i.imgur.com/t3dAtZJ.png)
 
+User detail view
+
+![User detail view](http://i.imgur.com/UEpvTuZ.png)
