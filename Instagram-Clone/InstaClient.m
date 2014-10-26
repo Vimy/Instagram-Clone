@@ -154,16 +154,18 @@
                                  {
                                      if([media respondsToSelector:NSSelectorFromString(key)])
                                             {
-                                                if ([[imagesDic valueForKey:key] isKindOfClass:[NSNull class]])
+                                               
+                                                if  ([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"])
                                                 {
-                                                    continue;
+                                                    //([[imagesDic valueForKey:key] isKindOfClass:[NSNull class]]) check
+                                                   [media setValue:[imagesDic valueForKey:key ] forKey:key];
                                                 }
                                                 else
                                                 {
-                                                    [media setValue:[imagesDic valueForKey:key ] forKey:key];
+                                                     continue;
                                                 }
                                          //       NSLog(@"Key: %@", key);
-                                //             NSLog(@"VALUE FOR KEY: %@",[imagesDic valueForKey:key ] );
+                                    // NSLog(@"VALUE FOR KEY: %@",[imagesDic valueForKey:@"location" ] );
                                               }
                                    }
                      

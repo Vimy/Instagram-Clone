@@ -11,6 +11,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "VerkennenViewController.h"
 #import "ImageDetailViewController.h"
+#import "MapViewController.h"
 
 @interface UserProfileViewController ()
 {
@@ -29,10 +30,19 @@
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MainFeedViewController *childController  = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
     
+    childController.username = self.media.caption [@"from"][@"id"];
+    childController.mediaSegue = self.mediaArray;
+    childController.isUserView = YES;
+    childController.feedArray = self.mediaArray;
+    
+    
+    
     [self addChildViewController:childController];
     childController.view.frame = self.containerView.bounds; // set the frame any way you want
     [self.containerView addSubview:childController.view];
     [childController didMoveToParentViewController:self];
+    
+    
     
     
     NSLog(@"[USERPRF]Nu werkt het!");
@@ -54,16 +64,35 @@
 }
 - (IBAction)switchViews:(UISegmentedControl *)sender
 {
-    switch (sender.selectedSegmentIndex) {
-        case 1:
-            VerkennenViewController *childController  = [sb instantiateViewControllerWithIdentifier:@"collectionView"];
-            
-            [self swapFromViewController:<#(UIViewController *)#> toViewController:childController]
-            break;
-            
-        default:
-            break;
+    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+
+    if(sender.selectedSegmentIndex == 0)
+    {
+        MainFeedViewController *newVC;
+        newVC = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
+        newVC.mediaSegue = self.mediaArray;
+        newVC.isUserView = YES;
+        UIViewController *vc = self.childViewControllers[0];
+        [self swapFromViewController:vc toViewController:newVC ];
     }
+   else if(sender.selectedSegmentIndex == 1)
+    {
+            VerkennenViewController *newVC;
+            newVC = [sb instantiateViewControllerWithIdentifier:@"collectionView"];
+            newVC.mediaSegue = self.mediaArray;
+            UIViewController *vc = self.childViewControllers[0];
+            [self swapFromViewController:vc toViewController:newVC ];
+    }
+    else if(sender.selectedSegmentIndex == 2)
+    {
+        MapViewController *newVC;
+        newVC = [sb instantiateViewControllerWithIdentifier:@"mapView"];
+        UIViewController *vc = self.childViewControllers[0];
+        [self swapFromViewController:vc toViewController:newVC];
+    }
+    
+   
+    
     
 }
 
@@ -93,29 +122,9 @@
    self.profileImage.layer.borderWidth = 0.5f;
     self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
 }
-- (IBAction)ActionMan:(UIButton *)sender
-{
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ImageDetailViewController *vc  = [sb instantiateViewControllerWithIdentifier:@"imageFeed"];
-    UIViewController *oldVC = self.childViewControllers[0];
-    
-    vc.view.frame = oldVC.view.frame;
-    
-    [oldVC willMoveToParentViewController:nil];
-    [self addChildViewController:vc];
-    [self transitionFromViewController:oldVC toViewController:vc duration:0.5 options:UIViewAnimationOptionCurveEaseIn animations:^{
-        
-    } completion:^(BOOL finished){
-        [oldVC removeFromParentViewController];
-        [vc didMoveToParentViewController:self];
-    }];
-    
-    
-   
-    
-}
 
-- (void)swapFromViewController:(UIViewController*)oldVC toViewController:(UIViewController *)newVC
+
+- (void)swapFromViewController:(UIViewController *)oldVC toViewController:(UIViewController *)newVC
 {
     newVC.view.frame = oldVC.view.frame;
     [oldVC willMoveToParentViewController:nil];
