@@ -9,6 +9,8 @@ Learned so far:
 - AFNetworking
 - What OAuth2 is / How to use it
 - Protocols / Delegates
+- KVO
+- NSNotification
 
 
 Main instagram feed
