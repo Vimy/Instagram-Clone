@@ -155,8 +155,8 @@
                                      if([media respondsToSelector:NSSelectorFromString(key)])
                                             {
                                                
-                                                if  ([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"])
-                                                {
+                                                if  ([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"]))
+                                                     {
                                                     //([[imagesDic valueForKey:key] isKindOfClass:[NSNull class]]) check
                                                    [media setValue:[imagesDic valueForKey:key ] forKey:key];
                                                 }

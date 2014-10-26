@@ -29,7 +29,7 @@
 @property (strong, nonatomic) UIImage *profileImage;
 @property (strong, nonatomic) NSURL *profilePictureUrl;
 @property (strong, nonatomic) NSString *username;
-@property (nonatomic) CLLocationCoordinate2D *location;
+//@property (nonatomic) CLLocationCoordinate2D *location;
 
 
 @end
