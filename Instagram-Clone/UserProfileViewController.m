@@ -12,10 +12,12 @@
 #import "VerkennenViewController.h"
 #import "ImageDetailViewController.h"
 #import "MapViewController.h"
+#import "InstaClient.h";
 
 @interface UserProfileViewController ()
 {
     NSString *username;
+    InstaClient *client;
 }
 
 @end
@@ -24,8 +26,14 @@
 
 - (void)viewDidLoad
 {
+    
+    
     //https://www.crowleyworks.com/mobile/appendix/container_view_controllers
     [super viewDidLoad];
+    
+    
+    client = [InstaClient sharedClient];
+    
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     MainFeedViewController *childController  = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
@@ -45,7 +53,7 @@
     
     
     
-    NSLog(@"[USERPRF]Nu werkt het!");
+   // NSLog(@"[USERPRF]Nu werkt het!");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToView" object:nil];
     [self setupUI];
  // http://stackoverflow.com/questions/5210535/passing-data-between-view-controllers
@@ -56,7 +64,7 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToView" object:nil];
-     NSLog(@"[USERPRF]Nu werkt viewWillAppear!");
+  //   NSLog(@"[USERPRF]Nu werkt viewWillAppear!");
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -68,11 +76,14 @@
 
     if(sender.selectedSegmentIndex == 0)
     {
+        
         MainFeedViewController *newVC;
         newVC = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
         newVC.mediaSegue = self.mediaArray;
         newVC.isUserView = YES;
+        newVC.feedArray = self.mediaArray;
         UIViewController *vc = self.childViewControllers[0];
+       // [client downloadUserFeed:self.media.caption [@"from"][@"username"]];
         [self swapFromViewController:vc toViewController:newVC ];
     }
    else if(sender.selectedSegmentIndex == 1)
@@ -81,6 +92,7 @@
             newVC = [sb instantiateViewControllerWithIdentifier:@"collectionView"];
             newVC.mediaSegue = self.mediaArray;
             UIViewController *vc = self.childViewControllers[0];
+        
             [self swapFromViewController:vc toViewController:newVC ];
     }
     else if(sender.selectedSegmentIndex == 2)
@@ -98,7 +110,7 @@
 
 - (void)getMedia:(NSNotification *)notification
 {
-    NSLog(@"[USERPRF]Nu werkt het!");
+  //  NSLog(@"[USERPRF]Nu werkt het!");
     InstaMedia *media = [[notification userInfo] valueForKey:@"media"];
     self.media = media;
     [self setupUI];
@@ -106,15 +118,12 @@
 
 - (void)setupUI
 {
-    username = self.media.caption [@"from"][@"username"]; //[tiet objectForKey:@"username"];
+    username = self.media.caption [@"from"][@"username"];
     self.usernameLabel.text = username;
-    NSLog(@"USERPRF]username: %@", username);
+ //   NSLog(@"USERPRF]username: %@", username);
     
     NSURL *url = [NSURL URLWithString:self.media.caption [@"from"][@"profile_picture"]];
-    NSLog(@"[USERPRF]url: %@", url);
-    // NSData *data = [NSData dataWithContentsOfURL:url];
-    // UIImage *image = [UIImage imageWithData:data];
-    // cell.usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
+ 
     [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
     
    self.profileImage.clipsToBounds = YES;

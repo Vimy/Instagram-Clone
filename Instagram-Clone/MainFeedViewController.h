@@ -16,5 +16,6 @@
 @property BOOL isUserView;
 @property (strong, nonatomic) NSString *username;
 @property BOOL isImageDetailView;
+@property BOOL is
 @property (nonatomic, copy) NSArray *feedArray;
 @end

@@ -218,8 +218,6 @@
 		39D139E919EEEE37005ABEC0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				39EC489519FBE0980059EE2B /* MapViewController.h */,
-				39EC489619FBE0980059EE2B /* MapViewController.m */,
 				3955106719E078FC00023955 /* MainFeedViewController.h */,
 				3955106819E078FC00023955 /* MainFeedViewController.m */,
 				39E314DA19D9F258009141C5 /* VerkennenViewController.h */,
@@ -228,6 +226,8 @@
 				39E314DE19D9F508009141C5 /* CameraViewController.m */,
 				39D139E019ED7ED1005ABEC0 /* UserProfileViewController.h */,
 				39D139E119ED7ED1005ABEC0 /* UserProfileViewController.m */,
+				39EC489519FBE0980059EE2B /* MapViewController.h */,
+				39EC489619FBE0980059EE2B /* MapViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";

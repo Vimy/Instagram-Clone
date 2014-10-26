@@ -34,7 +34,7 @@
 {
     
     
-    
+    [super viewDidLoad];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished)
                                                  name:@"personalFeedDownload" object:nil];
@@ -47,50 +47,25 @@
  
     client = [InstaClient sharedClient];
 
-    [super viewDidLoad];
-    [client startConnection];
-    
-    //navbar omhoog duwen
-    //self.shyNavBarManager.scrollView = self.tableView;
-    
-    
-    //http://stackoverflow.com/questions/19819165/imitate-ios-7-facebook-hide-show-expanding-contracting-navigation-bar
-    //http://stackoverflow.com/questions/17499391/ios-nested-view-controllers-view-inside-uiviewcontrollers-view
-    [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forCellReuseIdentifier:@"headerCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"footerCell" bundle:nil] forCellReuseIdentifier:@"footerCell"];
-    [self.tableView registerNib:[UINib nibWithNibName:@"mainCell" bundle:nil] forCellReuseIdentifier:@"mainCell"];
-  //  [client addObserver:self forKeyPath:@"personalImagesArray" options:0 context:NULL];
-   
-  
-    
-    
-}
-
-
--  (void)viewWillAppear:(BOOL)animated
-{
-   // NSLog(@"TABBAR: %lu", (unsigned long)[self.tabBarController selectedIndex]);
-    if(self.tabBarController.selectedIndex == 3)
+   // [client startConnection];
+      [client startPersonalFeed];
+    /*
+    NSLog(@"TABBAR: %lu", (unsigned long)   self.navigationController.tabBarController.selectedIndex);
+    if(   self.navigationController.tabBarController.selectedIndex == 3)
     {
         [client downloadUserFeed:@"self"];
-        NSLog(@"HOIIIII!");
+        NSLog(@"Tab 3");
+    }
+    else if(   self.navigationController.tabBarController.selectedIndex == 0)
+    {
+        [client startPersonalFeed];
+        NSLog(@"Tab 0");
     }
     else
     {
-        
         if (!self.mediaSegue)
         {
-            dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
-            
-            dispatch_sync(backGroundQue, ^{
-                
-                [client startPersonalFeed];
-                
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                });
-            });
-            
+            [client startPersonalFeed];
         }
         else
         {
@@ -103,15 +78,33 @@
                 [client downloadUserFeed:self.username];
             }
         }
-
-    
-    
-    
     }
+     */
 
     
-
+    //navbar omhoog duwen
+    //self.shyNavBarManager.scrollView = self.tableView;
+    
+    
+    //http://stackoverflow.com/questions/19819165/imitate-ios-7-facebook-hide-show-expanding-contracting-navigation-bar
+    //http://stackoverflow.com/questions/17499391/ios-nested-view-controllers-view-inside-uiviewcontrollers-view
+    [self.tableView registerNib:[UINib nibWithNibName:@"headerCell" bundle:nil] forCellReuseIdentifier:@"headerCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"footerCell" bundle:nil] forCellReuseIdentifier:@"footerCell"];
+    [self.tableView registerNib:[UINib nibWithNibName:@"mainCell" bundle:nil] forCellReuseIdentifier:@"mainCell"];
+  //  [client addObserver:self forKeyPath:@"personalImagesArray" options:0 context:NULL];
+   
 }
+/*
+- (void)viewWillDisappear:(BOOL)animated
+{
+    self.feedArray = nil;
+    [self.tableView reloadData];
+    NSLog(@"View gaat weg!");
+}
+*/
+-  (void)viewWillAppear:(BOOL)animated
+{
+   }
 
 - (void)dataFromController:(InstaMedia *)media
 {
@@ -120,7 +113,6 @@
 - (void)downloadFinished
 {
     self.feedArray = client.personalImagesArray;
-    NSLog(@"Dit gebeurd nu!");
     [self.tableView reloadData];
 }
 - (void)didReceiveMemoryWarning
@@ -202,7 +194,7 @@
     tempMedia = [_feedArray objectAtIndex:section]; // mediaHeader;
     if (tempMedia)
     {
-        NSLog(@"TEMPMEDIA IS VOL");
+      //  NSLog(@"TEMPMEDIA IS VOL");
     }
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
@@ -239,7 +231,7 @@
                                                  fromDate:timestamp
                                                    toDate:now options:0];
 
-   NSLog(@"Tijd gepasseerd in dagen: %ld | Tijd gepasseerd in uren: %ld ", (long)[components day], (long)[components hour]);
+   //NSLog(@"Tijd gepasseerd in dagen: %ld | Tijd gepasseerd in uren: %ld ", (long)[components day], (long)[components hour]);
   
     if ([components hour] > 24)
     {
@@ -266,13 +258,16 @@
 -(void)loadNewScreen:(UserProfileViewController *)controller
 {
     //cell delegate
-    NSLog(@"WEEEERKT DIT WEEEEELLLL????");
-      [self.navigationController pushViewController:controller animated:YES];
+  //  NSLog(@"WEEEERKT DIT WEEEEELLLL????");
+    self.feedArray = nil;
+    [self.tableView reloadData];
+    NSLog(@"FeedArray: %@", self.feedArray);
         NSDictionary *dic = @{@"media":mediaHeader };
     controller.delegate = self;
     controller.media = mediaHeader;
     controller.mediaArray = @[mediaHeader];
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"changeToView" object:nil userInfo:dic]];
+    [self.navigationController pushViewController:controller animated:YES];
 }
 
 

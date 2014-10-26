@@ -65,7 +65,7 @@
     dispatch_sync(backGroundQue, ^{
        
         testArray = [[NSMutableArray alloc]initWithArray:[client startConnectionPopulairFeed]];
-        NSLog(@"[VKViewController]TestArray: %@", testArray);
+   //     NSLog(@"[VKViewController]TestArray: %@", testArray);
         dispatch_async(dispatch_get_main_queue(), ^{
             
         });
@@ -116,7 +116,7 @@
     NSString *keyword = self.searchBar.text;
      [activityView startAnimating];
     [client searchForKeyWords:keyword];
-    NSLog(@"Werkt!");
+  //  NSLog(@"Werkt!");
 }
 /*
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context

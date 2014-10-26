@@ -53,11 +53,11 @@
     {
     // http://nsscreencast.com/episodes/41-authentication-with-afnetworking
         
-        NSLog(@"Test");
+      //  NSLog(@"Test");
         NSString *parameterData = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&redirect_uri=%@&code=%@",kCLIENTID,kCLIENTSECRET,kREDIRECTURI,authCode];
        
         NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"];
-         NSLog(@"Dit is de url :%@", url);
+        // NSLog(@"Dit is de url :%@", url);
         NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
         [request setHTTPMethod:@"POST"];
         [request setHTTPBody:[parameterData dataUsingEncoding:NSUTF8StringEncoding]];
@@ -111,7 +111,7 @@
    
     
    self.personalImagesArray = [self startDownload:request forDownloadType:@"personalFeedDownload"];
-    NSLog(@"PersonalFeed: %@", self.personalImagesArray);
+  //  NSLog(@"PersonalFeed: %@", self.personalImagesArray);
     return self.personalImagesArray;
     
 }
@@ -122,7 +122,7 @@
     
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"https://api.instagram.com/v1/tags/%@/media/recent?client_id=%@", keywords, kCLIENTID]]];
     self.searchImagesArray = [self startDownload:request forDownloadType:@"searchDownload"];
-    NSLog(@"[INSTACLIENT]searchImagesArray: %@",self.searchImagesArray);
+  //  NSLog(@"[INSTACLIENT]searchImagesArray: %@",self.searchImagesArray);
     
 }
 
@@ -233,10 +233,10 @@
 - (NSString *)parseQueryString:(NSString *)query
 {
     NSArray *pairs = [query componentsSeparatedByString:@"="];
-    NSLog(@"Array: %@", pairs);
+   // NSLog(@"Array: %@", pairs);
     
     NSString *string = pairs[1];
-    NSLog(@"string: %@", string);
+ //   NSLog(@"string: %@", string);
     return string;
     
     
