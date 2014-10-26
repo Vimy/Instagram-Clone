@@ -12,7 +12,7 @@
 #import "VerkennenViewController.h"
 #import "ImageDetailViewController.h"
 #import "MapViewController.h"
-#import "InstaClient.h";
+#import "InstaClient.h"
 
 @interface UserProfileViewController ()
 {
@@ -42,7 +42,7 @@
     childController.mediaSegue = self.mediaArray;
     childController.isUserView = YES;
     childController.feedArray = self.mediaArray;
-    
+    [client downloadUserFeed:self.media.caption [@"from"][@"id"]];
     
     
     [self addChildViewController:childController];

@@ -14,8 +14,8 @@
 //@property (nonatomic) IBOutlet UILabel *likesLabel;
 @property (strong, nonatomic) NSArray *mediaSegue;
 @property BOOL isUserView;
-@property (strong, nonatomic) NSString *username;
 @property BOOL isImageDetailView;
-@property BOOL is
+@property BOOL isFeedView;
+@property (strong, nonatomic) NSString *username;
 @property (nonatomic, copy) NSArray *feedArray;
 @end

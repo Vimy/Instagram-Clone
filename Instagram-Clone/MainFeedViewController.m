@@ -48,39 +48,38 @@
     client = [InstaClient sharedClient];
 
    // [client startConnection];
-      [client startPersonalFeed];
-    /*
+     // [client startPersonalFeed];
+   
     NSLog(@"TABBAR: %lu", (unsigned long)   self.navigationController.tabBarController.selectedIndex);
-    if(   self.navigationController.tabBarController.selectedIndex == 3)
+    
+    if(   self.navigationController.tabBarController.selectedIndex == 0)
+    {
+        if (self.isUserView)
+        {
+           
+        }
+        else
+        {
+                [client startPersonalFeed];
+            NSLog(@"Tab 0");
+        }
+    }
+    else if(   self.navigationController.tabBarController.selectedIndex == 3)
     {
         [client downloadUserFeed:@"self"];
         NSLog(@"Tab 3");
     }
-    else if(   self.navigationController.tabBarController.selectedIndex == 0)
+    else if (self.isImageDetailView)
     {
-        [client startPersonalFeed];
-        NSLog(@"Tab 0");
+        _feedArray = self.mediaSegue;
     }
     else
     {
-        if (!self.mediaSegue)
-        {
-            [client startPersonalFeed];
-        }
-        else
-        {
-            if (self.isImageDetailView)
-            {
-                _feedArray = self.mediaSegue;
-            }
-            else
-            {
-                [client downloadUserFeed:self.username];
-            }
-        }
+        [client downloadUserFeed:self.username];
     }
-     */
+    
 
+    
     
     //navbar omhoog duwen
     //self.shyNavBarManager.scrollView = self.tableView;
@@ -266,6 +265,7 @@
     controller.delegate = self;
     controller.media = mediaHeader;
     controller.mediaArray = @[mediaHeader];
+    self.isUserView = YES;
     [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"changeToView" object:nil userInfo:dic]];
     [self.navigationController pushViewController:controller animated:YES];
 }
