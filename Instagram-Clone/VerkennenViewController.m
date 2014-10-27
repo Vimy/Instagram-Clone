@@ -11,7 +11,7 @@
 #import "InstaMedia.h"
 #import "ImageDetailViewController.h"
 #import "UIImageView+AFNetworking.h"
-#import "MainFeedViewController.h"
+#import "ResuableTableViewController.h"
 
 @interface VerkennenViewController ()
 {
@@ -202,12 +202,12 @@
     if ([segue.identifier isEqualToString:@"tiet"])
     { 
         NSIndexPath *indexPath = [[self.collectionView indexPathsForSelectedItems]objectAtIndex:0];
-        MainFeedViewController *vc = (MainFeedViewController *)segue.destinationViewController;
+        ResuableTableViewController *vc = (ResuableTableViewController *)segue.destinationViewController;
         InstaMedia *segueMedia = [[InstaMedia alloc]init];
         segueMedia = [imagesArray objectAtIndex:indexPath.row];
         NSString *username = segueMedia.caption[@"from"][@"username"];
         vc.isImageDetailView = YES;
-     //   vc.mediaSegue = @[segueMedia];
+    vc.mediaSegue = @[segueMedia];
         vc.feedArray = @[segueMedia];
         
     }

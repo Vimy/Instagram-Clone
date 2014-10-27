@@ -267,17 +267,44 @@
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="ueg-h7-lEp" kind="relationship" relationship="rootViewController" id="gkr-2H-F0e"/>
+                        <segue destination="BU5-dt-lDx" kind="relationship" relationship="rootViewController" id="pU1-se-9Yp"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="n5j-bL-i1K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-831" y="-2062"/>
         </scene>
+        <!--Resuable Table View Controller-->
+        <scene sceneID="BtC-aD-OuC">
+            <objects>
+                <tableViewController id="BU5-dt-lDx" customClass="ResuableTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="350" sectionHeaderHeight="22" sectionFooterHeight="22" id="EbD-NK-FmQ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="vRZ-4P-oqs">
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vRZ-4P-oqs" id="SBJ-V8-k1G">
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="BU5-dt-lDx" id="F02-be-l7s"/>
+                            <outlet property="delegate" destination="BU5-dt-lDx" id="PSu-ue-JKw"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="Krc-5H-yUW"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="50a-AQ-Kzq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-122.5" y="-2039.5"/>
+        </scene>
         <!--Instaclone-->
         <scene sceneID="X9L-nR-Ost">
             <objects>
-                <tableViewController storyboardIdentifier="MainFeed" id="ueg-h7-lEp" customClass="MainFeedViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="MainFeed" id="ueg-h7-lEp" customClass="ResuableTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="350" sectionHeaderHeight="22" sectionFooterHeight="22" id="yAy-Le-QRN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -300,7 +327,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7wv-Fh-bRy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-198.5" y="-2062.5"/>
+            <point key="canvasLocation" x="489.5" y="-202.5"/>
         </scene>
         <!--Instaclone-->
         <scene sceneID="zxW-gP-DHf">
@@ -512,7 +539,4 @@
         <image name="icon_clock_20x20.png" width="20" height="20"/>
         <image name="icon_heart_20x20.png" width="20" height="20"/>
     </resources>
-    <inferredMetricsTieBreakers>
-        <segue reference="GKP-lb-Bwd"/>
-    </inferredMetricsTieBreakers>
 </document>

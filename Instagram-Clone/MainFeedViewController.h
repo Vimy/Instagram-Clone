@@ -2,20 +2,12 @@
 //  MainFeedViewController.h
 //  Instagram-Clone
 //
-//  Created by Matthias Vermeulen on 4/10/14.
+//  Created by Matthias Vermeulen on 26/10/14.
 //  Copyright (c) 2014 Noizy. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import "InstaMedia.h"
+#import "ResuableTableViewController.h"
 
-@interface MainFeedViewController : UITableViewController
-
-//@property (nonatomic) IBOutlet UILabel *likesLabel;
-@property (strong, nonatomic) NSArray *mediaSegue;
-@property BOOL isUserView;
-@property BOOL isImageDetailView;
-@property BOOL isFeedView;
-@property (strong, nonatomic) NSString *username;
-@property (nonatomic, copy) NSArray *feedArray;
+@interface MainFeedViewController : ResuableTableViewController
+- (void)downloadFinished;
 @end

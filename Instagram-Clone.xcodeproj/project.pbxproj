@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3955102F19DF43CF00023955 /* billabong-1361543483.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3955102E19DF43A700023955 /* billabong-1361543483.ttf */; };
-		3955106919E078FC00023955 /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3955106819E078FC00023955 /* MainFeedViewController.m */; };
+		3955106919E078FC00023955 /* ResuableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3955106819E078FC00023955 /* ResuableTableViewController.m */; };
 		3955106C19E080D400023955 /* CustomHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3955106B19E080D400023955 /* CustomHeaderViewCell.m */; };
 		3955106E19E0849800023955 /* headerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3955106D19E0849800023955 /* headerCell.xib */; };
 		3955107019E0895B00023955 /* Buffy.png in Resources */ = {isa = PBXBuildFile; fileRef = 3955106F19E0895A00023955 /* Buffy.png */; };
@@ -37,6 +37,7 @@
 		39E314DF19D9F508009141C5 /* CameraViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39E314DE19D9F508009141C5 /* CameraViewController.m */; };
 		39EC489719FBE0980059EE2B /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39EC489619FBE0980059EE2B /* MapViewController.m */; };
 		39EC489919FBE0D80059EE2B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39EC489819FBE0D80059EE2B /* MapKit.framework */; };
+		39EF3FB419FD8F7900D8C491 /* MainFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39EF3FB319FD8F7900D8C491 /* MainFeedViewController.m */; };
 		5549B60BB453478DAB3C8FC3 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 987AF76454014E00A3C48721 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -52,8 +53,8 @@
 
 /* Begin PBXFileReference section */
 		3955102E19DF43A700023955 /* billabong-1361543483.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "billabong-1361543483.ttf"; sourceTree = "<group>"; };
-		3955106719E078FC00023955 /* MainFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
-		3955106819E078FC00023955 /* MainFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
+		3955106719E078FC00023955 /* ResuableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResuableTableViewController.h; sourceTree = "<group>"; };
+		3955106819E078FC00023955 /* ResuableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResuableTableViewController.m; sourceTree = "<group>"; };
 		3955106A19E080D400023955 /* CustomHeaderViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomHeaderViewCell.h; sourceTree = "<group>"; };
 		3955106B19E080D400023955 /* CustomHeaderViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomHeaderViewCell.m; sourceTree = "<group>"; };
 		3955106D19E0849800023955 /* headerCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = headerCell.xib; sourceTree = "<group>"; };
@@ -97,6 +98,8 @@
 		39EC489519FBE0980059EE2B /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		39EC489619FBE0980059EE2B /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		39EC489819FBE0D80059EE2B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		39EF3FB219FD8F7900D8C491 /* MainFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainFeedViewController.h; sourceTree = "<group>"; };
+		39EF3FB319FD8F7900D8C491 /* MainFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainFeedViewController.m; sourceTree = "<group>"; };
 		7B96481912E24A369F32A332 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		987AF76454014E00A3C48721 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -218,8 +221,10 @@
 		39D139E919EEEE37005ABEC0 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				3955106719E078FC00023955 /* MainFeedViewController.h */,
-				3955106819E078FC00023955 /* MainFeedViewController.m */,
+				39EF3FB219FD8F7900D8C491 /* MainFeedViewController.h */,
+				39EF3FB319FD8F7900D8C491 /* MainFeedViewController.m */,
+				3955106719E078FC00023955 /* ResuableTableViewController.h */,
+				3955106819E078FC00023955 /* ResuableTableViewController.m */,
 				39E314DA19D9F258009141C5 /* VerkennenViewController.h */,
 				39E314DB19D9F258009141C5 /* VerkennenViewController.m */,
 				39E314DD19D9F508009141C5 /* CameraViewController.h */,
@@ -412,7 +417,8 @@
 				39C85A7D19D574D8007295D9 /* main.m in Sources */,
 				39BC07DA19D735320090E20E /* InstaMedia.m in Sources */,
 				39BEDC9319E1BD3500506B3C /* CustomFooterViewCell.m in Sources */,
-				3955106919E078FC00023955 /* MainFeedViewController.m in Sources */,
+				3955106919E078FC00023955 /* ResuableTableViewController.m in Sources */,
+				39EF3FB419FD8F7900D8C491 /* MainFeedViewController.m in Sources */,
 				39D139E219ED7ED1005ABEC0 /* UserProfileViewController.m in Sources */,
 				39EC489719FBE0980059EE2B /* MapViewController.m in Sources */,
 			);

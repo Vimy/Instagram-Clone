@@ -7,7 +7,7 @@
 //
 
 #import "UserProfileViewController.h"
-#import "MainFeedViewController.h"
+#import "ResuableTableViewController.h"
 #import "UIImageView+AFNetworking.h"
 #import "VerkennenViewController.h"
 #import "ImageDetailViewController.h"
@@ -36,7 +36,7 @@
     
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    MainFeedViewController *childController  = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
+    ResuableTableViewController *childController  = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
     
     childController.username = self.media.caption [@"from"][@"id"];
     childController.mediaSegue = self.mediaArray;
@@ -77,7 +77,7 @@
     if(sender.selectedSegmentIndex == 0)
     {
         
-        MainFeedViewController *newVC;
+        ResuableTableViewController *newVC;
         newVC = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
         newVC.mediaSegue = self.mediaArray;
         newVC.isUserView = YES;
