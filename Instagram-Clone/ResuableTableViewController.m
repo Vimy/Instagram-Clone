@@ -46,36 +46,14 @@
  
     client = [InstaClient sharedClient];
 
-   // [client startConnection];
+    
+    
+   [client startConnection];
      // [client startPersonalFeed];
    
-    NSLog(@"TABBAR: %lu", (unsigned long)   self.navigationController.tabBarController.selectedIndex);
-    
-    if(   self.navigationController.tabBarController.selectedIndex == 0)
-    {
-        if (self.isUserView)
-        {
-           
-        }
-        else
-        {
-                [client startPersonalFeed];
-            NSLog(@"Tab 0");
-        }
-    }
-    else if(   self.navigationController.tabBarController.selectedIndex == 3)
-    {
-        [client downloadUserFeed:@"self"];
-        NSLog(@"Tab 3");
-    }
-    else if (self.isImageDetailView)
-    {
-        _feedArray = self.mediaSegue;
-    }
-    else
-    {
-        [client downloadUserFeed:self.username];
-    }
+    self.isUserView = NO;
+    self.isImageDetailView = NO;
+    self.isFeedView = YES;
     
 
   
@@ -100,14 +78,45 @@
     NSLog(@"View gaat weg!");
 }
 */
+
+- (void)authenticateWithInstagram
+{
+    
+}
+
 -  (void)viewWillAppear:(BOOL)animated
 {
-   }
+    NSLog(@"TABBAR: %lu", (unsigned long)   self.navigationController.tabBarController.selectedIndex);
+  
+    switch (self.navigationController.tabBarController.selectedIndex)
+    {
+        case 0:
+            self.isUserView ? [client downloadUserFeed:self.username] : [client startPersonalFeed];
+            break;
+        case 3:
+            [client downloadUserFeed:@"self"];
+        default:
+            break;
+    }
+    
+    if (self.isImageDetailView)
+    {
+        _feedArray = self.mediaSegue;
+    }
+    else
+    {
+  //      [client downloadUserFeed:self.username];
+    }
+
+}
+
 
 - (void)dataFromController:(InstaMedia *)media
 {
     
 }
+
+
 - (void)downloadFinished
 {
     self.feedArray = client.personalImagesArray;
@@ -265,7 +274,7 @@
     controller.media = mediaHeader;
     controller.mediaArray = @[mediaHeader];
     self.isUserView = YES;
-    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"changeToView" object:nil userInfo:dic]];
+   [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"changeToView" object:nil userInfo:dic]];
     [self.navigationController pushViewController:controller animated:YES];
 }
 

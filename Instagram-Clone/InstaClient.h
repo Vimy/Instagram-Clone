@@ -9,8 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
-#define kCLIENTID @"6a88d49716fd4e0ba375cb784b9d9915"
-#define kCLIENTSECRET @"ed816557f3874e5aaec633e2535e4c88"
+#define kCLIENTID @"38ce63e055ce48cd8f37aee2d0fe73f6"
+#define kCLIENTSECRET @"023772c25df742868e280ac8a1e0e0f4"
 #define kREDIRECTURI @"instaklone://"
 
 @interface InstaClient : NSObject
@@ -19,12 +19,11 @@
 @property (nonatomic, strong) __block NSArray *searchImagesArray;
 @property (nonatomic, strong) __block NSArray *personalImagesArray;
 
-
++(id)sharedClient;
 - (void)searchForKeyWords:(NSString *)keywords;
 - (void)startConnection;
 - (NSArray *)startConnectionPopulairFeed;
 - (NSArray *)startPersonalFeed;
-+(id)sharedClient;
 - (void)downloadUserFeed:(NSString *)username;
 - (void)handleOAuthCallbackWithUrl:(NSURL *)url;
 - (NSString *)parseQueryString:(NSString *)query;

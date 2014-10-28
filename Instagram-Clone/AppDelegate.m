@@ -52,6 +52,9 @@
     
     [[UITabBar appearance] setBarTintColor:UIColorFromRGB(0x0515151)];
     [[UITabBar appearance] setTintColor:[UIColor whiteColor]];
+    
+   
+  
     return YES;
 }
 
