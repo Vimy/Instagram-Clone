@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <CoreLocation/CoreLocation.h>
 #import "InstaUser.h"
 
 @interface InstaMedia : NSObject
@@ -18,7 +17,7 @@
 @property (strong, nonatomic) NSURL *instaImageURLThumbnail;
 @property  double created_time;
 @property (strong, nonatomic) NSDictionary *caption;
-@property (nonatomic) NSInteger likesCount;
+@property (nonatomic) NSNumber *likesCount;
 @property (strong, nonatomic) NSDictionary *likes;
 @property ( nonatomic) NSInteger *commentCount;
 @property (strong, nonatomic) NSDictionary *images;
@@ -29,7 +28,9 @@
 @property (strong, nonatomic) UIImage *profileImage;
 @property (strong, nonatomic) NSURL *profilePictureUrl;
 @property (strong, nonatomic) NSString *username;
-//@property (nonatomic) CLLocationCoordinate2D *location;
+@property (nonatomic) NSDictionary *location;
+@property (nonatomic, strong) NSString *latitude;
+@property (nonatomic, strong) NSString *longitude;
 
 
 @end

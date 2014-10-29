@@ -8,30 +8,38 @@
 
 #import "MapViewController.h"
 
-@interface MapViewController ()
+@interface MapViewController () <MKMapViewDelegate>
 
 @end
 
 @implementation MapViewController
 
-- (void)viewDidLoad {
+- (void)setMapView:(MKMapView *)mapView
+{
+    _mapView = mapView;
+    self.mapView.delegate = self;
+    [self updateMapViewAnnotations];
+    NSLog(@"mapview");
+}
+
+- (void)viewDidLoad
+{
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
+- (void)didReceiveMemoryWarning
+{
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
+- (void)updateMapViewAnnotations
+{
+    [self.mapView removeAnnotations:self.mapView.annotations];
+    [self.mapView addAnnotations:self.photosByUser];
+    [self.mapView showAnnotations:self.photosByUser animated:YES];
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
-*/
+
+
 
 @end

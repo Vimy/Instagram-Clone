@@ -127,6 +127,7 @@
     {
         MapViewController *newVC;
         newVC = [sb instantiateViewControllerWithIdentifier:@"mapView"];
+        newVC.photosByUser = self.mediaArray;
         UIViewController *vc = self.childViewControllers[0];
         [self swapFromViewController:vc toViewController:newVC];
     }
@@ -154,8 +155,9 @@
    // NSDictionary *counts = user.counts[0];
    // NSLog(@"%@", counts[@"follows"]);
     NSLog(@"ProfilePictureURL: %@", user.profilePictureUrl);
+    NSURL *url = [NSURL URLWithString:user.profilePictureUrl];
     
-   //  [self.profileImage setImageWithURL:user.profilePictureUrl placeholderImage:[UIImage imageNamed:@"none.gif"]];
+    [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
     self.userFollowersCountLabel.text = [user.followedByCount stringValue];
     self.userMediaCountLabel.text = [user.mediaCount stringValue];
     self.userFollowingCountLabel.text = [user.followsCount stringValue];

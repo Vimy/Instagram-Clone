@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		394B14D51A018317008791A1 /* InstaMedia+Annotation.m in Sources */ = {isa = PBXBuildFile; fileRef = 394B14D41A018317008791A1 /* InstaMedia+Annotation.m */; };
 		3955102F19DF43CF00023955 /* billabong-1361543483.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3955102E19DF43A700023955 /* billabong-1361543483.ttf */; };
 		3955106919E078FC00023955 /* ResuableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3955106819E078FC00023955 /* ResuableTableViewController.m */; };
 		3955106C19E080D400023955 /* CustomHeaderViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3955106B19E080D400023955 /* CustomHeaderViewCell.m */; };
@@ -51,6 +52,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		394B14D31A018317008791A1 /* InstaMedia+Annotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "InstaMedia+Annotation.h"; sourceTree = "<group>"; };
+		394B14D41A018317008791A1 /* InstaMedia+Annotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "InstaMedia+Annotation.m"; sourceTree = "<group>"; };
 		3955102E19DF43A700023955 /* billabong-1361543483.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "billabong-1361543483.ttf"; sourceTree = "<group>"; };
 		3955106719E078FC00023955 /* ResuableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResuableTableViewController.h; sourceTree = "<group>"; };
 		3955106819E078FC00023955 /* ResuableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResuableTableViewController.m; sourceTree = "<group>"; };
@@ -192,6 +195,8 @@
 				39BC07DC19D73A450090E20E /* InstaUser.m */,
 				39BC07D819D735320090E20E /* InstaMedia.h */,
 				39BC07D919D735320090E20E /* InstaMedia.m */,
+				394B14D31A018317008791A1 /* InstaMedia+Annotation.h */,
+				394B14D41A018317008791A1 /* InstaMedia+Annotation.m */,
 				39BC07D519D6D3460090E20E /* InstaClient.h */,
 				39BC07D619D6D3460090E20E /* InstaClient.m */,
 			);
@@ -407,6 +412,7 @@
 				39E314DF19D9F508009141C5 /* CameraViewController.m in Sources */,
 				39D139DF19EC8116005ABEC0 /* MainCell.m in Sources */,
 				39BC07DD19D73A450090E20E /* InstaUser.m in Sources */,
+				394B14D51A018317008791A1 /* InstaMedia+Annotation.m in Sources */,
 				39E314DC19D9F258009141C5 /* VerkennenViewController.m in Sources */,
 				39BC07D719D6D3460090E20E /* InstaClient.m in Sources */,
 				39C85A7D19D574D8007295D9 /* main.m in Sources */,

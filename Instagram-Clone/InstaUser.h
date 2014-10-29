@@ -11,8 +11,8 @@
 @interface InstaUser : NSObject
 @property (strong, nonatomic) NSString *username;
 @property (strong, nonatomic) NSString *fullName;
-@property (strong, nonatomic) NSURL *website;
-@property (strong, nonatomic) NSURL *profilePictureUrl;
+@property (strong, nonatomic) NSString *website;
+@property (strong, nonatomic) NSString *profilePictureUrl;
 @property (strong, nonatomic) NSString *bio;
 @property (strong, nonatomic) NSDictionary *counts;
 

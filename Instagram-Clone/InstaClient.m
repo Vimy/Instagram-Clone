@@ -213,11 +213,7 @@
             
              NSLog(@"crasht het hier?");
                  InstaUser *user = [[InstaUser alloc]init];
-             
-             
-             
-             
-             
+ 
                  for (NSString *key in resultsDic)
                  {
                      NSLog(@"key, %@",key);
@@ -237,16 +233,14 @@
                          
                      }
                  }
-             
-             user.profilePictureUrl = resultsDic[@"profile_picture"];
-             user.fullName = resultsDic[@"full_name"];
-             user.counts = resultsDic[@"counts"];
-             user.mediaCount = resultsDic[@"counts"][@"media"];
-             user.followedByCount = resultsDic[@"counts"][@"followed_by"];
-             user.followsCount = resultsDic[@"counts"][@"follows"];
+             // nog NSNUll check fixen
+                 user.profilePictureUrl = resultsDic[@"profile_picture"];
+                 user.fullName = resultsDic[@"full_name"];
+                 user.counts = resultsDic[@"counts"];
+                 user.mediaCount = resultsDic[@"counts"][@"media"];
+                 user.followedByCount = resultsDic[@"counts"][@"followed_by"];
+                 user.followsCount = resultsDic[@"counts"][@"follows"];
                  [images addObject:user];
-             
-
          }
          else
          {
@@ -260,10 +254,26 @@
                      if([media respondsToSelector:NSSelectorFromString(key)])
                      {
                          
+                         
                          if  ([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"]))
                          {
-                             //([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"]))
-                             [media setValue:[imagesDic valueForKey:key ] forKey:key];
+                             if ([key isEqualToString:@"location"])
+                             {
+                                 media.latitude = imagesDic[@"location"][@"latitude"];
+                                 media.longitude = imagesDic[@"location"][@"longtitude"];
+                                 NSString *string = imagesDic[@"location"][@"latitude"];
+                                 media.latitude = string;
+                                 NSString *string2 = imagesDic[@"location"][@"longtitude"];
+                                 media.longitude = string2;
+                                 NSLog(@"string: %@", string);
+                             }
+                             else
+                             {
+                             
+                                 //([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"]))
+                                 [media setValue:[imagesDic valueForKey:key ] forKey:key];
+                             }
+                             
                          }
                          else
                          {
@@ -271,7 +281,16 @@
                          }
                          
                      }
+                     
+                     
+                     
+                     
                  }
+                 
+                 
+                 
+                 
+                 
                  [images addObject:media];
              }
 
