@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "InstaMedia.h"
 
-@interface ResuableTableViewController : UITableViewController
+@interface ResuableTableViewController : UITableViewController <UINavigationControllerDelegate>
 
 //@property (nonatomic) IBOutlet UILabel *likesLabel;
 @property (strong, nonatomic) NSArray *mediaSegue;

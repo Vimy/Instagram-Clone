@@ -91,6 +91,7 @@
             VerkennenViewController *newVC;
             newVC = [sb instantiateViewControllerWithIdentifier:@"collectionView"];
             newVC.mediaSegue = self.mediaArray;
+            newVC.isInUserView = YES;
             UIViewController *vc = self.childViewControllers[0];
         
             [self swapFromViewController:vc toViewController:newVC ];

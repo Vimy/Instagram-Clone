@@ -35,6 +35,8 @@
     
     
     [super viewDidLoad];
+    
+    NSLog(@"viewDidLoad");
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished)
                                                  name:@"personalFeedDownload" object:nil];
@@ -51,8 +53,7 @@
    [client startConnection];
      // [client startPersonalFeed];
    
-    self.isUserView = NO;
-    self.isImageDetailView = NO;
+  
     self.isFeedView = YES;
     
 
@@ -84,38 +85,52 @@
     
 }
 
--  (void)viewWillAppear:(BOOL)animated
+- (void)viewDidAppear:(BOOL)animated
 {
-    NSLog(@"TABBAR: %lu", (unsigned long)   self.navigationController.tabBarController.selectedIndex);
-  
-    switch (self.navigationController.tabBarController.selectedIndex)
-    {
-        case 0:
-            self.isUserView ? [client downloadUserFeed:self.username] : [client startPersonalFeed];
-            break;
-        case 3:
-            [client downloadUserFeed:@"self"];
-        default:
-            break;
-    }
+    self.navigationController.delegate = self; //delegate gebruiken van navigationController zodat willShowViewController kan gebruikt worden
     
+    NSLog(@"viewDidAppear");
+    NSLog(@"TABBAR: %lu", (unsigned long)   self.navigationController.tabBarController.selectedIndex);
+    NSLog(@"isUserView");
+    NSLog(self.isUserView ? @"Yes" : @"No");
+    NSLog(@"sImageDetailView");
+    NSLog(self.isImageDetailView ? @"Yes" : @"No");
+    NSLog(@"isFeedView");
+    NSLog(self.isFeedView ? @"Yes" : @"No");
     if (self.isImageDetailView)
     {
         _feedArray = self.mediaSegue;
+        NSLog(@"segue nu!");
     }
     else
     {
-  //      [client downloadUserFeed:self.username];
+        switch (self.navigationController.tabBarController.selectedIndex)
+        {
+            case 0:
+                NSLog(self.isUserView ? @"Yes" : @"No");
+                self.isUserView ? [client downloadUserFeed:self.username] : [client startPersonalFeed];
+                self.isUserView = NO;
+                break;
+            case 3:
+                [client downloadUserFeed:@"self"];
+            default:
+                break;
+        }
+
     }
 
 }
-
-
-- (void)dataFromController:(InstaMedia *)media
+-  (void)viewWillAppear:(BOOL)animated
 {
+    NSLog(@"viewWillAppear");
     
 }
 
+- (void)navigationController:(UINavigationController *)navigationController willShowViewController:(UIViewController *)viewController animated:(BOOL)animated
+{
+    
+    self.isUserView = NO;
+}
 
 - (void)downloadFinished
 {

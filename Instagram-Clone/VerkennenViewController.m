@@ -54,26 +54,48 @@
    // [client addObserver:self forKeyPath:@"searchImagesArray" options:0 context:NULL];
     
     // Do any additional setup after loading the view.
-    activityView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
-    activityView.center = self.view.center;
-    [activityView startAnimating];
-    [self.collectionView addSubview:activityView];
     
-    self.collectionView.backgroundColor = [UIColor clearColor];
-    dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
+    if (self.isInUserView)
+    {
+       // self.isInUserView = NO;
+        imagesArray = self.mediaSegue;
+        [self.collectionView reloadData];
+        NSLog(@"MediaSegue from VKVC: %@", self.mediaSegue);
+    }
+    else
+    {
+        
     
-    dispatch_sync(backGroundQue, ^{
-       
-        testArray = [[NSMutableArray alloc]initWithArray:[client startConnectionPopulairFeed]];
-   //     NSLog(@"[VKViewController]TestArray: %@", testArray);
-        dispatch_async(dispatch_get_main_queue(), ^{
+        activityView = [[UIActivityIndicatorView alloc]initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhiteLarge];
+        activityView.center = self.view.center;
+        [activityView startAnimating];
+        [self.collectionView addSubview:activityView];
+        
+        self.collectionView.backgroundColor = [UIColor clearColor];
+        dispatch_queue_t backGroundQue = dispatch_queue_create("instaqueue", NULL);
+        
+        dispatch_sync(backGroundQue, ^{
             
+            testArray = [[NSMutableArray alloc]initWithArray:[client startConnectionPopulairFeed]];
+            //     NSLog(@"[VKViewController]TestArray: %@", testArray);
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+            });
         });
-    });
-      
+    }
 }
 
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    
+    if (self.isInUserView)
+    {
+        self.isInUserView = NO;
+        imagesArray = self.mediaSegue;
+        [self.collectionView reloadData];
+        NSLog(@"MediaSegue from VKVC: %@", self.mediaSegue);
+    }
+}
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section {
     
     return UIEdgeInsetsMake(0, 0, 0, 0);
@@ -207,7 +229,7 @@
         segueMedia = [imagesArray objectAtIndex:indexPath.row];
         NSString *username = segueMedia.caption[@"from"][@"username"];
         vc.isImageDetailView = YES;
-    vc.mediaSegue = @[segueMedia];
+        vc.mediaSegue = @[segueMedia];
         vc.feedArray = @[segueMedia];
         
     }

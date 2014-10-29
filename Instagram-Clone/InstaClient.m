@@ -87,6 +87,7 @@
             NSError *error = nil;
             NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
+          //  NSLog(@"JSON response: %@", json);
             self.instaToken = json[@"access_token"];
             [defaults setValue:self.instaToken forKey:@"instatoken"];
             [defaults synchronize];
@@ -96,7 +97,7 @@
             operation.responseSerializer = [AFJSONResponseSerializer serializer];
             [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id result)
              {
-                 NSLog(@"Test!");
+            //     NSLog(@"Test!");
                  NSLog(@"JSON response: %@", result);
              }
                                              failure:^(AFHTTPRequestOperation *operation, NSError *error)
@@ -165,7 +166,7 @@
 - (void)downloadUserFeed:(NSString *)username
 {
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat: @"https://api.instagram.com/v1/users/%@/media/recent/?access_token=%@", username, self.instaToken]]];
-    NSLog(@"self.instatoken : %@", self.instaToken);
+   // NSLog(@"self.instatoken : %@", self.instaToken);
     self.personalImagesArray = [self startDownload:request forDownloadType:@"userFeedDownload"];
 }
 
@@ -173,7 +174,7 @@
 {
     __block NSMutableArray *images = [[NSMutableArray alloc]init];
 
-     NSLog(@"self.instatoken : %@", self.instaToken);
+   //  NSLog(@"self.instatoken : %@", self.instaToken);
     AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc] initWithRequest:request];
     operation.responseSerializer = [AFJSONResponseSerializer serializer];
     [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject)
@@ -222,7 +223,7 @@
 
 - (void)handleOAuthCallbackWithUrl:(NSURL *)url
 {
-    NSLog(@"AuthCode: %@", [self parseQueryString:[url absoluteString]]);
+   // NSLog(@"AuthCode: %@", [self parseQueryString:[url absoluteString]]);
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults removeObjectForKey:@"auth_code"];
     [defaults setValue:[self parseQueryString:[url absoluteString]] forKey:@"auth_code"];
@@ -234,7 +235,7 @@
 {
     NSArray *pairs = [query componentsSeparatedByString:@"="];
     NSString *string = pairs[1];
-    NSLog(@"string pair: %@", string);
+  //  NSLog(@"string pair: %@", string);
     return string;
 }
 @end
