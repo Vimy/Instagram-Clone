@@ -13,8 +13,10 @@
 @property (strong, nonatomic) NSString *fullName;
 @property (strong, nonatomic) NSURL *website;
 @property (strong, nonatomic) NSURL *profilePictureUrl;
-@property (strong, nonatomic) NSString *id;
-@property (readonly) NSInteger mediaCount;
-@property (readonly) NSInteger followsCount;
-@property (readonly) NSInteger followedByCount;
+@property (strong, nonatomic) NSString *bio;
+@property (strong, nonatomic) NSDictionary *counts;
+
+@property  (strong, nonatomic) NSNumber *mediaCount;
+@property  (strong, nonatomic) NSNumber *followsCount;
+@property  (strong, nonatomic) NSNumber *followedByCount;
 @end

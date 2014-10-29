@@ -18,6 +18,7 @@
 @property (nonatomic, strong) __block NSArray *imagesArray;
 @property (nonatomic, strong) __block NSArray *searchImagesArray;
 @property (nonatomic, strong) __block NSArray *personalImagesArray;
+@property (nonatomic, strong) __block NSArray *userInfoArray;
 
 +(id)sharedClient;
 - (void)searchForKeyWords:(NSString *)keywords;
@@ -27,6 +28,7 @@
 - (void)downloadUserFeed:(NSString *)username;
 - (void)handleOAuthCallbackWithUrl:(NSURL *)url;
 - (NSString *)parseQueryString:(NSString *)query;
+- (void)downloadUserInfo:(NSString *)username;
 
 //https://www.youtube.com/watch?v=vv2i8PuGkF8
 @end

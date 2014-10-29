@@ -348,7 +348,7 @@
                                 </variation>
                             </imageView>
                             <containerView opaque="NO" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qoa-S4-y43">
-                                <rect key="frame" x="0.0" y="183" width="375" height="435"/>
+                                <rect key="frame" x="0.0" y="227" width="375" height="391"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
                                     <rect key="frame" x="0.0" y="209" width="375" height="458"/>
                                 </variation>
@@ -427,7 +427,7 @@
                                 </variation>
                             </label>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="Tyw-sp-92H">
-                                <rect key="frame" x="111" y="151" width="152" height="29"/>
+                                <rect key="frame" x="111" y="183" width="152" height="29"/>
                                 <segments>
                                     <segment title="" image="icon_balloon_20x20.png"/>
                                     <segment title="" image="icon_clock_20x20.png"/>

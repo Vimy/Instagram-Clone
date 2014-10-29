@@ -34,6 +34,11 @@
     
     client = [InstaClient sharedClient];
     
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished)
+                                                 name:@"userInfo" object:nil];
+    
+    
     
     UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     ResuableTableViewController *childController  = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
@@ -43,6 +48,9 @@
     childController.isUserView = YES;
     childController.feedArray = self.mediaArray;
     [client downloadUserFeed:self.media.caption [@"from"][@"id"]];
+    
+    
+    [client downloadUserInfo:self.media.caption [@"from"][@"id"]];
     
     
     [self addChildViewController:childController];
@@ -55,15 +63,34 @@
     
    // NSLog(@"[USERPRF]Nu werkt het!");
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToView" object:nil];
-    [self setupUI];
+  
  // http://stackoverflow.com/questions/5210535/passing-data-between-view-controllers
 // http://stackoverflow.com/questions/15540120/passing-data-to-container-view
     // Do any additional setup after loading the view.
 }
 
+
+- (void)downloadFinished
+{
+    NSLog(@"werkt dit wel?");
+    NSLog(@"userInfo: %@", client.userInfoArray);
+   InstaUser *user = client.userInfoArray[0];
+    NSLog(@"Test: %@",user.username);
+    NSLog(@"Test2: %@", user.fullName);
+    NSLog(@"Test2: %@", user.bio);
+    NSLog(@"Test2: %@", user.profilePictureUrl);
+    [self setupUI];
+
+}
+
+
 - (void)viewWillAppear:(BOOL)animated
 {
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToView" object:nil];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished)
+                                                 name:@"userInfo" object:nil];
   //   NSLog(@"[USERPRF]Nu werkt viewWillAppear!");
 }
 - (void)didReceiveMemoryWarning {
@@ -114,11 +141,29 @@
   //  NSLog(@"[USERPRF]Nu werkt het!");
     InstaMedia *media = [[notification userInfo] valueForKey:@"media"];
     self.media = media;
-    [self setupUI];
+    //[self setupUI];
 }
 
 - (void)setupUI
 {
+    InstaUser *user = client.userInfoArray[0];
+     self.usernameLabel.text = user.username;
+    
+   // NSLog(@"Array : %@", user.counts);
+    
+   // NSDictionary *counts = user.counts[0];
+   // NSLog(@"%@", counts[@"follows"]);
+    NSLog(@"ProfilePictureURL: %@", user.profilePictureUrl);
+    
+   //  [self.profileImage setImageWithURL:user.profilePictureUrl placeholderImage:[UIImage imageNamed:@"none.gif"]];
+    self.userFollowersCountLabel.text = [user.followedByCount stringValue];
+    self.userMediaCountLabel.text = [user.mediaCount stringValue];
+    self.userFollowingCountLabel.text = [user.followsCount stringValue];
+    self.userOnderschriftLabel.text = user.bio;
+    /*
+     
+    
+     
     username = self.media.caption [@"from"][@"username"];
     self.usernameLabel.text = username;
  //   NSLog(@"USERPRF]username: %@", username);
@@ -126,11 +171,12 @@
     NSURL *url = [NSURL URLWithString:self.media.caption [@"from"][@"profile_picture"]];
  
     [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
-    
+    */
    self.profileImage.clipsToBounds = YES;
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
    self.profileImage.layer.borderWidth = 0.5f;
     self.profileImage.layer.borderColor = [UIColor whiteColor].CGColor;
+     
 }
 
 

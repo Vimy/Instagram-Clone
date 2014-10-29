@@ -82,6 +82,16 @@
             [request setHTTPBody:[parameterData dataUsingEncoding:NSUTF8StringEncoding]];
             [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
             
+           /* NSDictionary *params = @{@"client_id:%@", kCLIENTID}
+            
+            
+            AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://samwize.com/"]];
+            [httpClient setParameterEncoding:AFFormURLParameterEncoding];
+            NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST"
+                                                                    path:@"http://samwize.com/api/pig/"
+                                                              parameters:@{@"name":@"piggy"}];
+
+            */
             //NSURLConnection
             NSURLResponse *response = nil;
             NSError *error = nil;
@@ -91,6 +101,8 @@
             self.instaToken = json[@"access_token"];
             [defaults setValue:self.instaToken forKey:@"instatoken"];
             [defaults synchronize];
+            
+          /*  AFHTTPSessionManager *httpManager =
             
             //AFNetworking
             AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
@@ -105,7 +117,7 @@
                  NSLog(@"Error: %@", [error localizedDescription]);
                  NSLog(@"No token from instagram. :sadface:");
              }];
-            [operation start];
+            [operation start];*/
        }
 
         self.instaToken = [defaults stringForKey:@"instatoken"];
@@ -170,6 +182,14 @@
     self.personalImagesArray = [self startDownload:request forDownloadType:@"userFeedDownload"];
 }
 
+- (void)downloadUserInfo:(NSString *)username
+{
+    //https://api.instagram.com/v1/users/1574083/?access_token=ACCESS-TOKEN
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:[NSString stringWithFormat:@"https://api.instagram.com/v1/users/%@/?access_token=%@", username, self.instaToken]]];
+    self.userInfoArray = [self startDownload:request forDownloadType:@"userInfo"];
+    
+}
+
 - (NSArray *)startDownload:(NSURLRequest  *)request forDownloadType:(NSString *)downloadType
 {
     __block NSMutableArray *images = [[NSMutableArray alloc]init];
@@ -181,31 +201,90 @@
      {
 
          NSArray *results = [responseObject valueForKey:@"data"];
-
-         for (NSDictionary *imagesDic in results)
-                 {
-                       InstaMedia *media = [[InstaMedia alloc]init];
+         
+         NSDictionary *resultsDic = [responseObject valueForKey:@"data"];
+         
+         if ([downloadType isEqualToString:@"userInfo"])
+         {
+             
             
-                      for (NSString *key in imagesDic)
-                             {
-                                 if([media respondsToSelector:NSSelectorFromString(key)])
-                                        {
-                                           
-                                            if  ([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"]))
-                                                 {
-                                                //([[imagesDic valueForKey:key] isKindOfClass:[NSNull class]]) check
-                                               [media setValue:[imagesDic valueForKey:key ] forKey:key];
-                                            }
-                                            else
-                                            {
-                                                 continue;
-                                            }
-                            
-                                          }
-                               }
-                            [images addObject:media];
-                        }
-        
+             
+             NSLog(@"[InstaClient]results: %@", resultsDic);
+            
+             NSLog(@"crasht het hier?");
+                 InstaUser *user = [[InstaUser alloc]init];
+             
+             
+             
+             
+             
+                 for (NSString *key in resultsDic)
+                 {
+                     NSLog(@"key, %@",key);
+                     if([user respondsToSelector:NSSelectorFromString(key)])
+                     {
+                         
+                          if  ([resultsDic valueForKey:key] && (![[resultsDic valueForKey:key] isEqual:[NSNull null]]) && (![[resultsDic valueForKey:key] isEqual:@"<null>"]))
+                          {
+                             //([[imagesDic valueForKey:key] isKindOfClass:[NSNull class]]) check
+                             [user setValue:[resultsDic valueForKey:key ] forKey:key];
+                         }
+                         else
+                         {
+                             NSLog(@"Null voor key: %@", key);
+                             continue;
+                         }
+                         
+                     }
+                 }
+             
+             user.profilePictureUrl = resultsDic[@"profile_picture"];
+             user.fullName = resultsDic[@"full_name"];
+             user.counts = resultsDic[@"counts"];
+             user.mediaCount = resultsDic[@"counts"][@"media"];
+             user.followedByCount = resultsDic[@"counts"][@"followed_by"];
+             user.followsCount = resultsDic[@"counts"][@"follows"];
+                 [images addObject:user];
+             
+
+         }
+         else
+         {
+             
+             for (NSDictionary *imagesDic in results)
+             {
+                 InstaMedia *media = [[InstaMedia alloc]init];
+                 
+                 for (NSString *key in imagesDic)
+                 {
+                     if([media respondsToSelector:NSSelectorFromString(key)])
+                     {
+                         
+                         if  ([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"]))
+                         {
+                             //([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"]))
+                             [media setValue:[imagesDic valueForKey:key ] forKey:key];
+                         }
+                         else
+                         {
+                             continue;
+                         }
+                         
+                     }
+                 }
+                 [images addObject:media];
+             }
+
+             
+             
+             
+         }
+         
+         
+         
+         
+         
+         
          [[NSNotificationCenter defaultCenter] postNotification:
           [NSNotification notificationWithName:downloadType object:nil]];
       
@@ -218,8 +297,37 @@
     return images;
 }
 
+/*
+- (void)parseJson:(NSArray *)json withObject:(id*)userClass andPutInArray:(NSMutableArray *)array
+{
+    
+    for (NSDictionary *imagesDic in json)
+    {
+        
+        
+        
+        for (NSString *key in imagesDic)
+        {
+            if([userClass respondsToSelector:NSSelectorFromString(key)])
+            {
+                
+                if  ([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"]))
+                {
+                    //([[imagesDic valueForKey:key] isKindOfClass:[NSNull class]]) check
+                    [id setValue:[imagesDic valueForKey:key ] forKey:key];
+                }
+                else
+                {
+                    continue;
+                }
+                
+            }
+        }
+        [array addObject:media];
+    }
 
-
+}
+*/
 
 - (void)handleOAuthCallbackWithUrl:(NSURL *)url
 {
