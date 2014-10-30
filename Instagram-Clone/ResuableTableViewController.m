@@ -238,10 +238,7 @@
     NSURL *url = [NSURL URLWithString:mediaHeader.caption [@"from"][@"profile_picture"]];
       [cell.usernameButton setTitle:username forState:UIControlStateNormal];
     [cell.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
-    
-    NSDateFormatter *df = [[NSDateFormatter alloc]init];
-    [df setDateFormat:@"HH"];
-    
+  
     NSTimeInterval timeInterval = (NSTimeInterval)mediaHeader.created_time;
     NSDate *timestamp = [NSDate dateWithTimeIntervalSince1970:timeInterval];
     
@@ -253,20 +250,21 @@
                                                  fromDate:timestamp
                                                    toDate:now options:0];
 
-   //NSLog(@"Tijd gepasseerd in dagen: %ld | Tijd gepasseerd in uren: %ld ", (long)[components day], (long)[components hour]);
+   NSLog(@"Tijd gepasseerd in dagen: %ld | Tijd gepasseerd in uren: %ld ", (long)[components day], (long)[components hour]);
   
-    if ([components hour] > 24)
+    if ([components day] > 0)
     {
-        cell.time.text = [NSString stringWithFormat:@"%ld u",(long)[components day] ];
+        cell.time.text = [NSString stringWithFormat:@"%ldd",(long)[components day] ];
+        NSLog(@"Meer dan een dag");
     }
     else
     {
-        cell.time.text = [NSString stringWithFormat:@"%ld u",(long)[components hour] ];
+        cell.time.text = [NSString stringWithFormat:@"%ldu",(long)[components hour] ];
 
     }
   
     
-    cell.time.text = [NSString stringWithFormat:@"%ld u",(long)[components hour] ];
+   // cell.time.text = [NSString stringWithFormat:@"%ld u",(long)[components hour] ];
 
     cell.profileImage.clipsToBounds = YES;
     cell.profileImage.layer.cornerRadius = cell.profileImage.frame.size.width/2;
@@ -309,10 +307,15 @@
         NSURL *url = [NSURL URLWithString:media.images[@"standard_resolution"][@"url"]];
         [ cell.mainImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"graybox.jpg"]];
         
-        NSString *likes =[mediaHeader.likes objectForKey:@"count"];
+        NSString *likes =[[mediaHeader.likes objectForKey:@"count"]stringValue];
+        NSLog(@"Likes: %@", [mediaHeader.likes objectForKey:@"count"]);
         NSString *likesTekst = [NSString stringWithFormat:@"vind-ik-leuks"];
         cell.likesCountLabel.text = [NSString stringWithFormat:@"%@ %@", likes, likesTekst];
-        
+        NSString *username = mediaHeader.caption [@"from"][@"username"];
+        NSString *tekst = mediaHeader.caption [@"text"];
+        NSLog(@"ONderschrift: %@", mediaHeader.caption);
+        NSLog(@"Username: %@", mediaHeader.username);
+        cell.onderschriftLabel.text = [NSString stringWithFormat:@"%@ %@", username, tekst];
        
         
     }

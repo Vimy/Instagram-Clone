@@ -28,7 +28,7 @@
                         <rect key="frame" x="8" y="325" width="10" height="10"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6HH-Qw-XDG">
-                        <rect key="frame" x="26" y="320" width="68" height="21"/>
+                        <rect key="frame" x="26" y="321" width="341" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="10"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
@@ -40,7 +40,7 @@
                 <outlet property="mainImage" destination="2ol-ky-jsQ" id="zRK-Mi-lv8"/>
                 <outlet property="onderschriftLabel" destination="6HH-Qw-XDG" id="efz-PC-pYB"/>
             </connections>
-            <point key="canvasLocation" x="175.5" y="209"/>
+            <point key="canvasLocation" x="175.5" y="208"/>
         </tableViewCell>
     </objects>
     <resources>
