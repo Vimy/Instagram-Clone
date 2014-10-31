@@ -67,7 +67,7 @@
     
     NSString *authCode = [defaults stringForKey:@"auth_code"];
   
-    NSLog(@"AUTHCODE: %@", authCode);
+   // NSLog(@"AUTHCODE: %@", authCode);
     if (authCode)
     {
     // http://nsscreencast.com/episodes/41-authentication-with-afnetworking
@@ -130,9 +130,9 @@
         NSString *escaped = [urlstring stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:escaped]];
       
-        NSLog(@"Url string: %@",escaped);
+     //   NSLog(@"Url string: %@",escaped);
        // https://api.instagram.com/oauth/authorize/?client_id=6a88d49716fd4e0ba375cb784b9d9915&redirect_uri=instaklone://&response_type=code
-        NSLog(@"Key doesn't exists");
+       // NSLog(@"Key doesn't exists");
     }
 }
 
@@ -209,14 +209,14 @@
              
             
              
-             NSLog(@"[InstaClient]results: %@", resultsDic);
+          //   NSLog(@"[InstaClient]results: %@", resultsDic);
             
-             NSLog(@"crasht het hier?");
+          //   NSLog(@"crasht het hier?");
                  InstaUser *user = [[InstaUser alloc]init];
  
                  for (NSString *key in resultsDic)
                  {
-                     NSLog(@"key, %@",key);
+                    // NSLog(@"key, %@",key);
                      if([user respondsToSelector:NSSelectorFromString(key)])
                      {
                          
@@ -265,7 +265,7 @@
                                  media.latitude = string;
                                  NSString *string2 = imagesDic[@"location"][@"longtitude"];
                                  media.longitude = string2;
-                                 NSLog(@"string: %@", string);
+                          //       NSLog(@"string: %@", string);
                              }
                              else
                              {

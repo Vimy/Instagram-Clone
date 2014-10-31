@@ -29,4 +29,5 @@
 @property (strong, nonatomic) IBOutlet UILabel *userFollowersCountLabel;
 @property (strong, nonatomic) IBOutlet UILabel *userOnderschriftLabel;
 @property (strong, nonatomic) NSArray *mediaArray;
+@property (strong, nonatomic) NSString *userID;
 @end

@@ -24,7 +24,7 @@
     InstaMedia *mediaHeader;
     InstaMedia *mediaFooter;
     InstaMedia *tempMedia;
-  
+    NSString *userID;
 }
 @end
 //http://stackoverflow.com/questions/19819165/imitate-ios-7-facebook-hide-show-expanding-contracting-navigation-bar
@@ -36,7 +36,7 @@
     
     [super viewDidLoad];
     
-    NSLog(@"viewDidLoad");
+  //  NSLog(@"viewDidLoad");
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished)
                                                  name:@"personalFeedDownload" object:nil];
@@ -88,7 +88,7 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     self.navigationController.delegate = self; //delegate gebruiken van navigationController zodat willShowViewController kan gebruikt worden
-    
+  /*
     NSLog(@"viewDidAppear");
     NSLog(@"TABBAR: %lu", (unsigned long)   self.navigationController.tabBarController.selectedIndex);
     NSLog(@"isUserView");
@@ -96,7 +96,7 @@
     NSLog(@"sImageDetailView");
     NSLog(self.isImageDetailView ? @"Yes" : @"No");
     NSLog(@"isFeedView");
-    NSLog(self.isFeedView ? @"Yes" : @"No");
+    NSLog(self.isFeedView ? @"Yes" : @"No");*/
     if (self.isImageDetailView)
     {
         _feedArray = self.mediaSegue;
@@ -122,7 +122,7 @@
 }
 -  (void)viewWillAppear:(BOOL)animated
 {
-    NSLog(@"viewWillAppear");
+  //  NSLog(@"viewWillAppear");
     
 }
 
@@ -211,12 +211,12 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
+    NSLog(@"SECTON: %li", (long)section);
    
     mediaHeader = [_feedArray objectAtIndex:section];
     tempMedia = [_feedArray objectAtIndex:section]; // mediaHeader;
     if (tempMedia)
     {
-      //  NSLog(@"TEMPMEDIA IS VOL");
     }
     CustomHeaderViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"headerCell"];
     if (cell==nil) {
@@ -230,9 +230,13 @@
     NSString *likes =[mediaHeader.likes objectForKey:@"count"];
     NSString *likesTekst = [NSString stringWithFormat:@"vind-ik-leuks"];
     likesLabel.text = [NSString stringWithFormat:@"%@ %@", likes, likesTekst];
+   
     
+    NSString *inStr = [NSString stringWithFormat: @"%ld", (long)section];
+    cell.sectionTestLabel.text = inStr;
     
     NSString *username = mediaHeader.caption [@"from"][@"username"];
+    userID = mediaHeader.caption [@"from"][@"id"];
     
     
     NSURL *url = [NSURL URLWithString:mediaHeader.caption [@"from"][@"profile_picture"]];
@@ -250,12 +254,12 @@
                                                  fromDate:timestamp
                                                    toDate:now options:0];
 
-   NSLog(@"Tijd gepasseerd in dagen: %ld | Tijd gepasseerd in uren: %ld ", (long)[components day], (long)[components hour]);
+  // NSLog(@"Tijd gepasseerd in dagen: %ld | Tijd gepasseerd in uren: %ld ", (long)[components day], (long)[components hour]);
   
     if ([components day] > 0)
     {
         cell.time.text = [NSString stringWithFormat:@"%ldd",(long)[components day] ];
-        NSLog(@"Meer dan een dag");
+      //  NSLog(@"Meer dan een dag");
     }
     else
     {
@@ -275,20 +279,29 @@
 }
 //http://www.reddit.com/r/iOSProgramming/comments/2jcboi/the_best_way_to_get_notified_when_the_data_is/
 
--(void)loadNewScreen:(UserProfileViewController *)controller
+-(void)loadNewScreen:(UserProfileViewController *)controller cellTapped:(CustomHeaderViewCell *)cell
 {
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
+    
     //cell delegate
   //  NSLog(@"WEEEERKT DIT WEEEEELLLL????");
+    tempMedia = [_feedArray objectAtIndex:indexPath.section];
+    
+    // NSLog(@"FeedArray: %@", self.feedArray);
+    NSString *logString= tempMedia.caption [@"from"][@"username"];
+    NSLog(@"Name: %@", logString);
+    
+    NSDictionary *dic = @{@"media":tempMedia };
+    controller.delegate = self;
+    controller.media = tempMedia ;
+    controller.mediaArray = @[tempMedia ];
+    controller.userID = userID;
+    self.isUserView = YES;
     self.feedArray = nil;
     [self.tableView reloadData];
-    NSLog(@"FeedArray: %@", self.feedArray);
-        NSDictionary *dic = @{@"media":mediaHeader };
-    controller.delegate = self;
-    controller.media = mediaHeader;
-    controller.mediaArray = @[mediaHeader];
-    self.isUserView = YES;
    [[NSNotificationCenter defaultCenter] postNotification:[NSNotification notificationWithName:@"changeToView" object:nil userInfo:dic]];
     [self.navigationController pushViewController:controller animated:YES];
+    
 }
 
 
@@ -307,14 +320,14 @@
         NSURL *url = [NSURL URLWithString:media.images[@"standard_resolution"][@"url"]];
         [ cell.mainImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"graybox.jpg"]];
         
-        NSString *likes =[[mediaHeader.likes objectForKey:@"count"]stringValue];
-        NSLog(@"Likes: %@", [mediaHeader.likes objectForKey:@"count"]);
+        NSString *likes =[[media.likes objectForKey:@"count"]stringValue];
+        NSLog(@"Likes: %@", [media.likes objectForKey:@"count"]);
         NSString *likesTekst = [NSString stringWithFormat:@"vind-ik-leuks"];
         cell.likesCountLabel.text = [NSString stringWithFormat:@"%@ %@", likes, likesTekst];
-        NSString *username = mediaHeader.caption [@"from"][@"username"];
-        NSString *tekst = mediaHeader.caption [@"text"];
-        NSLog(@"ONderschrift: %@", mediaHeader.caption);
-        NSLog(@"Username: %@", mediaHeader.username);
+        NSString *username = media.caption [@"from"][@"username"];
+        NSString *tekst = media.caption [@"text"];
+     //   NSLog(@"ONderschrift: %@", media.caption);
+        NSLog(@"Username: %@", media.username);
         cell.onderschriftLabel.text = [NSString stringWithFormat:@"%@ %@", username, tekst];
        
         

@@ -17,7 +17,9 @@
     
     coordinate.latitude = [self.latitude doubleValue];
     coordinate.longitude = [self.longitude doubleValue];
-    NSLog(@"Hoi %f", [self.latitude doubleValue]);
+    NSLog(@"latitude %f", [self.latitude doubleValue]);
+    NSLog(@"longitude %f", [self.longitude doubleValue]);
+    NSLog(@"---------");
     return coordinate;
 }
 

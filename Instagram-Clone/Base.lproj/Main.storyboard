@@ -274,7 +274,7 @@
             </objects>
             <point key="canvasLocation" x="-831" y="-2062"/>
         </scene>
-        <!--Resuable Table View Controller-->
+        <!--Instaclone-->
         <scene sceneID="BtC-aD-OuC">
             <objects>
                 <tableViewController id="BU5-dt-lDx" customClass="ResuableTableViewController" sceneMemberID="viewController">
@@ -295,7 +295,7 @@
                             <outlet property="delegate" destination="BU5-dt-lDx" id="PSu-ue-JKw"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="Krc-5H-yUW"/>
+                    <navigationItem key="navigationItem" title="Instaclone" id="Krc-5H-yUW"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="50a-AQ-Kzq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

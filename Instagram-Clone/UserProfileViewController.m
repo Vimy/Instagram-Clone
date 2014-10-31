@@ -47,7 +47,7 @@
     childController.mediaSegue = self.mediaArray;
     childController.isUserView = YES;
     childController.feedArray = self.mediaArray;
-    [client downloadUserFeed:self.media.caption [@"from"][@"id"]];
+  //  [client downloadUserFeed:self.media.caption [@"from"][@"id"]];
     
     
     [client downloadUserInfo:self.media.caption [@"from"][@"id"]];
@@ -69,16 +69,27 @@
     // Do any additional setup after loading the view.
 }
 
+-(void)setUserID:(NSString *)userID
+{
+    _userID = userID;
+    [client downloadUserFeed:userID];
+    NSLog(@"userID set");
+}
 
 - (void)downloadFinished
 {
-    NSLog(@"werkt dit wel?");
-    NSLog(@"userInfo: %@", client.userInfoArray);
-   InstaUser *user = client.userInfoArray[0];
-    NSLog(@"Test: %@",user.username);
+   // NSLog(@"werkt dit wel?");
+   // NSLog(@"userInfo: %@", client.userInfoArray);
+    /*NSLog(@"Test: %@",user.username);
     NSLog(@"Test2: %@", user.fullName);
     NSLog(@"Test2: %@", user.bio);
-    NSLog(@"Test2: %@", user.profilePictureUrl);
+    NSLog(@"Test2: %@", user.profilePictureUrl);*/
+    
+    //InstaUser *user = client.userInfoArray[0];
+    
+    
+    self.mediaArray = client.personalImagesArray;
+    
     [self setupUI];
 
 }
@@ -91,6 +102,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished)
                                                  name:@"userInfo" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished)
+                                                 name:@"userFeedDownload" object:nil];
+  
   //   NSLog(@"[USERPRF]Nu werkt viewWillAppear!");
 }
 - (void)didReceiveMemoryWarning {
@@ -117,8 +132,9 @@
     {
             VerkennenViewController *newVC;
             newVC = [sb instantiateViewControllerWithIdentifier:@"collectionView"];
-            newVC.mediaSegue = self.mediaArray;
+           // newVC.mediaSegue = self.mediaArray;
             newVC.isInUserView = YES;
+            [client downloadUserFeed:self.media.caption [@"from"][@"id"]];
             UIViewController *vc = self.childViewControllers[0];
         
             [self swapFromViewController:vc toViewController:newVC ];
@@ -154,7 +170,7 @@
     
    // NSDictionary *counts = user.counts[0];
    // NSLog(@"%@", counts[@"follows"]);
-    NSLog(@"ProfilePictureURL: %@", user.profilePictureUrl);
+  //  NSLog(@"ProfilePictureURL: %@", user.profilePictureUrl);
     NSURL *url = [NSURL URLWithString:user.profilePictureUrl];
     
     [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];

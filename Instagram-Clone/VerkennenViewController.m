@@ -18,8 +18,8 @@
     __block NSDictionary *jsonPopulairImages;
     NSArray *imagesArray;
     InstaClient *client;
-    UIActivityIndicatorView *activityView;
     InstaMedia  *media;
+    UIActivityIndicatorView *activityView;
     NSMutableArray *testArray;
 }
 @end
@@ -41,6 +41,11 @@
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished:)
                                                  name:@"searchDownload" object:nil];
+    
+  
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(downloadFinished:)
+                                                 name:@"userFeedDownload" object:nil];
 
     client = [InstaClient sharedClient];
     
@@ -120,12 +125,16 @@
         imagesArray = client.searchImagesArray;
         [self.collectionView reloadData];
     }
-    else
+    else if ([notification.name isEqualToString:@"populairFeedDownload"])
     {
         imagesArray = client.imagesArray;
         [self.collectionView reloadData];
     }
-  
+    else
+    {
+        imagesArray = client.personalImagesArray;
+        [self.collectionView reloadData];
+    }
 
 }
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
