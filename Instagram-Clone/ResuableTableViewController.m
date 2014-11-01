@@ -279,7 +279,7 @@
 }
 //http://www.reddit.com/r/iOSProgramming/comments/2jcboi/the_best_way_to_get_notified_when_the_data_is/
 
--(void)loadNewScreen:(UserProfileViewController *)controller cellTapped:(CustomHeaderViewCell *)cell
+-(void)loadNewScreen:(UserProfileViewController *)controller fromCellTapped:(CustomHeaderViewCell *)cell
 {
     NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
@@ -338,7 +338,10 @@
 
 
 
-
+- (void)tableView:(UITableView *)tableView didDeselectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSLog(@"Test");
+}
 
 
 /*

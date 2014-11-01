@@ -30,7 +30,7 @@
     UserProfileViewController *storyboardView =
     [storyboard instantiateViewControllerWithIdentifier:@"userView"];
    // UINavigationController *navigateController = [[UINavigationController alloc]initWithRootViewController:storyboardView];
-    [self.delegate loadNewScreen:storyboardView cellTapped:self];
+    [self.delegate loadNewScreen:storyboardView fromCellTapped:self];
     
 }
 
