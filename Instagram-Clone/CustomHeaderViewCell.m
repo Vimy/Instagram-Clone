@@ -29,8 +29,12 @@
                                                          bundle:nil];
     UserProfileViewController *storyboardView =
     [storyboard instantiateViewControllerWithIdentifier:@"userView"];
+    
+    NSLog(@"SectionTAPPED: %ld", (long)sender.tag);
+    
    // UINavigationController *navigateController = [[UINavigationController alloc]initWithRootViewController:storyboardView];
-    [self.delegate loadNewScreen:storyboardView fromCellTapped:self];
+   
+    [self.delegate loadNewScreen:storyboardView fromSection:sender.tag] ;
     
 }
 

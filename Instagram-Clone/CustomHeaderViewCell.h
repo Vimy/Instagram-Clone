@@ -12,7 +12,7 @@
 @class CustomHeaderViewCell;
 
 @protocol changeViewcontrollerProtocol <NSObject>
-- (void)loadNewScreen:(UserProfileViewController *)controller fromCellTapped: (CustomHeaderViewCell *)cell;
+- (void)loadNewScreen:(UserProfileViewController *)controller fromSection:(NSInteger )section;
 @end
 
 @interface CustomHeaderViewCell : UITableViewCell

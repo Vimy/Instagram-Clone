@@ -225,6 +225,10 @@
     }
     cell.delegate = self;
     
+    
+    cell.usernameButton.tag = section;
+    
+    
     UILabel *likesLabel = (UILabel *) [cell viewWithTag:10];
     
     NSString *likes =[mediaHeader.likes objectForKey:@"count"];
@@ -279,13 +283,12 @@
 }
 //http://www.reddit.com/r/iOSProgramming/comments/2jcboi/the_best_way_to_get_notified_when_the_data_is/
 
--(void)loadNewScreen:(UserProfileViewController *)controller fromCellTapped:(CustomHeaderViewCell *)cell
+-(void)loadNewScreen:(UserProfileViewController *)controller fromSection:(NSInteger )section
 {
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:cell];
     
     //cell delegate
   //  NSLog(@"WEEEERKT DIT WEEEEELLLL????");
-    tempMedia = [_feedArray objectAtIndex:indexPath.section];
+    tempMedia = [_feedArray objectAtIndex:section];
     
     // NSLog(@"FeedArray: %@", self.feedArray);
     NSString *logString= tempMedia.caption [@"from"][@"username"];
