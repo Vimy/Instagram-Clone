@@ -20,11 +20,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Instagram-Clone/InstaClient.m"
-            timestampString = "436311488.299762"
+            timestampString = "436658519.811549"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "269"
-            endingLineNumber = "269"
+            startingLineNumber = "273"
+            endingLineNumber = "273"
             landmarkName = "-startDownload:forDownloadType:"
             landmarkType = "5">
          </BreakpointContent>

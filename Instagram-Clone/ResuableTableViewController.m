@@ -60,7 +60,7 @@
   
     
     //navbar omhoog duwen
-    //self.shyNavBarManager.scrollView = self.tableView;
+    self.shyNavBarManager.scrollView = self.tableView;
     
     
     //http://stackoverflow.com/questions/19819165/imitate-ios-7-facebook-hide-show-expanding-contracting-navigation-bar
@@ -185,14 +185,13 @@
 {
     return 50;
 }
-
 /*
 - (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section
 {
     return 80;
 }
-
-
+/*
+/*
 - (UIView *)tableView:(UITableView *)tableView viewForFooterInSection:(NSInteger)section
 {
     mediaFooter = [feedArray objectAtIndex:section];
@@ -207,7 +206,10 @@
 
     return cell;
 }
+
 */
+
+
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
@@ -228,6 +230,8 @@
     
     cell.usernameButton.tag = section;
     
+    NSLog(@"Latitude: %@", mediaHeader.latitude);
+     NSLog(@"Longitude: %@", mediaHeader.longitude);
     
     UILabel *likesLabel = (UILabel *) [cell viewWithTag:10];
     
@@ -282,6 +286,7 @@
  
 }
 //http://www.reddit.com/r/iOSProgramming/comments/2jcboi/the_best_way_to_get_notified_when_the_data_is/
+
 
 -(void)loadNewScreen:(UserProfileViewController *)controller fromSection:(NSInteger )section
 {

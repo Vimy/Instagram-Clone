@@ -10,6 +10,8 @@
 #import "InstaMedia.h"
 #import "InstaUser.h"
 #import "AFOAuth2Client.h"
+#import "NSDictionary+NullReplacement.h"
+#import "NSArray+NullReplacement.h"
 
 
 @implementation InstaClient
@@ -201,8 +203,9 @@
      {
 
          NSArray *results = [responseObject valueForKey:@"data"];
-         
-         NSDictionary *resultsDic = [responseObject valueForKey:@"data"];
+        // NSDictionary *nullDic = [responseObject valueForKey:@"data"];
+         NSArray *resultsWithoutNull = [results arrayByReplacingNullsWithBlanks];
+        NSLog(@"Results: %@", resultsWithoutNull[0]);
          
          if ([downloadType isEqualToString:@"userInfo"])
          {
@@ -214,26 +217,23 @@
           //   NSLog(@"crasht het hier?");
                  InstaUser *user = [[InstaUser alloc]init];
  
+             for (NSDictionary *resultsDic in resultsWithoutNull)
+             {
+                 
+             
+             
                  for (NSString *key in resultsDic)
                  {
-                    // NSLog(@"key, %@",key);
+                    
                      if([user respondsToSelector:NSSelectorFromString(key)])
                      {
                          
-                          if  ([resultsDic valueForKey:key] && (![[resultsDic valueForKey:key] isEqual:[NSNull null]]) && (![[resultsDic valueForKey:key] isEqual:@"<null>"]))
-                          {
-                             //([[imagesDic valueForKey:key] isKindOfClass:[NSNull class]]) check
-                             [user setValue:[resultsDic valueForKey:key ] forKey:key];
-                         }
-                         else
-                         {
-                             NSLog(@"Null voor key: %@", key);
-                             continue;
-                         }
+                    [user setValue:[resultsDic valueForKey:key ] forKey:key];
+                      
                          
                      }
                  }
-             // nog NSNUll check fixen
+          
                  user.profilePictureUrl = resultsDic[@"profile_picture"];
                  user.fullName = resultsDic[@"full_name"];
                  user.counts = resultsDic[@"counts"];
@@ -241,11 +241,13 @@
                  user.followedByCount = resultsDic[@"counts"][@"followed_by"];
                  user.followsCount = resultsDic[@"counts"][@"follows"];
                  [images addObject:user];
+             }
+             
          }
          else
          {
              
-             for (NSDictionary *imagesDic in results)
+             for (NSDictionary *imagesDic in resultsWithoutNull)
              {
                  InstaMedia *media = [[InstaMedia alloc]init];
                  
@@ -255,10 +257,12 @@
                      {
                          
                          
-                         if  ([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"]))
+                         if  ([imagesDic valueForKey:key])
                          {
-                             if ([key isEqualToString:@"location"])
+                             /*if ([key isEqualToString:@"location"])
                              {
+                                 NSLog(@"imagesDic: %@", imagesDic);
+                                 
                                  media.latitude = imagesDic[@"location"][@"latitude"];
                                  media.longitude = imagesDic[@"location"][@"longtitude"];
                                  NSString *string = imagesDic[@"location"][@"latitude"];
@@ -269,10 +273,10 @@
                              }
                              else
                              {
-                             
+                             */
                                  //([imagesDic valueForKey:key] && (![[imagesDic valueForKey:key] isEqual:[NSNull null]]) && (![[imagesDic valueForKey:key] isEqual:@"<null>"]))
                                  [media setValue:[imagesDic valueForKey:key ] forKey:key];
-                             }
+                            // }
                              
                          }
                          else
