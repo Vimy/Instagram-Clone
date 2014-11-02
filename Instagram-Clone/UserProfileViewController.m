@@ -78,14 +78,7 @@
 
 - (void)downloadFinished
 {
-   // NSLog(@"werkt dit wel?");
-   // NSLog(@"userInfo: %@", client.userInfoArray);
-    /*NSLog(@"Test: %@",user.username);
-    NSLog(@"Test2: %@", user.fullName);
-    NSLog(@"Test2: %@", user.bio);
-    NSLog(@"Test2: %@", user.profilePictureUrl);*/
-    
-    //InstaUser *user = client.userInfoArray[0];
+
     
     
     self.mediaArray = client.personalImagesArray;
@@ -106,7 +99,6 @@
                                              selector:@selector(downloadFinished)
                                                  name:@"userFeedDownload" object:nil];
   
-  //   NSLog(@"[USERPRF]Nu werkt viewWillAppear!");
 }
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
@@ -166,11 +158,7 @@
     InstaUser *user = client.userInfoArray[0];
      self.usernameLabel.text = user.username;
     
-   // NSLog(@"Array : %@", user.counts);
-    
-   // NSDictionary *counts = user.counts[0];
-   // NSLog(@"%@", counts[@"follows"]);
-  //  NSLog(@"ProfilePictureURL: %@", user.profilePictureUrl);
+
     NSURL *url = [NSURL URLWithString:user.profilePictureUrl];
     
     [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
@@ -178,18 +166,9 @@
     self.userMediaCountLabel.text = [user.mediaCount stringValue];
     self.userFollowingCountLabel.text = [user.followsCount stringValue];
     self.userOnderschriftLabel.text = user.bio;
-    /*
-     
+  
     
-     
-    username = self.media.caption [@"from"][@"username"];
-    self.usernameLabel.text = username;
- //   NSLog(@"USERPRF]username: %@", username);
-    
-    NSURL *url = [NSURL URLWithString:self.media.caption [@"from"][@"profile_picture"]];
- 
-    [self.profileImage setImageWithURL:url placeholderImage:[UIImage imageNamed:@"none.gif"]];
-    */
+
    self.profileImage.clipsToBounds = YES;
     self.profileImage.layer.cornerRadius = self.profileImage.frame.size.width/2;
    self.profileImage.layer.borderWidth = 0.5f;
@@ -237,15 +216,6 @@
     }
 
     
-}
-*/
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
 }
 */
 

@@ -49,9 +49,7 @@
 
     client = [InstaClient sharedClient];
     
-    //[client searchForKeyWords:@"booty"];
-    // Uncomment the following line to preserve selection between presentations
-    // self.clearsSelectionOnViewWillAppear = NO;
+
     
     // Register cell classes
 
@@ -143,7 +141,6 @@
     NSString *keyword = self.searchBar.text;
      [activityView startAnimating];
     [client searchForKeyWords:keyword];
-  //  NSLog(@"Werkt!");
 }
 /*
 - (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary *)change context:(void *)context
@@ -179,15 +176,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 #pragma mark <UICollectionViewDataSource>
 
@@ -236,7 +224,6 @@
         ResuableTableViewController *vc = (ResuableTableViewController *)segue.destinationViewController;
         InstaMedia *segueMedia = [[InstaMedia alloc]init];
         segueMedia = [imagesArray objectAtIndex:indexPath.row];
-        NSString *username = segueMedia.caption[@"from"][@"username"];
         vc.isImageDetailView = YES;
         vc.mediaSegue = @[segueMedia];
         vc.feedArray = @[segueMedia];

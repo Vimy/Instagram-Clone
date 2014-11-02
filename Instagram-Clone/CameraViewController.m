@@ -21,9 +21,7 @@
     [session setSessionPreset:AVCaptureSessionPresetPhoto];
     
     AVCaptureDevice *inputDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
-  
     NSError *error;
-    
     AVCaptureDeviceInput *deviceInput = [AVCaptureDeviceInput deviceInputWithDevice:inputDevice error:&error];
     
     if ([session canAddInput:deviceInput])
@@ -48,14 +46,10 @@
     [stillImageOutput setOutputSettings:outputSettings];
     
     [session addOutput:stillImageOutput];
-    
-    
+ 
     UIButton *button = [[UIButton alloc] initWithFrame:CGRectMake(187.5, 400, 50,50)];
     [button addTarget:self action:@selector(takePicture:) forControlEvents:UIControlEventTouchUpInside];
-    
-    
-    
-    
+
     [session startRunning];
     
     // Do any additional setup after loading the view.

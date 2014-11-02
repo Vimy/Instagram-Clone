@@ -37,7 +37,6 @@
     [self.mapView removeAnnotations:self.mapView.annotations];
     [self.mapView addAnnotations:self.photosByUser];
     [self.mapView showAnnotations:self.photosByUser animated:YES];
-
 }
 
 

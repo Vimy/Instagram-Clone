@@ -12,7 +12,6 @@
 - (void)awakeFromNib
 {
     // Initialization code
-    //[ self.usernameButton setTitle:@"Calibration" forState:UIControlStateNormal];
     self.usernameButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentLeft;
 }
 
@@ -29,11 +28,7 @@
                                                          bundle:nil];
     UserProfileViewController *storyboardView =
     [storyboard instantiateViewControllerWithIdentifier:@"userView"];
-    
     NSLog(@"SectionTAPPED: %ld", (long)sender.tag);
-    
-   // UINavigationController *navigateController = [[UINavigationController alloc]initWithRootViewController:storyboardView];
-   
     [self.delegate loadNewScreen:storyboardView fromSection:sender.tag] ;
     
 }
