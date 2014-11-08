@@ -62,11 +62,10 @@
     NSUserDefaults *defaults2 = [NSUserDefaults standardUserDefaults];
     [defaults2 removeObjectForKey:@"auth_code"];
     [defaults2 synchronize];
-    
-  
     */
+  
+  
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
     NSString *authCode = [defaults stringForKey:@"auth_code"];
   
    // NSLog(@"AUTHCODE: %@", authCode);
@@ -76,6 +75,21 @@
     
         if (![defaults stringForKey:@"instatoken"])
         {
+            NSDictionary *params = @{@"client_id":kCLIENTID, @"client_secret":kCLIENTSECRET, @"grant_type":@"authorization_code",@"redirect_uri":kREDIRECTURI, @"code":authCode};
+            AFHTTPRequestOperationManager *manager = [AFHTTPRequestOperationManager manager]; //mister manager :p
+            [manager POST:@"https://api.instagram.com/oauth/access_token" parameters:params success:^(AFHTTPRequestOperation *operation, id responseObject) {
+                NSLog(@"Responseobject AFNETWORKING: %@", responseObject);
+                self.instaToken = responseObject[@"access_token"];
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                NSLog(@"Error AFNETWORKING: %@", error);
+            }];
+            
+            NSLog(@"InstaToken: %@", self.instaToken);
+            [defaults setValue:self.instaToken forKey:@"instatoken"];
+            [defaults synchronize];
+            
+            /*
+            
             //  NSLog(@"Test");
             NSString *parameterData = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&redirect_uri=%@&code=%@",kCLIENTID,kCLIENTSECRET,kREDIRECTURI,authCode];
             NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"];
@@ -84,7 +98,7 @@
             [request setHTTPBody:[parameterData dataUsingEncoding:NSUTF8StringEncoding]];
             [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
             
-           /* NSDictionary *params = @{@"client_id:%@", kCLIENTID}
+            NSDictionary *params = @{@"client_id:%@", kCLIENTID}
             
             
             AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://samwize.com/"]];
@@ -93,17 +107,16 @@
                                                                     path:@"http://samwize.com/api/pig/"
                                                               parameters:@{@"name":@"piggy"}];
 
-            */
+          
             //NSURLConnection
             NSURLResponse *response = nil;
             NSError *error = nil;
             NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
             NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-          //  NSLog(@"JSON response: %@", json);
-            self.instaToken = json[@"access_token"];
-            [defaults setValue:self.instaToken forKey:@"instatoken"];
-            [defaults synchronize];
             
+          //  NSLog(@"JSON response: %@", json);
+            
+            */
           /*  AFHTTPSessionManager *httpManager =
             
             //AFNetworking

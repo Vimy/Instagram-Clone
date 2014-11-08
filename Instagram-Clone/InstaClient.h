@@ -14,7 +14,7 @@
 #define kREDIRECTURI @"instaklone://"
 
 @interface InstaClient : NSObject
-@property (nonatomic, strong) NSString *instaToken;
+@property (nonatomic, strong) __block NSString *instaToken;
 @property (nonatomic, strong) __block NSArray *imagesArray;
 @property (nonatomic, strong) __block NSArray *searchImagesArray;
 @property (nonatomic, strong) __block NSArray *personalImagesArray;

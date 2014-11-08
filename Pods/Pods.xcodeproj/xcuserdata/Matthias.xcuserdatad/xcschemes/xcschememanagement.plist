@@ -14,6 +14,16 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Pods-DBCamera.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods-GPUImage.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-TLYShyNavBar.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -27,22 +37,32 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>325D56F5B3484D9A8E1219BA</key>
+		<key>035CEEE5D05823B5D0A13596</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>872A6D31021D43B2A9A71280</key>
+		<key>3F47B475C11C6667BCCF8594</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>98EA2A38060945D39D9AE432</key>
+		<key>50015DDE2794DBB725038336</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>D3EDD59F2DE84FA6AA204598</key>
+		<key>9C97BEB59F621F8C4AA4860D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>A259AF27B5E9D25546834D0C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C4AB3A864A1555BE35D4F946</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,0 +1,7 @@
+CLANG_MODULES_AUTOLINK = YES
+GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
+HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/AFNetworking" "${PODS_ROOT}/Headers/Public/AFOAuth2Client" "${PODS_ROOT}/Headers/Public/DBCamera" "${PODS_ROOT}/Headers/Public/GPUImage" "${PODS_ROOT}/Headers/Public/TLYShyNavBar"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/AFNetworking" -isystem "${PODS_ROOT}/Headers/Public/AFOAuth2Client" -isystem "${PODS_ROOT}/Headers/Public/DBCamera" -isystem "${PODS_ROOT}/Headers/Public/GPUImage" -isystem "${PODS_ROOT}/Headers/Public/TLYShyNavBar"
+OTHER_LDFLAGS = -ObjC -l"Pods-AFNetworking" -l"Pods-AFOAuth2Client" -l"Pods-DBCamera" -l"Pods-GPUImage" -l"Pods-TLYShyNavBar" -framework "AVFoundation" -framework "CoreGraphics" -framework "CoreMedia" -framework "MobileCoreServices" -framework "OpenGLES" -framework "QuartzCore" -framework "Security" -framework "SystemConfiguration"
+OTHER_LIBTOOLFLAGS = $(OTHER_LDFLAGS)
+PODS_ROOT = ${SRCROOT}/Pods

@@ -32,41 +32,59 @@
     [super viewDidLoad];
     
     
+   
+  
+ // http://stackoverflow.com/questions/5210535/passing-data-between-view-controllers
+// http://stackoverflow.com/questions/15540120/passing-data-to-container-view
+    // Do any additional setup after loading the view.
+}
+
+- (void)viewDidAppear:(BOOL)animated
+{
+    
     client = [InstaClient sharedClient];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(downloadFinished)
                                                  name:@"userInfo" object:nil];
     
+      [[NSNotificationCenter defaultCenter] addObserver:self
+                                               selector:@selector(getMedia:)
+                                                   name:@"changeToView" object:nil];
     
-    
-    UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    ResuableTableViewController *childController  = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
-    
-    childController.username = self.media.caption [@"from"][@"id"];
-    childController.mediaSegue = self.mediaArray;
-    childController.isUserView = YES;
-    childController.feedArray = self.mediaArray;
-  //  [client downloadUserFeed:self.media.caption [@"from"][@"id"]];
-    
-    
-    [client downloadUserInfo:self.media.caption [@"from"][@"id"]];
-    
-    
-    [self addChildViewController:childController];
-    childController.view.frame = self.containerView.bounds; // set the frame any way you want
-    [self.containerView addSubview:childController.view];
-    [childController didMoveToParentViewController:self];
-    
-    
-    
-    
-   // NSLog(@"[USERPRF]Nu werkt het!");
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(getMedia:) name:@"changeToView" object:nil];
-  
- // http://stackoverflow.com/questions/5210535/passing-data-between-view-controllers
-// http://stackoverflow.com/questions/15540120/passing-data-to-container-view
-    // Do any additional setup after loading the view.
+    if (self.navigationController.tabBarController.selectedIndex == 4)
+    {
+        [client downloadUserInfo:@"self"];
+    }
+    else
+    {
+     
+        
+        
+        UIStoryboard *sb = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+        ResuableTableViewController *childController  = [sb instantiateViewControllerWithIdentifier:@"MainFeed"];
+        
+        childController.username = self.media.caption [@"from"][@"id"];
+        childController.mediaSegue = self.mediaArray;
+        childController.isUserView = YES;
+        childController.feedArray = self.mediaArray;
+        //  [client downloadUserFeed:self.media.caption [@"from"][@"id"]];
+        
+        
+        [client downloadUserInfo:self.media.caption [@"from"][@"id"]];
+        
+        
+        [self addChildViewController:childController];
+        childController.view.frame = self.containerView.bounds; // set the frame any way you want
+        [self.containerView addSubview:childController.view];
+        [childController didMoveToParentViewController:self];
+        
+        
+        
+        
+        // NSLog(@"[USERPRF]Nu werkt het!");
+      
+    }
 }
 
 -(void)setUserID:(NSString *)userID
@@ -82,7 +100,7 @@
     
     
     self.mediaArray = client.personalImagesArray;
-    
+    NSLog(@"Setup UI called");
     [self setupUI];
 
 }
@@ -190,6 +208,8 @@
     }];
     
 }
+
+
 /*- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if ([segue.identifier isEqualToString:@"showUserFeed"])

@@ -22,11 +22,15 @@ PODS:
     - AFNetworking/NSURLSession
   - AFOAuth2Client (0.1.1):
     - AFNetworking (~> 2.0)
-  - TLYShyNavBar (0.9.7)
+  - DBCamera (2.3.5):
+    - GPUImage (~> 0.1)
+  - GPUImage (0.1.6)
+  - TLYShyNavBar (0.9.8)
 
 DEPENDENCIES:
   - AFNetworking (~> 2.2)
   - AFOAuth2Client (from `git://github.com/mlwelles/AFOAuth2Client.git`)
+  - DBCamera (~> 2.3)
   - TLYShyNavBar
 
 EXTERNAL SOURCES:
@@ -36,6 +40,8 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   AFNetworking: 0aabc6fae66d6e5d039eeb21c315843c7aae51ab
   AFOAuth2Client: 05536bd4175add72e7efcb6b749d4e9685ed02f7
-  TLYShyNavBar: 8c89cc5225a26618ff7d0cb922f72060300deec8
+  DBCamera: 0095227e0d2d0292c5a2cc400fe75687120e6f29
+  GPUImage: cecb0830bb9428f50192042e3c7b53810f51388e
+  TLYShyNavBar: cf15a919cf7f6e79080ac5b95b56580a752cf64d
 
-COCOAPODS: 0.33.1
+COCOAPODS: 0.34.4

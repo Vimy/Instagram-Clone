@@ -22,6 +22,11 @@
 
 static inline CGFloat AACStatusBarHeight()
 {
+    if ([UIApplication sharedApplication].statusBarHidden)
+    {
+        return 0.f;
+    }
+    
     CGSize statusBarSize = [UIApplication sharedApplication].statusBarFrame.size;
     return MIN(statusBarSize.width, statusBarSize.height);
 }
@@ -42,8 +47,9 @@ static inline CGFloat AACStatusBarHeight()
 @property (nonatomic) CGFloat resistanceConsumed;
 
 @property (nonatomic, getter = isContracting) BOOL contracting;
-@property (nonatomic, getter = isViewControllerVisible) BOOL viewControllerVisible;
 @property (nonatomic) BOOL previousContractionState;
+
+@property (nonatomic, readonly) BOOL isViewControllerVisible;
 
 @end
 
@@ -63,6 +69,8 @@ static inline CGFloat AACStatusBarHeight()
         
         self.expansionResistance = 200.f;
         self.contractionResistance = 0.f;
+        
+        self.alphaFadeEnabled = YES;
         
         self.previousScrollInsets = UIEdgeInsetsZero;
         self.previousYOffset = NAN;
@@ -113,7 +121,8 @@ static inline CGFloat AACStatusBarHeight()
     {
         _scrollView.delegate = _delegateProxy.originalDelegate;
     }
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIApplicationDidBecomeActiveNotification object:nil];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - Properties
@@ -146,11 +155,20 @@ static inline CGFloat AACStatusBarHeight()
     {
         self.delegateProxy.originalDelegate = _scrollView.delegate;
         _scrollView.delegate = (id)self.delegateProxy;
-    }}
+    }
+    [self cleanup];
+    [self layoutViews];
+    
+}
 
 - (CGRect)extensionViewBounds
 {
     return self.extensionViewContainer.bounds;
+}
+
+- (BOOL)isViewControllerVisible
+{
+    return self.viewController.isViewLoaded && self.viewController.view.window;
 }
 
 #pragma mark - Private methods
@@ -220,6 +238,7 @@ static inline CGFloat AACStatusBarHeight()
         }
         
         // 6 - Update the shyViewController
+        self.navBarController.alphaFadeEnabled = self.alphaFadeEnabled;
         [self.navBarController updateYOffset:deltaY];
     }
     
@@ -235,7 +254,7 @@ static inline CGFloat AACStatusBarHeight()
     
     self.resistanceConsumed = 0;
     
-    CGFloat deltaY = deltaY = [self.navBarController snap:self.isContracting];
+    CGFloat deltaY = [self.navBarController snap:self.isContracting];
     CGPoint newContentOffset = self.scrollView.contentOffset;
     
     newContentOffset.y -= deltaY;
@@ -270,7 +289,6 @@ static inline CGFloat AACStatusBarHeight()
 - (void)prepareForDisplay
 {
     [self cleanup];
-    self.viewControllerVisible = YES;
 }
 
 - (void)layoutViews
@@ -296,7 +314,6 @@ static inline CGFloat AACStatusBarHeight()
 {
     [self.navBarController expand];
     
-    self.viewControllerVisible = NO;
     self.previousYOffset = NAN;
     self.previousScrollInsets = UIEdgeInsetsZero;
 }
@@ -321,7 +338,7 @@ static inline CGFloat AACStatusBarHeight()
     [self _handleScrollingEnded];
 }
 
-#pragma mark - Application did become active method
+#pragma mark - NSNotificationCenter methods
 
 - (void)applicationDidBecomeActive
 {
