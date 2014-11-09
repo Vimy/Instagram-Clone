@@ -88,51 +88,7 @@
             [defaults setValue:self.instaToken forKey:@"instatoken"];
             [defaults synchronize];
             
-            /*
-            
-            //  NSLog(@"Test");
-            NSString *parameterData = [NSString stringWithFormat:@"client_id=%@&client_secret=%@&grant_type=authorization_code&redirect_uri=%@&code=%@",kCLIENTID,kCLIENTSECRET,kREDIRECTURI,authCode];
-            NSURL *url = [NSURL URLWithString:@"https://api.instagram.com/oauth/access_token"];
-            NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
-            [request setHTTPMethod:@"POST"];
-            [request setHTTPBody:[parameterData dataUsingEncoding:NSUTF8StringEncoding]];
-            [request setValue:@"application/x-www-form-urlencoded" forHTTPHeaderField:@"Content-type"];
-            
-            NSDictionary *params = @{@"client_id:%@", kCLIENTID}
-            
-            
-            AFHTTPClient *httpClient = [[AFHTTPClient alloc] initWithBaseURL:[NSURL URLWithString:@"http://samwize.com/"]];
-            [httpClient setParameterEncoding:AFFormURLParameterEncoding];
-            NSMutableURLRequest *request = [httpClient requestWithMethod:@"POST"
-                                                                    path:@"http://samwize.com/api/pig/"
-                                                              parameters:@{@"name":@"piggy"}];
-
-          
-            //NSURLConnection
-            NSURLResponse *response = nil;
-            NSError *error = nil;
-            NSData *data = [NSURLConnection sendSynchronousRequest:request returningResponse:&response error:&error];
-            NSDictionary *json = [NSJSONSerialization JSONObjectWithData:data options:kNilOptions error:&error];
-            
-          //  NSLog(@"JSON response: %@", json);
-            
-            */
-          /*  AFHTTPSessionManager *httpManager =
-            
-            //AFNetworking
-            AFHTTPRequestOperation *operation = [[AFHTTPRequestOperation alloc]initWithRequest:request];
-            operation.responseSerializer = [AFJSONResponseSerializer serializer];
-            [operation setCompletionBlockWithSuccess:^(AFHTTPRequestOperation *operation, id result)
-             {
-            //     NSLog(@"Test!");
-                 NSLog(@"JSON response: %@", result);
-             }
-                                             failure:^(AFHTTPRequestOperation *operation, NSError *error)
-             {
-                 NSLog(@"Error: %@", [error localizedDescription]);
-                 NSLog(@"No token from instagram. :sadface:");
-             }];
-            [operation start];*/
+        
        }
 
         self.instaToken = [defaults stringForKey:@"instatoken"];
