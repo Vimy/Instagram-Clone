@@ -90,6 +90,8 @@
             
         
        }
+        //cheaten
+        
 
         self.instaToken = [defaults stringForKey:@"instatoken"];
         
